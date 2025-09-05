@@ -1,0 +1,181 @@
+---
+layout: layouts/base.njk
+---
+
+<style>
+  .board-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .page-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #333;
+  }
+
+  .hero-image-container {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .hero-image-container img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .memorial-section {
+    background: #f8f8f8;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    border-radius: 8px;
+  }
+
+  .memorial-section h2 {
+    color: #666;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .memorial-content p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  .board-members {
+    margin-top: 3rem;
+  }
+
+  .board-member {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .board-member:last-child {
+    border-bottom: none;
+  }
+
+  .board-member-photo {
+    flex-shrink: 0;
+    width: 200px;
+  }
+
+  .board-member-photo img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+
+  .board-member-info {
+    flex: 1;
+  }
+
+  .board-member-info h3 {
+    font-size: 1.3rem;
+    color: #333;
+    margin-bottom: 0.25rem;
+  }
+
+  .board-member-info h4 {
+    font-size: 1rem;
+    color: #666;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+
+  .board-member-bio {
+    line-height: 1.6;
+    color: #444;
+  }
+
+  .board-member-bio p {
+    margin-bottom: 1rem;
+  }
+
+  .board-member-email {
+    margin-top: 1rem;
+  }
+
+  .board-member-email a {
+    color: #2c5aa0;
+    text-decoration: none;
+  }
+
+  .board-member-email a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .board-member {
+      flex-direction: column;
+    }
+
+    .board-member-photo {
+      width: 100%;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+  }
+</style>
+
+<div class="board-page">
+  <h1 class="page-title">Our Board</h1>
+  
+  {% if hero_image %}
+  <div class="hero-image-container">
+    {% image hero_image, "Our Board", "(max-width: 1200px) 100vw, 1200px" %}
+  </div>
+  {% endif %}
+
+  {# In Memory Section #}
+  <div class="memorial-section">
+    <h2>IN LOVING MEMORY OF PURRCY 2003-2022</h2>
+    <div class="memorial-content">
+      <p>Purrcy found CVAS in 2013 when Nancy, a long-time volunteer, was trapping a group of cats who had been left alone out on Williams Lake Road when their owner passed away. Nancy was checking the traps in the morning and Purrcy came out of nowhere, stumbled up to her and collapsed at her feet. He was skin and bones and missing most of his hair. Most likely he would not have survived another night or two outside in his condition. He had to wear a sweater for months until his fur grew back. A dramatic origin story for a dramatic cat.</p>
+      
+      <p>Purrcy loved hanging out with all of us, keeping our desks, chairs, and hearts warm. He fell in love with his cat girlfriend Eva, another rescued cat who lives at CVAS, and the two remained close companions until the end. He was greatly beloved by our staff, volunteers, and all who knew him. He passed of natural causes at the age of 19 and a half years old surrounded by his CVAS family.</p>
+    </div>
+  </div>
+
+  {# Board Members Section #}
+  <div class="board-members">
+    {% for member in board_members %}
+    <div class="board-member">
+      {% if member.photo %}
+      <div class="board-member-photo">
+        {% image member.photo, member.name + " headshot", "200px" %}
+      </div>
+      {% endif %}
+      
+      <div class="board-member-info">
+        <h3>{{ member.name | upper }}</h3>
+        {% if member.title %}
+          <h4>{{ member.title }}</h4>
+        {% endif %}
+        
+        {% if member.bio %}
+        <div class="board-member-bio">
+          {{ member.bio | markdown | safe }}
+        </div>
+        {% endif %}
+        
+        {% if member.email %}
+        <p class="board-member-email">
+          <a href="mailto:{{ member.email }}">{{ member.email }}</a>
+        </p>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  {# Any additional content from markdown file #}
+  {{ content | safe }}
+</div>

@@ -1,0 +1,472 @@
+---
+layout: layouts/base.njk
+---
+
+<!-- Hero Section with Pet Photos -->
+<section class="adopt-hero">
+  <div class="hero-collage">
+    {% if hero.collageImage %}
+    <img src="{{ hero.collageImage }}" alt="Adoptable pets collage" class="collage-img">
+    {% endif %}
+    <div class="hero-overlay">
+      <div class="container">
+        <h1>{{ hero.title }}</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Adoption Information Section -->
+<section class="adopt-info">
+  <div class="container">
+    <h2>{{ adoptContent.title }}</h2>
+    <div class="adopt-description">
+      {{ adoptContent.description | markdown | safe }}
+    </div>
+  </div>
+</section>
+
+<!-- Adoption Hours Section -->
+<section class="adopt-hours">
+  <div class="container">
+    <h3>{{ adoptionHours.title }}</h3>
+  </div>
+</section>
+
+<!-- Pet Listings Section -->
+<section class="adopt-pets">
+  <div class="container">
+    <div class="pets-header">
+      <h3>{{ petsSection.title }}</h3>
+      <div class="pets-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="dog">Dogs</button>
+        <button class="filter-btn" data-filter="cat">Cats</button>
+      </div>
+    </div>
+    
+    <!-- Loading State -->
+    <div class="loading" id="pets-loading">
+      <div class="spinner"></div>
+      <p>Loading available pets...</p>
+    </div>
+    
+    <!-- Error State -->
+    <div class="error-message" id="pets-error" style="display: none;">
+      <p>Unable to load pets at this time. Please try again later.</p>
+      <a href="https://petstablished.com/organization/colville-valley-animal-sanctuary" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+        View Pets on PetStablished
+      </a>
+    </div>
+    
+    <!-- Pet Cards -->
+    <div class="pets-grid" id="pets-grid">
+      <!-- Pet cards will be dynamically loaded here -->
+    </div>
+  </div>
+</section>
+
+<!-- Adoption Process Section -->
+<section class="adopt-process">
+  <div class="container">
+    <h3>{{ adoptionProcess.title }}</h3>
+    <div class="process-content">
+      {{ adoptionProcess.content | markdown | safe }}
+    </div>
+    
+    {% if adoptionProcess.links %}
+    <div class="process-links">
+      {% for link in adoptionProcess.links %}
+      <a href="{{ link.url }}" class="btn btn-{{ link.type }}">{{ link.text }}</a>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+/* Adopt Page Styles */
+.adopt-hero {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+}
+
+.hero-collage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.collage-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-overlay h1 {
+  color: white;
+  font-size: 3rem;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+
+.adopt-info {
+  padding: 60px 0;
+  background: var(--color-bg);
+  text-align: center;
+}
+
+.adopt-info h2 {
+  color: var(--color-primary);
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.adopt-description {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+}
+
+.adopt-pets {
+  padding: 60px 0;
+  background: white;
+}
+
+.pets-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.pets-header h3 {
+  color: var(--color-primary);
+  font-size: 2rem;
+}
+
+.pets-filters {
+  display: flex;
+  gap: 1rem;
+}
+
+.filter-btn {
+  background: transparent;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  padding: 8px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--color-primary);
+  color: white;
+}
+
+.loading {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid var(--color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-message {
+  text-align: center;
+  padding: 3rem 0;
+  color: var(--color-text-secondary);
+}
+
+.pets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.pet-card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.pet-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+}
+
+.pet-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.pet-details {
+  padding: 1.5rem;
+}
+
+.pet-details h3 {
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.pet-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+
+.pet-description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.adopt-hours {
+  padding: 60px 0;
+  background: white;
+  text-align: center;
+}
+
+.adopt-hours h3 {
+  color: var(--color-primary);
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.hours-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.hours-content p {
+  font-size: 1.2rem;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+.adopt-process {
+  padding: 60px 0;
+  background: var(--color-bg);
+}
+
+.adopt-process h3 {
+  color: var(--color-primary);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.process-content {
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+}
+
+.process-links {
+  text-align: center;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  
+  .hero-overlay h1 {
+    font-size: 2rem;
+  }
+  
+  .pets-header {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+  }
+  
+  .pets-filters {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .pets-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .process-links {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+</style>
+
+<script>
+// Pet adoption page functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const petsGrid = document.getElementById('pets-grid');
+  const petsLoading = document.getElementById('pets-loading');
+  const petsError = document.getElementById('pets-error');
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  
+  let allPets = [];
+  let currentFilter = 'all';
+  
+  // Complete breed to animal mapping from shelter_filters API response
+  const breedToAnimal = {};
+  
+  // Cat breeds
+  ["Domestic Medium Hair", "Domestic Long Hair", "Domestic Shorthair", "Domestic Short Hair", "Domestic Mediumhair", "American Short Hair", "Domestic Longhair", "Siamese", "Tabby", "Himalayan", "Siberian", "Persian", "Colorpoint Short Hair", "Other", "Russian Blue", "Ragdoll", "Tuxedo", "Tortoiseshell", "Manx", "Snowshoe", "Maine Coon", "Hemingway/Polydactyl", "Polydactyl/Hemingway", "Calico", "Turkish Van", "Norwegian Forest Cat", "Chausie", "Mixed Breed", "Bengal", "Abyssinian", "American Bobtail", "American Curl", "American Shorthair", "American Wire Hair", "American Wirehair", "Balinese", "Birman", "Bombay", "British Short Hair", "British Shorthair", "Burmese", "Canadian Hairless", "Chartreux", "Chaussie", "Cornish Rex", "Cymric", "Devon Rex", "Egyptian Mau", "European Burmese", "Exotic", "Havana Brown", "Japanese Bobtail", "Javanese", "Korat", "LaPerm", "Munchkin", "Nebelung", "Ocicat", "Oriental", "Oriental Long Hair", "Oriental Short Hair", "RagaMuffin", "Savannah", "Scottish Fold", "Selkirk Rex", "Singapura", "Somali", "Sphynx", "Tiger", "Tonkinese", "Turkish Angora", "Turkish Va", "Island Mix", "Unknown", "Dilute Tortoiseshell", "DSH", "Mixed Breed (Medium)", "Tortie"].forEach(breed => breedToAnimal[breed] = "Cat");
+  
+  // Dog breeds  
+  ["Golden Retriever", "Bernese Mountain Dog", "Terrier (Unknown Type, Small)", "Bichon Frise", "Border Collie", "Pembroke Welsh Corgi", "Chesapeake Bay Retriever", "Australian Cattle Dog", "Labrador Retriever", "Shepherd (Unknown Type)", "American Pit Bull Terrier", "Husky", "Rottweiler", "Australian Shepherd", "Jack Russell Terrier", "Poodle (Standard)", "Chihuahua", "Great Pyrenees", "Mixed Breed", "Labradoodle", "Siberian Husky", "German Shepherd Dog", "Boston Terrier", "Pit Bull Terrier", "Corgi", "Papillon", "Anatolian Shepherd", "Collie", "Blue Heeler", "Akbash", "Dachshund", "Other", "Pomeranian", "Wirehaired Jack Russell Terrier", "Boxer", "Shepherds (All Types)", "St. Bernard", "Catahoula Leopard Dog", "Black Mouth Cur", "Shih Tzu", "Nova Scotia Duck-Tolling Retriever", "Cardigan Welsh Corgi", "Tibetan Mastiff", "Schnauzer (Standard)", "Mastiff", "Yorkie, Yorkshire Terrier", "Whippet", "Rhodesian Ridgeback", "Havanese", "Karelian Bear Dog", "Great Dane", "Cockapoo", "Poodles (All Types)", "English Shepherd", "Springer Spaniel", "Cairn Terrier", "Staffordshire Bull Terrier", "Setter (Unknown Type)", "Airedale Terrier", "American Bully", "Dutch Shepherd", "Miniature Poodle", "Beagle", "Bluetick Coonhound", "Shiba Inu", "American Eskimo Dog", "Alaskan Malamute", "Bloodhound", "German Shorthaired Pointer", "Sheltie, Shetland Sheepdog", "Hound (Unknown Type)", "Skye Terrier", "Yorkie, Yorkshire Terrie", "Plott Hound", "Poodle (Miniature)", "Unknown", "Irish Setter", "Miniature Pinscher", "American Bulldog", "Maltese", "Goldendoodle", "French Bulldog", "Silky Terrier", "Portuguese Water Dog", "Basset Hound", "Patterdale Terrier (Fell Terrier)", "Pug", "Affenpinscher", "Afghan Hound", "Akita", "Alaskan Klee Kai", "American Hairless Terrier", "American Staffordshire Terrier", "American Water Spaniel", "Australian Kelpie", "Australian Terrier", "Basenji", "Basset Griffon Vendeen", "Bearded Collie", "Beauceron", "Bedlington Terrier", "Belgian Laekenois", "Belgian Malinois", "Belgian Shepherd", "Belgian Tervuren", "Black and Tan Coonhound", "Blue Lacy/Texas Lacy", "Bobtail", "Boerboel Mastiff", "Bolognese", "Border Terrier", "Borzoi", "Bouvier des Flandres", "Boykin Spaniel", "Briard", "Brittany", "Brussels Griffon", "Bull Terrier", "Bulldog", "Bullmastiff", "Canaan Dog", "Canary Dog", "Cane Corso", "Carolina Dog", "Cattle Dog", "Caucasion Shepherd", "Cavalier King Charles Spaniel", "Chinese Crested", "Chow Chow", "Clumber Spaniel", "Cocker Spaniel", "Coconut Retriever", "Coonhound", "Coonhound (Unknown Type)", "Coton de Tulear", "Curly-Coated Retriever", "Cute Canine Crosses", "Dalmatian", "Dandie Dinmont Terrier", "Deerhound", "Doberman Pinscher", "Dogo Argentino", "Dogue de Bordeaux", "English (Redtick) Coonhound", "English Bulldog", "English Mastiff", "English Pointer", "English Setter", "English Sheepdog", "English Springer Spaniel", "English Toy Spaniel", "Entlebucher", "Eskimo Dog", "Eskimo Spitz", "Feist", "Field Spaniel", "Fila Brasileiro", "Finnish Lapphund", "Finnish Spitz", "Flat-Coated Retriever", "Fox Terrier (Smooth)", "Fox Terrier (Toy)", "Fox Terrier (Wirehaired)", "Foxhound", "French Mastiff", "Gentle Giants", "German Pinscher", "German Wirehaired Pointer", "Giant Schnauzer", "Glen of Imaal Terrier", "Gordon Setter", "Greater Swiss Mountain Dog", "Greyhound", "Halden Hound (Haldenstrover)", "Harrier", "Hounds (All Types)", "Hovawart", "Hungarian Puli", "Hungarian Water Dog", "Ibizan Hound", "Irish Terrier", "Irish Water Spaniel", "Irish Wolfhound", "Island Mix", "Italian Greyhound", "Italian Spinone", "Japanese Chin", "Jindo", "Kai Dog", "Keeshond", "Kerry Blue Terrier", "King Charles Spaniel", "Kishu", "Komondor", "Kuvasz", "Kyi Leo", "Lakeland Terrier", "Lancashire Heeler", "Leonberger", "Lhasa Apso", "Löwchen", "Manchester Terrier", "Maremma Sheepdog", "Mexican Hairless", "Miniature Schnauzer", "Miniature Dachshund", "Mountain Cur", "Munsterlander", "Neapolitan Mastiff", "Newfoundland", "Norfolk Terrier", "Norwegian Buhund", "Norwegian Elkhound", "Norwich Terrier", "Old English Sheepdog", "Otterhound", "Parson Russell Terrier", "Pekingese", "Petit Basset Griffon Vendeen", "Pharaoh Hound", "Podengo Portugueso", "Pointer", "Polish Lowland Sheepdog", "Poodle (Toy or Tea Cup)", "Presa Canario", "Puli", "Pumi", "Rat Terrier", "Redbone Coonhound", "Redtick Coonhound", "Retriever (Unknown Type)", "Retrievers (All Types)", "Russian Wolfhound", "Saluki", "Samoyed", "Schiller Hound", "Schipperke", "Schnauzer (Giant)", "Schnauzer (Miniature)", "Scottie, Scottish Terrier", "Scottish Deerhound", "Sealyham Terrier", "Shar Pei", "Sloughi", "Smooth Fox Terrier", "Snow Dogs (Husky/Fluffy Types)", "Spaniel (Unknown Type)", "Spaniels (Medium)", "Spaniels (Small)", "Spitz (Unknown Type, Large)", "Spitz (Unknown Type, Medium)", "Spitz (Unknown Type, Small)", "Spitz Types (Medium)", "Standard Poodle", "Standard Schnauzer", "Sussex Spaniel", "Swedish Vallhund", "Tea Cup Poodle", "Terrier (Unknown Type, Medium)", "Terriers (Medium)", "Terriers (Small)", "Thai Ridgeback", "Tibetan Spaniel", "Tibetan Terrier", "Tosa Inu", "Toy Fox Terrier", "Toy Poodle", "Treeing Walker Coonhound", "Vizsla", "Weimaraner", "Welsh Corgi", "Welsh Springer Spaniel", "Welsh Terrier", "Westie, West Highland White Terrier", "Wheaten Terrier", "White German Shepherd", "Wirehaired Fox Terrier", "Wirehaired Pointing Griffon", "Xoloitzcuintle/Mexican Hairless", "Icelandic Sheepdog", "Black Russian Terrier", "Aussiedoodle", "31 Flavors Mixes", "Breed Olde English Bulldog", "Caucasian Shepherd", "Formosa Mountain Dog", "German Shepherd", "Shepherd", "Smithfield", "Spaniel", "Spaniels (All Types)", "Spitz Types (Small)", "Terrier", "Vietnamese/Phu Quoc Ridgeback", "Yorkshire Terrier Yorkie", "poodle (all types)", "poodle (unknown type)"].forEach(breed => breedToAnimal[breed] = "Dog");
+  
+  // Bird breeds
+  ["African Grey", "Amazon", "Brotogeris", "Budgie", "Button Quail", "Caique", "Canary", "Chicken", "Cockatiel", "Cockatoo", "Conure", "Dove", "Duck", "Eclectus", "Emu", "Finch", "Goose", "Guinea Fowl", "Kakariki", "Lorikeet", "Lovebird", "Macaw", "Mynah", "Ostrich", "Other/Unknown", "Parakeet - Other", "Parakeet - Quaker", "Parrot - Other", "Parrotlet", "Peacock", "Pheasant", "Pigeon", "Pionus", "Poicephalus (including Senegal and Meyer's)", "Quail", "Rhea", "Ringneck", "Rosella", "Softbill - Other", "Swan", "Toucan", "Turkey"].forEach(breed => breedToAnimal[breed] = "Bird");
+  
+  // Farm animal breeds
+  ["Alpaca", "Cow or Bull", "Goat", "Llama", "Other", "Pig (Farm)", "Pig (Potbellied)", "Sheep"].forEach(breed => breedToAnimal[breed] = "Farm Animal");
+  
+  // Horse breeds
+  ["Andalusian", "Appaloosa", "Appendix", "Arabian", "Belgian", "Clydesdale", "Curly Horse", "Donkey", "Draft", "Friesian", "Gaited", "Grade", "Gypsy Vanner", "Haflinger", "Lipizzaner", "Miniature", "Missouri Foxtrotter", "Morgan", "Mustang", "Norwegian Fjord", "Other/Unknown", "Paint/Pinto", "Palomino", "Paso Fino", "Percheron", "Peruvian Paso", "Pony - Chincoteague", "Pony - Connemara", "Pony - Dales", "Pony - Dartmoor", "Pony - Fell", "Pony - New Forest", "Pony - Other", "Pony - Shetland", "Pony - Welsh", "Pony - of America", "Quarterhorse", "Rocky Mountain", "Saddlebred", "Standardbred", "Tennessee Walking Horse", "Thoroughbred", "Trakhener", "Warmblood"].forEach(breed => breedToAnimal[breed] = "Horse");
+  
+  // Rabbit breeds
+  ["American", "American Fuzzy Lop", "American Sable", "Angora, English", "Angora, French", "Angora, Giant", "Angora, Satin", "Belgian Hare", "Beveren", "Blanc de Hotot", "Britannia Petite", "Californian", "Champagne D'Argent", "Checkered Giant", "Chinchilla", "Chinchilla, American", "Chinchilla, Giant", "Chinchilla, Standard", "Cinnamon", "Creme D'Argent", "Dutch", "Dwarf", "Dwarf Hotot", "English Lop", "English Spot", "Flemish Giant", "Florida White", "French-Lop", "Harlequin", "Havana", "Himalayan", "Holland Lop", "Holland-Lop", "Hotot", "Jersey Wooly", "Lilac", "Lionhead", "Lop Eared", "Lop, English", "Lop, French", "Lop, Holland", "Lop-Eared", "Mini Lop", "Mini Rex", "Mini Satin", "Mini-Lop", "Mix", "Netherland Dwarf", "New Zealand", "Other/Unknown", "Palomino", "Polish", "Rex", "Rhinelander", "Satin", "Silver", "Silver Fox", "Silver Marten", "Tan", "Thrianta"].forEach(breed => breedToAnimal[breed] = "Rabbit");
+  
+  // Small animal breeds
+  ["Abyssinian Guinea Pig", "American Guinea Pig", "Chinchilla", "Degu", "Ferret", "Gerbil", "Guinea Pig", "Hamster", "Hedgehog", "Mouse", "Prairie Dog", "Rat", "Roborovski Hamster", "Skunk", "Sugar Glider"].forEach(breed => breedToAnimal[breed] = "Small Animal");
+
+  // Load pets from API
+  async function loadPets() {
+    try {
+      petsLoading.style.display = 'block';
+      petsError.style.display = 'none';
+      
+      const response = await fetch('/.netlify/functions/petstablished?endpoint=shelter');
+      if (!response.ok) throw new Error('API request failed');
+      
+      const data = await response.json();
+      const shelterPets = data.shelter_pets || [];
+      
+      // Add animal type based on breed mapping
+      const petsWithAnimal = shelterPets.map(pet => ({
+        ...pet,
+        animal: breedToAnimal[pet.primary_breed] || 'Unknown'
+      }));
+      
+      allPets = petsWithAnimal;
+      petsLoading.style.display = 'none';
+      displayPets(allPets);
+      
+    } catch (error) {
+      console.error('Error loading pets:', error);
+      petsLoading.style.display = 'none';
+      petsError.style.display = 'block';
+    }
+  }
+  
+  // Display pets in grid
+  function displayPets(pets) {
+    if (!pets || pets.length === 0) {
+      petsGrid.innerHTML = '<p class="no-pets">No pets available for adoption at this time.</p>';
+      return;
+    }
+    
+    petsGrid.innerHTML = pets.map(pet => createPetCard(pet)).join('');
+  }
+  
+  // Create individual pet card HTML
+  function createPetCard(pet) {
+    const images = pet.images || [];
+    const primaryImage = images[0];
+    const imageUrl = primaryImage ? primaryImage.thumb_url : '/assets/images/pet-placeholder.jpg';
+    
+    // Use animal field from individual pet API call
+    let species = pet.animal || 'Unknown';
+    let speciesClass = species.toLowerCase();
+    
+    return `
+      <a href="${pet.adopt_url}" target="_blank" rel="noopener noreferrer" 
+         class="pet-card" data-species="${speciesClass}">
+        <img src="${imageUrl}" alt="${pet.name}" loading="lazy">
+        <div class="pet-details">
+          <h3>${pet.name}</h3>
+          <div class="pet-info">
+            <span><strong>Species:</strong> ${species}</span>
+            <span><strong>Breed:</strong> ${pet.primary_breed || 'Mixed'}</span>
+            <span><strong>Age:</strong> ${pet.age || 'Unknown'}</span>
+            <span><strong>Sex:</strong> ${pet.sex || 'Unknown'}</span>
+          </div>
+          <div class="pet-description">
+            ${pet.description ? pet.description.substring(0, 150) + '...' : 'Click to learn more about this pet.'}
+          </div>
+        </div>
+      </a>
+    `;
+  }
+  
+  // Filter functionality
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      // Update active button
+      filterBtns.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      
+      currentFilter = this.dataset.filter;
+      
+      // Filter pets  
+      let filteredPets = allPets;
+      if (currentFilter !== 'all') {
+        filteredPets = allPets.filter(pet => {
+          return pet.animal && pet.animal.toLowerCase() === currentFilter;
+        });
+      }
+      
+      displayPets(filteredPets);
+    });
+  });
+  
+  // Initialize
+  loadPets();
+});
+</script>

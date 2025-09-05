@@ -1,0 +1,356 @@
+---
+layout: layouts/base.njk
+---
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <h1>{{ hero.title }}</h1>
+      <p class="hero-subtitle">{{ hero.subtitle }}</p>
+      <a href="{{ hero.cta.link }}" class="btn btn-primary btn-large">{{ hero.cta.text }}</a>
+      <p class="hero-description">{{ hero.description }}</p>
+    </div>
+  </div>
+</section>
+
+<!-- Announcement Banner -->
+{% if announcement.enabled %}
+<section class="announcement-banner">
+  <div class="container">
+    <div class="announcement-content">
+      {% if announcement.image %}
+      <img src="{{ announcement.image }}" alt="{{ announcement.title }}">
+      {% endif %}
+      <div class="announcement-text">
+        <h2>{{ announcement.title }}</h2>
+        <p>{{ announcement.subtitle }}</p>
+        <a href="{{ announcement.cta.link }}" class="btn btn-secondary">{{ announcement.cta.text }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- Adoption Section with Photo Grid -->
+{% if adoption.enabled %}
+<section class="adopt-section">
+  <div class="container">
+    <h2>{{ adoption.title }}</h2>
+    <p>{{ adoption.description }}</p>
+    {% if adoption.gridImage %}
+    <div class="adoption-grid">
+      <img src="{{ adoption.gridImage }}" alt="Adoptable pets" class="adoption-grid-image">
+    </div>
+    {% endif %}
+    <a href="{{ adoption.cta.link }}" class="btn btn-primary">{{ adoption.cta.text }}</a>
+  </div>
+</section>
+{% endif %}
+
+<!-- Programs Section -->
+<section class="programs-overview">
+  <div class="container">
+    <h2>{{ programs.title }}</h2>
+    {% if programs.description %}
+    <p class="programs-intro">{{ programs.description }}</p>
+    {% endif %}
+    <div class="program-cards">
+      {% for program in programs.items %}
+      {% if program.enabled !== false %}
+      <div class="program-card">
+        <h3>{{ program.title }}</h3>
+        <p>{{ program.description }}</p>
+        <a href="{{ program.link }}" class="btn-link">{{ program.linkText or "Learn More" }} →</a>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Ways to Help Section -->
+<section class="ways-to-help">
+  <div class="container">
+    <h2>{{ waysToHelp.title }}</h2>
+    <div class="help-grid">
+      {% for item in waysToHelp.items %}
+      <div class="help-item">
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.description }}</p>
+        
+        {% if item.actions %}
+        <div class="help-actions">
+          {% for action in item.actions %}
+          <a href="{{ action.link }}" class="btn btn-{{ action.type }}">{{ action.text }}</a>
+          {% endfor %}
+        </div>
+        {% endif %}
+        
+        {% if item.socialLinks %}
+        <div class="social-buttons">
+          {% for social in item.socialLinks %}
+          <a href="{{ social.url }}" class="btn btn-social">{{ social.platform }}</a>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+/* Hero Section */
+.hero {
+  background: linear-gradient(135deg, #4a7c59 0%, #5a8d69 100%);
+  padding: 100px 0;
+  text-align: center;
+  color: white;
+}
+
+.hero-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  color: white;
+  opacity: 0.95;
+}
+
+.hero .btn-large {
+  padding: 16px 32px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 50px;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+  background: #4caf50;
+  color: white;
+  border: 2px solid #4caf50;
+  margin-bottom: 2rem;
+}
+
+.hero .btn-large:hover {
+  background: white;
+  color: #4caf50;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.hero-description {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: white;
+  opacity: 0.9;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Announcement Banner */
+.announcement-banner {
+  background: white;
+  padding: 50px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.announcement-content {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  background: #f8f9fa;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.announcement-content img {
+  width: 250px;
+  height: auto;
+  border-radius: 8px;
+}
+
+.announcement-text h2 {
+  color: #2b5e3a;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+/* Adoption Section */
+.adopt-section {
+  padding: 60px 0;
+  text-align: center;
+  background: white;
+}
+
+.adopt-section h2 {
+  color: #2b5e3a;
+  margin-bottom: 1rem;
+}
+
+.adoption-grid {
+  margin: 2rem 0;
+}
+
+.adoption-grid-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Programs Section */
+.programs-overview {
+  padding: 60px 0;
+  background: #f8f9fa;
+}
+
+.programs-overview h2 {
+  text-align: center;
+  color: #2b5e3a;
+  margin-bottom: 1.5rem;
+}
+
+.programs-intro {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 3rem;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #555;
+}
+
+.program-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 1200px) {
+  .program-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .program-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.program-card {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.program-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.program-card h3 {
+  color: #2b5e3a;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.program-card p {
+  flex: 1;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Ways to Help */
+.ways-to-help {
+  padding: 60px 0;
+  background: white;
+}
+
+.ways-to-help h2 {
+  text-align: center;
+  color: #2b5e3a;
+  margin-bottom: 3rem;
+}
+
+.help-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+@media (max-width: 992px) {
+  .help-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.help-item {
+  text-align: center;
+}
+
+.help-item h3 {
+  color: #2b5e3a;
+  margin-bottom: 1rem;
+}
+
+.help-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.social-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.social-buttons .btn {
+  flex: 0 0 auto;
+  min-width: 100px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-wrapper {
+    flex-direction: column;
+  }
+  
+  .hero-image {
+    flex: none;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .announcement-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .hero h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.2rem;
+  }
+}
+</style>

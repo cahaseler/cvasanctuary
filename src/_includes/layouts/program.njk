@@ -1,0 +1,36 @@
+---
+layout: layouts/base.njk
+---
+
+<section class="hero hero-program">
+  <div class="container">
+    <div class="hero-content">
+      <h1>{{ title }}</h1>
+      {% if description %}
+        <p class="hero-subtitle">{{ description }}</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<section class="content-main">
+  <div class="container">
+    <div class="content-wrapper">
+      {{ content | safe }}
+    </div>
+  </div>
+</section>
+
+<section class="program-cta">
+  <div class="container">
+    <div class="cta-content">
+      <h2>Get Involved</h2>
+      <p>Interested in this program? We'd love to hear from you.</p>
+      <div class="cta-buttons">
+        <a href="/volunteer" class="btn btn-primary">Volunteer</a>
+        <a href="/contact" class="btn btn-secondary">Contact Us</a>
+        <a href="/donate" class="btn btn-secondary">Donate</a>
+      </div>
+    </div>
+  </div>
+</section>

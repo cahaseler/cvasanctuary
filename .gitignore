@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+
+# Build output
+_site/
+dist/
+
+# Local Netlify folder
+.netlify/
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Development and testing files
+screenshots/
+screenshots-comparison/
+scraped-content/
+test-results/
+playwright-report/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE/Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
