@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: cahaseler/cvasanctuary
   branch: main
 
 # Uncomment for local development
