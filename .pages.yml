@@ -250,8 +250,7 @@ content:
                 label: Type
                 type: select
                 options:
-                  - primary
-                  - secondary
+                  values: [primary, secondary]
 
   # Other Pages
   - name: pages
