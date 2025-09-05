@@ -159,8 +159,7 @@ content:
                     label: Type
                     type: select
                     options:
-                      - primary
-                      - secondary
+                      values: [primary, secondary]
               - name: socialLinks
                 label: Social Links
                 type: object
