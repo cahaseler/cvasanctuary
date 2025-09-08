@@ -6,7 +6,7 @@ layout: layouts/base.njk
 <section class="adopt-hero">
   <div class="hero-collage">
     {% if hero.collageImage %}
-    <img src="{{ hero.collageImage }}" alt="Adoptable pets collage" class="collage-img">
+    <img src="{{ hero.collageImage | url }}" alt="Adoptable pets collage" class="collage-img">
     {% endif %}
     <div class="hero-overlay">
       <div class="container">

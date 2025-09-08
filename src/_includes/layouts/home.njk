@@ -20,7 +20,7 @@ layout: layouts/base.njk
   <div class="container">
     <div class="announcement-content">
       {% if announcement.image %}
-      <img src="{{ announcement.image }}" alt="{{ announcement.title }}">
+      <img src="{{ announcement.image | url }}" alt="{{ announcement.title }}">
       {% endif %}
       <div class="announcement-text">
         <h2>{{ announcement.title }}</h2>
@@ -40,7 +40,7 @@ layout: layouts/base.njk
     <p>{{ adoption.description }}</p>
     {% if adoption.gridImage %}
     <div class="adoption-grid">
-      <img src="{{ adoption.gridImage }}" alt="Adoptable pets" class="adoption-grid-image">
+      <img src="{{ adoption.gridImage | url }}" alt="Adoptable pets" class="adoption-grid-image">
     </div>
     {% endif %}
     <a href="{{ adoption.cta.link }}" class="btn btn-primary">{{ adoption.cta.text }}</a>
