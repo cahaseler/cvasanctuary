@@ -425,24 +425,22 @@ document.addEventListener('DOMContentLoaded', function() {
     let species = pet.animal || 'Unknown';
     let speciesClass = species.toLowerCase();
     
-    return `
-      <a href="${pet.adopt_url}" target="_blank" rel="noopener noreferrer" 
-         class="pet-card" data-species="${speciesClass}">
-        <img src="${imageUrl}" alt="${pet.name}" loading="lazy">
-        <div class="pet-details">
-          <h3>${pet.name}</h3>
-          <div class="pet-info">
-            <span><strong>Species:</strong> ${species}</span>
-            <span><strong>Breed:</strong> ${pet.primary_breed || 'Mixed'}</span>
-            <span><strong>Age:</strong> ${pet.age || 'Unknown'}</span>
-            <span><strong>Sex:</strong> ${pet.sex || 'Unknown'}</span>
-          </div>
-          <div class="pet-description">
-            ${pet.description ? pet.description.substring(0, 150) + '...' : 'Click to learn more about this pet.'}
-          </div>
-        </div>
-      </a>
-    `;
+    return '<a href="' + pet.adopt_url + '" target="_blank" rel="noopener noreferrer" ' +
+           'class="pet-card" data-species="' + speciesClass + '">' +
+           '<img src="' + imageUrl + '" alt="' + pet.name + '" loading="lazy">' +
+           '<div class="pet-details">' +
+           '<h3>' + pet.name + '</h3>' +
+           '<div class="pet-info">' +
+           '<span><strong>Species:</strong> ' + species + '</span>' +
+           '<span><strong>Breed:</strong> ' + (pet.primary_breed || 'Mixed') + '</span>' +
+           '<span><strong>Age:</strong> ' + (pet.age || 'Unknown') + '</span>' +
+           '<span><strong>Sex:</strong> ' + (pet.sex || 'Unknown') + '</span>' +
+           '</div>' +
+           '<div class="pet-description">' +
+           (pet.description ? pet.description.substring(0, 150) + '...' : 'Click to learn more about this pet.') +
+           '</div>' +
+           '</div>' +
+           '</a>';
   }
   
   // Filter functionality
