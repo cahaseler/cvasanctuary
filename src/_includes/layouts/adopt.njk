@@ -382,7 +382,7 @@ document.addEventListener('DOMContentLoaded', function() {
       petsLoading.style.display = 'block';
       petsError.style.display = 'none';
       
-      const response = await fetch('/.netlify/functions/petstablished?endpoint=shelter');
+      const response = await fetch('https://cvas-api.vercel.app/api/petstablished');
       if (!response.ok) throw new Error('API request failed');
       
       const data = await response.json();

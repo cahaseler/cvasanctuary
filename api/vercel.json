@@ -1,9 +1,4 @@
 {
-  "functions": {
-    "api/petstablished.js": {
-      "runtime": "@vercel/edge"
-    }
-  },
   "rewrites": [
     {
       "source": "/api/(.*)",
