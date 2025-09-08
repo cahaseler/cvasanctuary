@@ -3,7 +3,7 @@ title: Our Board — Colville Valley Animal Sanctuary
 layout: layouts/board.njk
 permalink: /our-board/
 content_type: page
-hero_image: "src/assets/images/board-hero-image.jpg"
+hero_image: "src/assets/images/board/board-hero-image.jpg"
 board_members:
   - name: 'Matthew "Zac" West'
     title: "PRESIDENT"
