@@ -1,7 +1,7 @@
 ---
 layout: null
 permalink: false
-eleventyExcludeFromCollections: true
+eleventyExcludeFromCollections: false
 
 # Site Settings
 site:
