@@ -1,12 +1,8 @@
 # PagesCMS Configuration for CVAS Website
 
 media:
-  - input: src/assets/images/common
-    output: /assets/images/common
-  - input: src/assets/images/home
-    output: /assets/images/home
-  - input: src/assets/images/adopt
-    output: /assets/images/adopt
+  input: src/assets/images
+  output: /assets/images
 
 content:
   # Homepage
