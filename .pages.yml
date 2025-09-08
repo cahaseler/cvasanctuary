@@ -172,6 +172,159 @@ content:
                     label: URL
                     type: string
 
+  # Site Settings
+  - name: settings
+    label: Site Settings
+    path: src/settings.md
+    type: file
+    fields:
+      - name: site
+        label: Site Information
+        type: object
+        fields:
+          - name: title
+            label: Site Title
+            type: string
+          - name: tagline
+            label: Tagline
+            type: string
+          - name: description
+            label: Meta Description
+            type: text
+          - name: url
+            label: Site URL
+            type: string
+          - name: logo
+            label: Logo Path
+            type: image
+          - name: logoHeight
+            label: Logo Height
+            type: string
+      - name: contact
+        label: Contact Information
+        type: object
+        fields:
+          - name: street
+            label: Street Address
+            type: string
+          - name: city
+            label: City
+            type: string
+          - name: state
+            label: State
+            type: string
+          - name: zip
+            label: ZIP Code
+            type: string
+          - name: phone
+            label: Phone
+            type: string
+          - name: email
+            label: Email
+            type: string
+          - name: hoursText
+            label: Hours Text
+            type: string
+          - name: hoursDays
+            label: Hours Days
+            type: string
+          - name: hoursTime
+            label: Hours Time
+            type: string
+      - name: navigation
+        label: Main Navigation
+        type: object
+        list: true
+        fields:
+          - name: label
+            label: Label
+            type: string
+          - name: url
+            label: URL
+            type: string
+          - name: dropdown
+            label: Dropdown Items
+            type: object
+            list: true
+            fields:
+              - name: label
+                label: Label
+                type: string
+              - name: url
+                label: URL
+                type: string
+      - name: donateButton
+        label: Donate Button
+        type: object
+        fields:
+          - name: label
+            label: Label
+            type: string
+          - name: url
+            label: URL
+            type: string
+      - name: footerInfo
+        label: Footer Info Links
+        type: object
+        list: true
+        fields:
+          - name: label
+            label: Label
+            type: string
+          - name: url
+            label: URL
+            type: string
+      - name: footerAction
+        label: Footer Action Links
+        type: object
+        list: true
+        fields:
+          - name: label
+            label: Label
+            type: string
+          - name: url
+            label: URL
+            type: string
+      - name: social
+        label: Social Media
+        type: object
+        fields:
+          - name: facebook
+            label: Facebook URL
+            type: string
+          - name: instagram
+            label: Instagram URL
+            type: string
+          - name: tiktok
+            label: TikTok URL
+            type: string
+      - name: newsletter
+        label: Newsletter
+        type: object
+        fields:
+          - name: title
+            label: Title
+            type: string
+          - name: buttonText
+            label: Button Text
+            type: string
+          - name: url
+            label: Newsletter URL
+            type: string
+      - name: badge
+        label: Badge
+        type: object
+        fields:
+          - name: image
+            label: Badge Image
+            type: image
+          - name: alt
+            label: Alt Text
+            type: string
+      - name: copyright
+        label: Copyright Text
+        type: string
+
   # Adopt Page
   - name: adopt
     label: Adopt Page

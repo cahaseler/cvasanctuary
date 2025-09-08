@@ -1,10 +1,12 @@
+{%- set settings = collections.settings | first -%}
+{%- set siteSettings = settings.data if settings else {} -%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ title or 'Colville Valley Animal Sanctuary' }}</title>
-  <meta name="description" content="{{ description or 'CVAS mission is to improve the quality of life for both pets and people by providing humane society services.' }}">
+  <title>{{ title or siteSettings.site.title }}</title>
+  <meta name="description" content="{{ description or siteSettings.site.description }}">
   
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | url }}">
   
@@ -13,17 +15,17 @@
   <link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/images/favicon-16x16.png' | url }}">
   
   <!-- Open Graph -->
-  <meta property="og:title" content="{{ title or 'Colville Valley Animal Sanctuary' }}">
-  <meta property="og:description" content="{{ description or 'Help Animals in Need Through Your Support' }}">
+  <meta property="og:title" content="{{ title or siteSettings.site.title }}">
+  <meta property="og:description" content="{{ description or siteSettings.site.tagline }}">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://cvasanctuary.org{{ page.url }}">
+  <meta property="og:url" content="{{ siteSettings.site.url }}{{ page.url }}">
 </head>
 <body>
   <header class="site-header">
     <nav class="nav-primary">
       <div class="container">
         <a href="{{ '/' | url }}" class="logo">
-          <img src="{{ '/assets/images/common/cvas-logo.jpg' | url }}" alt="CVAS Logo" style="height: 128px; width: auto;">
+          <img src="{{ siteSettings.site.logo | url }}" alt="{{ siteSettings.site.title }} Logo" style="height: {{ siteSettings.site.logoHeight }}; width: auto;">
         </a>
         
         <button class="nav-toggle" aria-label="Menu">
@@ -33,39 +35,19 @@
         </button>
         
         <ul class="nav-menu">
-          <li class="has-dropdown">
-            <a href="{{ '/about-cvas' | url }}">About CVAS</a>
+          {% for item in siteSettings.navigation %}
+          <li{% if item.dropdown %} class="has-dropdown"{% endif %}>
+            <a href="{{ item.url | url }}">{{ item.label }}</a>
+            {% if item.dropdown %}
             <ul class="dropdown">
-              <li><a href="{{ '/about-cvas' | url }}">Mission & Vision</a></li>
-              <li><a href="{{ '/cvas-impact' | url }}">Impact</a></li>
-              <li><a href="{{ '/our-board' | url }}">Our Board</a></li>
+              {% for subitem in item.dropdown %}
+              <li><a href="{{ subitem.url | url }}">{{ subitem.label }}</a></li>
+              {% endfor %}
             </ul>
+            {% endif %}
           </li>
-          <li><a href="{{ '/adopt' | url }}">Adopt</a></li>
-          <li><a href="{{ '/volunteer-with-us' | url }}">Volunteer</a></li>
-          <li><a href="{{ '/foster-program' | url }}">Foster A Pet</a></li>
-          <li class="has-dropdown">
-            <a href="{{ '/programs' | url }}">Programs</a>
-            <ul class="dropdown">
-              <li><a href="{{ '/programs' | url }}">Vaccination Clinic</a></li>
-              <li><a href="{{ '/pet-food-bank' | url }}">Pet Food Bank</a></li>
-              <li><a href="{{ '/tnr-barn-cats' | url }}">TNR & Barn Cats</a></li>
-              <li><a href="{{ '/sponsorship-program' | url }}">Sponsorships</a></li>
-              <li><a href="{{ '/sss' | url }}">Seniors Saving Seniors</a></li>
-            </ul>
-          </li>
-          <li class="has-dropdown">
-            <a href="{{ '/news' | url }}">News</a>
-            <ul class="dropdown">
-              <li><a href="{{ '/newsletter' | url }}">Newsletter</a></li>
-              <li><a href="{{ '/communitypartners' | url }}">Partners</a></li>
-              <li><a href="{{ '/forever-angels' | url }}">Forever Angels</a></li>
-            </ul>
-          </li>
-          <li><a href="{{ '/kitten-cam-live' | url }}">Kitten Cam Live</a></li>
-          <li><a href="{{ '/community-resources' | url }}">Resources</a></li>
-          <li><a href="{{ '/contact-us' | url }}">Contact and Hours</a></li>
-          <li><a href="{{ '/donate' | url }}" class="btn btn-primary">Donate</a></li>
+          {% endfor %}
+          <li><a href="{{ siteSettings.donateButton.url | url }}" class="btn btn-primary">{{ siteSettings.donateButton.label }}</a></li>
         </ul>
       </div>
     </nav>
@@ -81,47 +63,47 @@
         <div class="footer-section">
           <h3>Contact</h3>
           <address>
-            501 Old Arden Hwy<br>
-            Colville, WA 99114<br>
-            <a href="tel:509-684-1475">509-684-1475</a><br>
-            <a href="mailto:office@cvasanctuary.org">office@cvasanctuary.org</a>
+            {{ siteSettings.contact.street }}<br>
+            {{ siteSettings.contact.city }}, {{ siteSettings.contact.state }} {{ siteSettings.contact.zip }}<br>
+            <a href="tel:{{ siteSettings.contact.phone }}">{{ siteSettings.contact.phone }}</a><br>
+            <a href="mailto:{{ siteSettings.contact.email }}">{{ siteSettings.contact.email }}</a>
           </address>
-          <p><strong>Hours:</strong> By appointment only<br>
-          Tuesday - Saturday, 10:00 AM - 3:00 PM</p>
+          <p><strong>Hours:</strong> {{ siteSettings.contact.hoursText }}<br>
+          {{ siteSettings.contact.hoursDays }}, {{ siteSettings.contact.hoursTime }}</p>
         </div>
         
         <div class="footer-section">
           <h3>Info</h3>
           <ul>
-            <li><a href="{{ '/about-cvas' | url }}">Mission</a></li>
-            <li><a href="{{ '/communitypartners' | url }}">Partners</a></li>
-            <li><a href="{{ '/programs' | url }}">Programs</a></li>
+            {% for link in siteSettings.footerInfo %}
+            <li><a href="{{ link.url | url }}">{{ link.label }}</a></li>
+            {% endfor %}
           </ul>
         </div>
         
         <div class="footer-section">
           <h3>Action</h3>
           <ul>
-            <li><a href="{{ '/volunteer-with-us' | url }}">Volunteer</a></li>
-            <li><a href="{{ '/contact-us' | url }}">Contact</a></li>
-            <li><a href="{{ '/donate' | url }}">Donate</a></li>
+            {% for link in siteSettings.footerAction %}
+            <li><a href="{{ link.url | url }}">{{ link.label }}</a></li>
+            {% endfor %}
           </ul>
         </div>
         
         <div class="footer-section">
           <h3>Follow Us</h3>
           <div class="social-links">
-            <a href="https://facebook.com/cvasanctuary" aria-label="Facebook">
+            <a href="{{ siteSettings.social.facebook }}" aria-label="Facebook">
               <svg viewBox="0 0 24 24" width="24" height="24">
                 <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
               </svg>
             </a>
-            <a href="https://instagram.com/cvasanctuary" aria-label="Instagram">
+            <a href="{{ siteSettings.social.instagram }}" aria-label="Instagram">
               <svg viewBox="0 0 24 24" width="24" height="24">
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.405a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z"/>
               </svg>
             </a>
-            <a href="https://tiktok.com/@cvasanctuary" aria-label="TikTok">
+            <a href="{{ siteSettings.social.tiktok }}" aria-label="TikTok">
               <svg viewBox="0 0 24 24" width="24" height="24">
                 <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
               </svg>
@@ -129,16 +111,16 @@
           </div>
           
           <div class="newsletter-signup">
-            <h4>Newsletter</h4>
-            <a href="{{ '/newsletter' | url }}" class="btn btn-secondary">Sign Up</a>
+            <h4>{{ siteSettings.newsletter.title }}</h4>
+            <a href="{{ siteSettings.newsletter.url | url }}" class="btn btn-secondary">{{ siteSettings.newsletter.buttonText }}</a>
           </div>
           
-          <img src="{{ '/assets/images/common/best-friends-badge.png' | url }}" alt="Best Friends No Kill Shelter 2023" class="badge">
+          <img src="{{ siteSettings.badge.image | url }}" alt="{{ siteSettings.badge.alt }}" class="badge">
         </div>
       </div>
       
       <div class="footer-bottom">
-        <p>&copy; 2025 Colville Valley Animal Sanctuary. All rights reserved.</p>
+        <p>{{ siteSettings.copyright }}</p>
       </div>
     </div>
   </footer>

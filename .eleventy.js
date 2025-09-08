@@ -19,6 +19,9 @@ export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/assets/images");
 
   // Collections
+  eleventyConfig.addCollection("settings", function(collection) {
+    return collection.getFilteredByGlob("src/settings.md");
+  });
   eleventyConfig.addCollection("home", function(collection) {
     return collection.getFilteredByGlob("src/content/home.md");
   });
