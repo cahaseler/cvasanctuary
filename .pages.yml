@@ -172,6 +172,30 @@ content:
                     label: URL
                     type: string
 
+  # Mission Page
+  - name: mission
+    label: Mission & Vision
+    path: src/content/pages/mission.md
+    type: file
+    fields:
+      - name: title
+        label: Title
+        type: string
+      - name: permalink
+        label: Permalink
+        type: string
+        hidden: true
+      - name: layout
+        label: Layout
+        type: string
+        hidden: true
+      - name: hero_image
+        label: Hero Image
+        type: image
+      - name: body
+        label: Content
+        type: markdown
+
   # Board Page
   - name: board
     label: Board Page
