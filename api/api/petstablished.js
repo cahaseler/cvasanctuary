@@ -28,7 +28,7 @@ export default async function handler(request) {
 
   try {
     // Fetch from PetStablished API
-    const apiUrl = 'https://petstablished.com/api/v2/public/search/shelter_show/7194';
+    const apiUrl = 'https://petstablished.com/api/v2/public/search/shelter_show/2928982';
     const response = await fetch(apiUrl, {
       headers: {
         'Accept': 'application/json',
