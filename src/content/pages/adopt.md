@@ -7,7 +7,7 @@ description: Find your perfect companion! Browse our adoptable pets and learn ab
 # Hero Section
 hero:
   title: "When you adopt with CVAS..."
-  collageImage: /assets/images/photo-collage.png.png
+  collageImage: /assets/images/common/photo-collage.png
 
 # Main Content Section
 adoptContent:

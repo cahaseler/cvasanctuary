@@ -20,7 +20,7 @@ hero:
 announcement:
   enabled: true
   title: "2025 Low Cost Vaccine and Microchip Clinic Dates"
-  image: /assets/images/vaccination-image.jpg
+  image: /assets/images/home/vaccination-image.jpg
   cta:
     text: "View Schedule"
     link: /programs
@@ -30,7 +30,7 @@ adoption:
   enabled: true
   title: "Adopt with Us"
   description: "Every animal deserves to find their forever home! Click below to see adoptable animals and find out about the adoption process. We are open by appointment Tuesday through Saturday. Contact us for an appointment to adopt or click below to see our available pets:"
-  gridImage: /assets/images/photo-collage.png.png
+  gridImage: /assets/images/common/photo-collage.png
   cta:
     text: "Click Here to see Available Pets and Adoption Information"
     link: /adopt
