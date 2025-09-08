@@ -5,7 +5,7 @@ permalink: /our-board/
 content_type: page
 hero_image: "/assets/images/board/board-hero-image.jpg"
 board_members:
-  - name: 'Matthew "Zac" West'
+  - name: 'Zac West'
     title: "PRESIDENT"
     email: "mwest@cvasanctuary.org"
     photo: "/assets/images/board/zac-west-headshot.png"

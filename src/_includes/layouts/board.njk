@@ -40,6 +40,21 @@ layout: layouts/base.njk
     margin-bottom: 1.5rem;
   }
 
+  .memorial-content {
+    overflow: auto;
+  }
+
+  .memorial-content img {
+    float: left;
+    width: 333px;
+    height: 400px;
+    object-fit: cover;
+    object-position: 32.25% 54.17%;
+    margin-right: 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+  }
+
   .memorial-content p {
     margin-bottom: 1rem;
     line-height: 1.6;
@@ -127,17 +142,14 @@ layout: layouts/base.njk
 
 <div class="board-page">
   <h1 class="page-title">Our Board</h1>
-  
-  {% if hero_image %}
-  <div class="hero-image-container">
-    <img src="{{ hero_image | url }}" alt="Our Board" />
-  </div>
-  {% endif %}
 
   {# In Memory Section #}
   <div class="memorial-section">
     <h2>IN LOVING MEMORY OF PURRCY 2003-2022</h2>
     <div class="memorial-content">
+      {% if hero_image %}
+      <img src="{{ hero_image | url }}" alt="Purrcy" />
+      {% endif %}
       <p>Purrcy found CVAS in 2013 when Nancy, a long-time volunteer, was trapping a group of cats who had been left alone out on Williams Lake Road when their owner passed away. Nancy was checking the traps in the morning and Purrcy came out of nowhere, stumbled up to her and collapsed at her feet. He was skin and bones and missing most of his hair. Most likely he would not have survived another night or two outside in his condition. He had to wear a sweater for months until his fur grew back. A dramatic origin story for a dramatic cat.</p>
       
       <p>Purrcy loved hanging out with all of us, keeping our desks, chairs, and hearts warm. He fell in love with his cat girlfriend Eva, another rescued cat who lives at CVAS, and the two remained close companions until the end. He was greatly beloved by our staff, volunteers, and all who knew him. He passed of natural causes at the age of 19 and a half years old surrounded by his CVAS family.</p>
