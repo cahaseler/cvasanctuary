@@ -1,0 +1,12 @@
+{
+  "name": "cvas-api",
+  "version": "1.0.0",
+  "description": "API proxy for PetStablished",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "devDependencies": {
+    "vercel": "^32.0.0"
+  }
+}
