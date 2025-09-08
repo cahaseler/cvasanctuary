@@ -17,9 +17,6 @@
   <meta property="og:description" content="{{ description or 'Help Animals in Need Through Your Support' }}">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://cvasanctuary.org{{ page.url }}">
-  
-  <!-- Netlify Identity for CMS -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
   <header class="site-header">
@@ -147,18 +144,5 @@
   </footer>
   
   <script src="{{ '/assets/js/main.js' | url }}"></script>
-  
-  <!-- Netlify Identity redirect handling -->
-  <script>
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/";
-          });
-        }
-      });
-    }
-  </script>
 </body>
 </html>
