@@ -165,43 +165,32 @@ Use Eleventy Image plugin to automatically optimize pet photos for different scr
 - **Budget Priority**: Always choose free tier options. If something would incur costs, find an alternative.
 - **Maintenance**: Keep dependencies minimal and use well-established tools with long-term support.
 
-### Test-Driven Development (TDD) Discipline
+## Lessons Learned
 
-**CRITICAL**: This project follows strict TDD practices with RITEway. 
-- Tests MUST be written before implementation
-- ALL tests (both CLI and project-level) MUST use RITEway's assert structure
-- DO NOT use expect/toBe or other assertion styles - ONLY use RITEway assert
+### JavaScript String Building in Nunjucks Templates
+**Problem**: Template literals (backticks with ${variable}) in JavaScript within Nunjucks templates get interpreted at build time, causing issues when pet descriptions contain quotes or HTML.
 
-#### TDD Process
-For each unit of code, follow this process:
-1. **Write a failing test first** - Define the expected behavior before writing code
-2. **Run the test** - Watch it fail to confirm the test is testing something
-3. **Implement minimal code** - Write just enough code to make the test pass
-4. **Run the test** - Verify it passes
-5. **Refactor if needed** - Clean up while keeping tests green
-6. **Repeat** - Move to the next requirement
+**Solution**: Always use string concatenation (`+`) instead of template literals when building HTML strings in JavaScript that's embedded in Nunjucks templates. Also, properly escape HTML content:
+```javascript
+// BAD - will break with quotes in data
+return `<div>${pet.description}</div>`;
 
-#### Testing Requirements
-Every test must answer these 5 questions:
-1. **What is the unit under test?** (named in the describe block)
-2. **What is the expected behavior?** (given and should arguments)
-3. **What is the actual output?** (the unit was exercised by the test)
-4. **What is the expected output?** (expected value is clear)
-5. **How can we find the bug?** (test failure points to the issue)
+// GOOD - safe string concatenation with escaping
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+return '<div>' + escapeHtml(pet.description) + '</div>';
+```
 
-#### Test Quality Standards
-Tests must be:
-- **Readable**: Answer the 5 questions clearly
-- **Isolated**: No shared mutable state between tests
-- **Thorough**: Cover expected edge cases
-- **Explicit**: Everything needed to understand the test is in the test itself
+### CSS Object-Position for Image Focal Points
+**Problem**: When using `object-fit: cover` to crop images, important parts may be cut off.
 
-#### Example TDD Workflow
-
-1. FIRST: Write the test
-2. Run test - it fails (function doesn't exist)
-3. THEN: Implement minimal code
-4. Run test - it passes
-5. Add next test for edge case, repeat
-
-**Remember**: The test describes WHAT the code should do from a user perspective, not HOW it does it. Focus on functional requirements and behavior, not implementation details.
+**Solution**: Use `object-position` with percentage values to control the focal point. Original Squarespace sites often use `data-image-focal-point` attributes that can be converted directly:
+```css
+.image {
+  object-fit: cover;
+  object-position: 32.25% 54.17%; /* Focus on specific point */
+}
+```
