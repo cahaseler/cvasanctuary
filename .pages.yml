@@ -172,6 +172,49 @@ content:
                     label: URL
                     type: string
 
+  # Board Page
+  - name: board
+    label: Board Page
+    path: src/content/pages/board.md
+    type: file
+    fields:
+      - name: title
+        label: Title
+        type: string
+      - name: layout
+        label: Layout
+        type: string
+        hidden: true
+      - name: permalink
+        label: Permalink
+        type: string
+        hidden: true
+      - name: hero_image
+        label: Hero Image
+        type: image
+      - name: board_members
+        label: Board Members
+        type: object
+        list: true
+        fields:
+          - name: name
+            label: Name
+            type: string
+            required: true
+          - name: title
+            label: Title/Position
+            type: string
+            required: true
+          - name: email
+            label: Email
+            type: string
+          - name: photo
+            label: Photo
+            type: image
+          - name: bio
+            label: Biography
+            type: markdown
+
   # Adopt Page
   - name: adopt
     label: Adopt Page

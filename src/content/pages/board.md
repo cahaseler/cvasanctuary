@@ -3,12 +3,12 @@ title: Our Board — Colville Valley Animal Sanctuary
 layout: layouts/board.njk
 permalink: /our-board/
 content_type: page
-hero_image: "src/assets/images/board/board-hero-image.jpg"
+hero_image: "/assets/images/board/board-hero-image.jpg"
 board_members:
   - name: 'Matthew "Zac" West'
     title: "PRESIDENT"
     email: "mwest@cvasanctuary.org"
-    photo: "src/assets/images/board/zac-west-headshot.png"
+    photo: "/assets/images/board/zac-west-headshot.png"
     bio: |
       Zac has 40 years of project management, operational planning, and strategic planning experience in the federal government and the private sector.  He is currently a project analyst and lead for project assessment and reporting systems within the Office of Project Management at the U.S. Department of Energy.  Prior to the Department of Energy, he served in the U.S. Army for 32 years, retiring as a Colonel of Engineering working in both as a combat and facility engineer and as an Army strategist.  From 1982 to 1996, Mr. West served the Army as a reserve member and working as a process and project engineer in industry from 1987 to 1996.  During this time he worked on over 40 projects in various leadership and supporting roles in the pulp and paper and utilities industries with focus on large non-traditional fuel boilers to increase capacity over original design, ensure safe operations, gain efficiency in operations, and to reduce or mitigate emissions in order to meet increased compliance requirements.
 
@@ -16,19 +16,19 @@ board_members:
   - name: "Lance Pelton"
     title: "VICE PRESIDENT"
     email: "lpelton@cvasanctuary.org"
-    photo: "src/assets/images/board/lance-pelton-headshot.jpg"
+    photo: "/assets/images/board/lance-pelton-headshot.jpg"
     bio: |
       Lance brings much needed IT experience to CVAS.  He is a principal system engineer with over 20 years in the computer industry.  He proudly served 4 years in the Air Force.  Lance previously resided in Texas where he volunteered  with a local veterinarian office as assistant while receiving his bachelor's in animal science pre veterinary degree.  Also, he was his neighborhood HOA government chair where he worked with the local city government, and helped with the social and newsletter committees.  Lance currently volunteers with his local fire district.  In his spare time he is also handy with construction and cars.  Lance acts as the technology specialist at CVAS and performs lots of critical maintenance tasks at the sanctuary
   - name: "Suzanne Roebke"
     title: "COMMUNITY OUTREACH"
     email: "sroebke@cvasanctuary.org"
-    photo: "src/assets/images/board/suzanne-roebke-headshot.png"
+    photo: "/assets/images/board/suzanne-roebke-headshot.png"
     bio: |
       Suzanne has a A.A.S. Degree in Business and Accounting. She started volunteering for CVAS in the Spring of 2021 and joined the board of directors in late fall of 2021. If you have attended a vaccination clinic you may have met Suzy while your fur baby was being taken inside for treatment. Suzy loves meeting every pet and their owners. Suzy’s friendly, outgoing personality is why she is a purrfect fit in being our public outreach director.
   - name: "Janet West"
     title: "TREASURER"
     email: "treasurer@cvasanctuary.org"
-    photo: "src/assets/images/board/janet-west-headshot.png"
+    photo: "/assets/images/board/janet-west-headshot.png"
     bio: |
       Janet has been a volunteer with CVAS since February 2019, and she joined the board in December 2019. After spending over 25 years in public and private business as a bookkeeper and administrative assistant, Janet went back to college and in 2015 received her bachelor’s degree in geography from the University of Mary Washington in Fredericksburg, Virginia.
 
@@ -38,7 +38,7 @@ board_members:
   - name: "Jenny Pelton"
     title: "SECRETARY"
     email: "jpelton@cvasanctuary.org"
-    photo: "src/assets/images/board/jenny-pelton-headshot.jpg"
+    photo: "/assets/images/board/jenny-pelton-headshot.jpg"
     bio: |
       Jenny and her husband of over 20 years, Lance, are transplants from Fort Worth, Texas and truly love their new home state.  Jenny is a mother of three grown children, and blessed with one granddaughter.  Jenny started with CVAS as a kitten foster, and now has added office work and board member to her CVAS resume.  Previous to moving to Washington Jenny worked in the mortgage industry, as an office manager for close to a decade in a senior financial planning office.  During the summer she volunteers for 3 Pines youth camp in Kettle Falls preparing meals for the campers.  In Texas she also volunteered for the following groups and positions: HOA social and newsletter chair for a 526 home subdivision.  Treasurer for the Keller Bible Church, and one of the original members.  Girl Scout and Boy Scout leader.
 
@@ -46,7 +46,7 @@ board_members:
   - name: "McKenzie Grant"
     title: "GENERAL MEMBER"
     email: "mgrant@cvasanctuary.org"
-    photo: "src/assets/images/board/mckenzie-grant-headshot.jpg"
+    photo: "/assets/images/board/mckenzie-grant-headshot.jpg"
     bio: |
       Hi, I’m McKenzie! I grew up on the west side of Washington and spent some time in the Navy before settling in Colville with my family about four years ago. When I arrived, I noticed the area's overpopulation of feral and stray cats and knew I had to help.
 
@@ -56,19 +56,19 @@ board_members:
   - name: "Noah Nequette"
     title: "GENERAL MEMBER"
     email: "nnequette@cvasanctuary.org"
-    photo: "src/assets/images/board/noah-nequette-headshot.jpg"
+    photo: "/assets/images/board/noah-nequette-headshot.jpg"
     bio: |
       Noah Nequette has been volunteering with CVAS since 2023 and fostering since 2024. Noah is a Forester with Washington Dept of Natural Resources, and has been living and working in Colville since 2019 when he and his wife Sara moved from the west side. With (currently) 2 dogs and 5 cats of their own, Noah and Sara both have always been the "I found this poor sweet animal somewhere and need help with what to do with it" go-to people of their groups, and love being part of the CVAS community. 
   - name: "Katherine Rettkowski"
     title: "GENERAL MEMBER"
     email: "krettkowski@cvasanctuary.org"
-    photo: "src/assets/images/board/katherine-rettkowski-headshot.jpg"
+    photo: "/assets/images/board/katherine-rettkowski-headshot.jpg"
     bio: |
       Katherine has been fostering cats and kittens for CVAS since 2019.  She and her family have fostered over 100 cats and kittens in the past six years.  Wanting to be more involved with the running of the shelter, Katherine started volunteering in the CVAS office in 2023.  She answers the phone helping to give people information on low cost spay/neuter clinics, vaccine clinics, and take down information about animals who need to be surrendered to the shelter.  She has also recently started training as an adoption specialist, she loves helping adopters find the purrfect addition to their family! 
   - name: "Amber Reed"
     title: "GENERAL MEMBER"
     email: "areed@cvasanctuary.org"
-    photo: "src/assets/images/board/amber-reed-headshot.jpg"
+    photo: "/assets/images/board/amber-reed-headshot.jpg"
     bio: |
       Amber has spent nearly a decade in the insurance industry, where she’s known for her down-to earth approach and genuine care for her clients. Her career journey started in customer service— waitressing, bartending, and tax preparation—experiences that taught her the importance of listening, building trust, and helping people feel at ease. Today, she’s proud to have played a big role in growing a successful Nevada-based insurance brokerage, built largely on referrals from clients who value her honesty and dedication. 
 
