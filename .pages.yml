@@ -172,6 +172,86 @@ content:
                     label: URL
                     type: string
 
+  # Adopt Page
+  - name: adopt
+    label: Adopt Page
+    path: src/content/pages/adopt.md
+    type: file
+    fields:
+      - name: title
+        label: Title
+        type: string
+      - name: permalink
+        label: Permalink
+        type: string
+      - name: layout
+        label: Layout
+        type: string
+        hidden: true
+      - name: description
+        label: Description
+        type: text
+      - name: hero
+        label: Hero Section
+        type: object
+        fields:
+          - name: title
+            label: Title
+            type: string
+          - name: collageImage
+            label: Collage Image
+            type: image
+      - name: adoptContent
+        label: Adopt Content
+        type: object
+        fields:
+          - name: title
+            label: Title
+            type: string
+          - name: description
+            label: Description
+            type: markdown
+      - name: petsSection
+        label: Pets Section
+        type: object
+        fields:
+          - name: title
+            label: Title
+            type: string
+      - name: adoptionHours
+        label: Adoption Hours
+        type: object
+        fields:
+          - name: title
+            label: Title
+            type: string
+      - name: adoptionProcess
+        label: Adoption Process
+        type: object
+        fields:
+          - name: title
+            label: Title
+            type: string
+          - name: content
+            label: Content
+            type: markdown
+          - name: links
+            label: Links
+            type: object
+            list: true
+            fields:
+              - name: text
+                label: Text
+                type: string
+              - name: url
+                label: URL
+                type: string
+              - name: type
+                label: Type
+                type: select
+                options:
+                  values: [primary, secondary]
+
   # Site Settings
   - name: settings
     label: Site Settings
@@ -324,83 +404,3 @@ content:
       - name: copyright
         label: Copyright Text
         type: string
-
-  # Adopt Page
-  - name: adopt
-    label: Adopt Page
-    path: src/content/pages/adopt.md
-    type: file
-    fields:
-      - name: title
-        label: Title
-        type: string
-      - name: permalink
-        label: Permalink
-        type: string
-      - name: layout
-        label: Layout
-        type: string
-        hidden: true
-      - name: description
-        label: Description
-        type: text
-      - name: hero
-        label: Hero Section
-        type: object
-        fields:
-          - name: title
-            label: Title
-            type: string
-          - name: collageImage
-            label: Collage Image
-            type: image
-      - name: adoptContent
-        label: Adopt Content
-        type: object
-        fields:
-          - name: title
-            label: Title
-            type: string
-          - name: description
-            label: Description
-            type: markdown
-      - name: petsSection
-        label: Pets Section
-        type: object
-        fields:
-          - name: title
-            label: Title
-            type: string
-      - name: adoptionHours
-        label: Adoption Hours
-        type: object
-        fields:
-          - name: title
-            label: Title
-            type: string
-      - name: adoptionProcess
-        label: Adoption Process
-        type: object
-        fields:
-          - name: title
-            label: Title
-            type: string
-          - name: content
-            label: Content
-            type: markdown
-          - name: links
-            label: Links
-            type: object
-            list: true
-            fields:
-              - name: text
-                label: Text
-                type: string
-              - name: url
-                label: URL
-                type: string
-              - name: type
-                label: Type
-                type: select
-                options:
-                  values: [primary, secondary]
