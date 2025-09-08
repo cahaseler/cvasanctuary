@@ -1,0 +1,107 @@
+---
+layout: layouts/base.njk
+---
+
+<style>
+  .mission-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 4rem;
+  }
+
+  .mission-hero {
+    width: 100%;
+    margin: 0 auto 3rem;
+    position: relative;
+    padding-bottom: 52.5%; /* Creates a wider crop at full width (35% / 66.66% * 100%) */
+    overflow: hidden;
+  }
+
+  .mission-hero img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+  }
+
+  .mission-content {
+    width: 100%;
+  }
+
+  .mission-title {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  /* Style the first paragraph (intro) */
+  .mission-content > p:first-of-type {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .mission-content > p:first-of-type strong {
+    font-weight: 600;
+  }
+
+  .mission-content p {
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+    font-size: 1.1rem;
+  }
+
+  .mission-content ul {
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+  }
+
+  .mission-content ul li {
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+  }
+
+  /* Add visual separation before the history section */
+  .mission-content > p:nth-of-type(4) {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e0e0e0;
+  }
+
+  @media (max-width: 768px) {
+    .mission-title {
+      font-size: 2rem;
+    }
+
+    .mission-container {
+      padding: 0 1rem 3rem;
+    }
+    
+    .mission-content > p:first-of-type {
+      font-size: 1.1rem;
+    }
+  }
+</style>
+
+<!-- Mission page container -->
+<div class="mission-container">
+  <!-- Hero image -->
+  <div class="mission-hero">
+    {% if hero_image %}
+      <img src="{{ hero_image | url }}" alt="Colville Valley Animal Sanctuary front view">
+    {% endif %}
+  </div>
+
+  <!-- Mission content -->
+  <div class="mission-content">
+    <h1 class="mission-title">{{ title }}</h1>
+    
+    {{ content | safe }}
+  </div>
+</div>

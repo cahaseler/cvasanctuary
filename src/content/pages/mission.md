@@ -1,6 +1,6 @@
 ---
 title: Mission & Vision
-permalink: /about-cvas/
+permalink: /cvas-mission/
 layout: layouts/mission.njk
 content_type: page
 hero_image: "/assets/images/common/cvas-front-2021.jpg"
