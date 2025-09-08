@@ -137,7 +137,7 @@ The site automatically deploys when changes are pushed to GitHub:
 1. Edit content in PagesCMS → Auto-commits to GitHub → Auto-deploys
 2. Edit code on GitHub → Auto-deploys
 3. Deployment takes 2-3 minutes
-4. View status at: https://github.com/cahaseler/cvasanctuary/actions
+4. View deployment status in GitHub Actions
 
 ### API Configuration
 
@@ -151,11 +151,11 @@ The Petstablished API proxy is hosted on Vercel:
 ### Content changes aren't showing
 1. Wait 3 minutes for deployment
 2. Clear your browser cache (Ctrl+Shift+R)
-3. Check GitHub Actions for errors: https://github.com/cahaseler/cvasanctuary/actions
+3. Check GitHub Actions for build errors
 
 ### Pet listings not updating
 - The API caches for 5 minutes
-- If pets still don't show, check: https://cvasanctuary.vercel.app/api/petstablished
+- If pets still don't show, check the API endpoint directly
 - Contact Petstablished if their API is down
 
 ### Can't access PagesCMS
@@ -179,14 +179,6 @@ https://pagescms.org/docs
 - Review this README
 - For template help, use the ChatGPT prompt above
 - Create an issue on GitHub if needed
-
-## Important URLs
-
-- **Live Site**: https://cahaseler.github.io/cvasanctuary/
-- **CMS**: https://app.pagescms.org
-- **GitHub Repository**: https://github.com/cahaseler/cvasanctuary
-- **Build Status**: https://github.com/cahaseler/cvasanctuary/actions
-- **API Endpoint**: https://cvasanctuary.vercel.app/api/petstablished
 
 ## Maintenance Notes
 
