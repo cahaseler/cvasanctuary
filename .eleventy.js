@@ -88,6 +88,8 @@ export default function(eleventyConfig) {
     },
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
-    dataTemplateEngine: "njk"
+    dataTemplateEngine: "njk",
+    // Path prefix for GitHub Pages deployment
+    pathPrefix: process.env.NODE_ENV === 'production' ? '/cvasanctuary/' : '/'
   };
 };
