@@ -6,13 +6,20 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is an animal shelter website modernization project that replaces Petstablished iframes with a modern static site using API integration. The goal is to create a responsive, maintainable website with zero monthly hosting costs.
 
+## Deployment Information
+
+- **Platform**: GitHub Pages
+- **Repository**: https://github.com/cahaseler/cvasanctuary
+- **Deployed URL**: https://cahaseler.github.io/cvasanctuary/
+- **Deployment Method**: GitHub Actions workflow on push to main branch
+
 ## Core Architecture
 
 ### Technology Stack
 - **Static Site Generator**: Eleventy (11ty)
-- **Content Management**: Decap CMS (formerly Netlify CMS) - Git-based
-- **Hosting**: Netlify (free tier with serverless functions)
-- **API Integration**: Petstablished API via serverless proxy (to handle CORS)
+- **Content Management**: PagesCMS - Git-based CMS
+- **Hosting**: GitHub Pages (free tier)
+- **API Integration**: Petstablished API via Vercel Edge Function proxy (to handle CORS)
 - **Version Control**: GitHub
 
 ### Key Technical Constraints

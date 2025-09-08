@@ -415,6 +415,22 @@ document.addEventListener('DOMContentLoaded', function() {
     petsGrid.innerHTML = pets.map(pet => createPetCard(pet)).join('');
   }
   
+  // Helper function to escape HTML special characters
+  function escapeHtml(text) {
+    if (!text) return '';
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+  
+  // Helper function to strip HTML tags and get plain text
+  function stripHtml(html) {
+    if (!html) return '';
+    const div = document.createElement('div');
+    div.innerHTML = html;
+    return div.textContent || div.innerText || '';
+  }
+  
   // Create individual pet card HTML
   function createPetCard(pet) {
     const images = pet.images || [];
@@ -425,19 +441,23 @@ document.addEventListener('DOMContentLoaded', function() {
     let species = pet.animal || 'Unknown';
     let speciesClass = species.toLowerCase();
     
-    return '<a href="' + pet.adopt_url + '" target="_blank" rel="noopener noreferrer" ' +
-           'class="pet-card" data-species="' + speciesClass + '">' +
-           '<img src="' + imageUrl + '" alt="' + pet.name + '" loading="lazy">' +
+    // Strip HTML from description and truncate
+    const plainDescription = stripHtml(pet.description);
+    const truncatedDescription = plainDescription ? plainDescription.substring(0, 150) + '...' : 'Click to learn more about this pet.';
+    
+    return '<a href="' + escapeHtml(pet.adopt_url) + '" target="_blank" rel="noopener noreferrer" ' +
+           'class="pet-card" data-species="' + escapeHtml(speciesClass) + '">' +
+           '<img src="' + escapeHtml(imageUrl) + '" alt="' + escapeHtml(pet.name) + '" loading="lazy">' +
            '<div class="pet-details">' +
-           '<h3>' + pet.name + '</h3>' +
+           '<h3>' + escapeHtml(pet.name) + '</h3>' +
            '<div class="pet-info">' +
-           '<span><strong>Species:</strong> ' + species + '</span>' +
-           '<span><strong>Breed:</strong> ' + (pet.primary_breed || 'Mixed') + '</span>' +
-           '<span><strong>Age:</strong> ' + (pet.age || 'Unknown') + '</span>' +
-           '<span><strong>Sex:</strong> ' + (pet.sex || 'Unknown') + '</span>' +
+           '<span><strong>Species:</strong> ' + escapeHtml(species) + '</span>' +
+           '<span><strong>Breed:</strong> ' + escapeHtml(pet.primary_breed || 'Mixed') + '</span>' +
+           '<span><strong>Age:</strong> ' + escapeHtml(pet.age || 'Unknown') + '</span>' +
+           '<span><strong>Sex:</strong> ' + escapeHtml(pet.sex || 'Unknown') + '</span>' +
            '</div>' +
            '<div class="pet-description">' +
-           (pet.description ? pet.description.substring(0, 150) + '...' : 'Click to learn more about this pet.') +
+           escapeHtml(truncatedDescription) +
            '</div>' +
            '</div>' +
            '</a>';
