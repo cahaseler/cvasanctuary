@@ -162,12 +162,25 @@ We hope to expand our programs in 2021. Although times are uncertain, what remai
 
 <div class="stats-grid">
   <div>
-    <h3>Households Helped</h3>
     <img src="/assets/images/impact/households-chart.png" alt="Households helped 2017-2020">
   </div>
   <div>
-    <h3>Animals Helped</h3>
     <img src="/assets/images/impact/animals-chart.png" alt="Animals helped 2017-2020">
+  </div>
+</div>
+
+</section>
+
+<section class="impact-section">
+
+## Pet Food bank Households Helped 2018-2020
+
+<div class="stats-grid">
+  <div>
+    <img src="/assets/images/impact/pet-food-bank-chart.png" alt="Pet Food Bank households helped">
+  </div>
+  <div>
+    <img src="/assets/images/impact/pet-food-bank-chart2.png" alt="Pet Food Bank additional statistics">
   </div>
 </div>
 
@@ -175,9 +188,7 @@ We hope to expand our programs in 2021. Although times are uncertain, what remai
 
 <section class="cta-section">
 
-## Moving Forward...
-
-<p>There are many ways you can help CVAS continue our mission:</p>
+## Moving Forward - How Can You help us help them?
 
 <div class="cta-grid">
   <div class="cta-item">
