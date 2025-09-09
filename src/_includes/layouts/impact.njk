@@ -14,18 +14,19 @@ layout: layouts/base.njk
     text-align: center;
     font-size: 2.5rem;
     color: var(--color-primary);
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
     line-height: 1.2;
   }
 
   .impact-section {
-    margin-bottom: 4rem;
+    margin-bottom: 1rem;
     background: transparent !important;
   }
 
   .impact-section h2 {
     color: var(--color-primary);
     font-size: 1.8rem;
+    margin-top: 0;
     margin-bottom: 1.5rem;
   }
 
@@ -41,12 +42,49 @@ layout: layouts/base.njk
     font-size: 1.1rem;
   }
 
+  /* Adoptions section two-column layout */
+  .adoptions-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+  
+  @media (min-width: 768px) {
+    .adoptions-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  .adoptions-left img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 1.5rem;
+  }
+  
+  .adoptions-right img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+  }
+
   /* History images */
   .history-images {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: 1fr;
     gap: 2rem;
     margin: 2rem 0;
+  }
+  
+  @media (min-width: 768px) {
+    .history-images {
+      grid-template-columns: 1fr 1fr;
+    }
+    
+    .history-images figure:first-child {
+      grid-column: 1 / -1;
+    }
   }
 
   .history-images figure {
@@ -56,7 +94,6 @@ layout: layouts/base.njk
 
   .history-images img {
     width: 100%;
-    max-width: 350px;
     height: auto;
     display: block;
     margin: 0 auto;
@@ -116,18 +153,122 @@ layout: layouts/base.njk
     font-style: italic;
   }
 
-  .kitten-images {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+  /* Fire Kittens carousel - Modern CSS approach */
+  .kitten-carousel {
     margin: 2rem auto;
     max-width: 800px;
   }
+  
+  .kitten-carousel .carousel-viewport {
+    overflow: hidden;
+    border-radius: 8px;
+    background: #f5f5f5;
+  }
 
-  .kitten-images img {
+  .kitten-carousel .carousel-container {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+
+  .kitten-carousel .carousel-slide {
+    flex: 0 0 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f5f5;
+  }
+
+  .kitten-carousel img {
+    max-width: 100%;
+    max-height: 500px;
+    height: auto;
+    width: auto;
+    display: block;
+  }
+  
+  .kitten-carousel .carousel-nav {
+    margin-top: 1rem;
+  }
+  
+  .kitten-carousel .carousel-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .kitten-carousel .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .kitten-carousel .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ccc;
+    cursor: pointer;
+    transition: background 0.3s;
+    border: none;
+    padding: 0;
+  }
+
+  .kitten-carousel .dot.active {
+    background: var(--color-primary);
+  }
+  
+  .kitten-carousel .carousel-btn {
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .kitten-carousel .carousel-btn:hover {
+    background: var(--color-primary-dark);
+  }
+
+  /* Volunteers section layout */
+  .volunteers-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  @media (min-width: 768px) {
+    .volunteers-content {
+      grid-template-columns: 2fr 1fr;
+      align-items: start;
+    }
+  }
+  
+  .volunteers-image img {
     width: 100%;
     height: auto;
     border-radius: 8px;
+  }
+  
+  .volunteer-charts {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  @media (min-width: 768px) {
+    .volunteer-charts {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  .volunteer-charts img {
+    width: 100%;
+    height: auto;
   }
 
   /* Volunteer carousel */
@@ -193,6 +334,25 @@ layout: layouts/base.njk
 
   .dot.active {
     background: var(--color-primary);
+  }
+
+  /* Programs section charts */
+  .program-charts {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  @media (min-width: 768px) {
+    .program-charts {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  .program-charts img {
+    width: 100%;
+    height: auto;
   }
 
   /* Programs list - remove background */
@@ -284,6 +444,26 @@ layout: layouts/base.njk
     background: rgba(255,255,255,0.2);
   }
 
+  /* Moving Forward section with two columns */
+  .moving-forward-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+  
+  @media (min-width: 768px) {
+    .moving-forward-content {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  .moving-forward-section img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
   /* Responsive */
   @media (max-width: 768px) {
     .impact-title {
@@ -310,46 +490,94 @@ layout: layouts/base.njk
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // Volunteer carousel functionality
-  const carousel = document.querySelector('.carousel-container');
-  const slides = document.querySelectorAll('.carousel-slide');
-  const dots = document.querySelectorAll('.dot');
-  let currentSlide = 0;
+  // Handle all carousels on the page
+  function initCarousel(carouselElement) {
+    const container = carouselElement.querySelector('.carousel-container');
+    const slides = carouselElement.querySelectorAll('.carousel-slide');
+    const dots = carouselElement.querySelectorAll('.dot');
+    const prevBtn = carouselElement.querySelector('.carousel-prev');
+    const nextBtn = carouselElement.querySelector('.carousel-next');
+    let currentSlide = 0;
 
-  function showSlide(index) {
-    if (carousel && slides.length > 0) {
-      currentSlide = (index + slides.length) % slides.length;
-      carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
-      
-      // Update dots
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === currentSlide);
-      });
+    function showSlide(index) {
+      if (container && slides.length > 0) {
+        currentSlide = (index + slides.length) % slides.length;
+        container.style.transform = `translateX(-${currentSlide * 100}%)`;
+        
+        // Update dots
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === currentSlide);
+        });
+      }
+    }
+
+    // Auto-advance carousel
+    if (slides.length > 0) {
+      setInterval(() => {
+        showSlide(currentSlide + 1);
+      }, 5000);
+    }
+
+    // Dot click handlers
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => showSlide(index));
+    });
+
+    // Button handlers
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => showSlide(currentSlide - 1));
+    }
+    
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => showSlide(currentSlide + 1));
     }
   }
 
-  // Auto-advance carousel
-  if (slides.length > 0) {
+  // Initialize kitten carousel specifically
+  const kittenCarousel = document.querySelector('.kitten-carousel');
+  if (kittenCarousel) {
+    const container = kittenCarousel.querySelector('.carousel-container');
+    const slides = kittenCarousel.querySelectorAll('.carousel-slide');
+    const dots = kittenCarousel.querySelectorAll('.dot');
+    const prevBtn = kittenCarousel.querySelector('.carousel-prev');
+    const nextBtn = kittenCarousel.querySelector('.carousel-next');
+    let currentSlide = 0;
+
+    function showSlide(index) {
+      if (container && slides.length > 0) {
+        currentSlide = (index + slides.length) % slides.length;
+        container.style.transform = `translateX(-${currentSlide * 100}%)`;
+        
+        // Update dots
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === currentSlide);
+        });
+      }
+    }
+
+    // Dot click handlers
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => showSlide(index));
+    });
+
+    // Button handlers
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => showSlide(currentSlide - 1));
+    }
+    
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => showSlide(currentSlide + 1));
+    }
+
+    // Auto-advance
     setInterval(() => {
       showSlide(currentSlide + 1);
     }, 5000);
   }
-
-  // Dot click handlers
-  dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => showSlide(index));
+  
+  // Initialize other carousels if any
+  document.querySelectorAll('.volunteer-carousel').forEach(carousel => {
+    initCarousel(carousel);
   });
-
-  // Button handlers
-  const prevBtn = document.querySelector('.carousel-prev');
-  const nextBtn = document.querySelector('.carousel-next');
-  
-  if (prevBtn) {
-    prevBtn.addEventListener('click', () => showSlide(currentSlide - 1));
-  }
-  
-  if (nextBtn) {
-    nextBtn.addEventListener('click', () => showSlide(currentSlide + 1));
-  }
 });
 </script>

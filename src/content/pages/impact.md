@@ -38,7 +38,10 @@ content_type: page
 
 </section>
 
-<section class="impact-section">
+<section class="impact-section adoptions-section">
+
+<div class="adoptions-grid">
+<div class="adoptions-left">
 
 ## Adoptions
 
@@ -48,26 +51,19 @@ When an animal is surrendered to CVAS, whether in a simple re-homing case or in 
 
 ### Animal Breakdown:
 
-<div class="charts-container">
-  <div class="chart-full">
-    <img src="/assets/images/impact/animal-intake-chart.png" alt="Animal Intake Statistics">
-  </div>
-  <div class="chart-full">
-    <img src="/assets/images/impact/transfer-chart.png" alt="Transfer Statistics">
-  </div>
-  <div class="chart-full">
-    <img src="/assets/images/impact/adoption-chart.png" alt="Adoption Numbers">
-  </div>
-  <div class="charts-row">
-    <div class="chart-half">
-      <img src="/assets/images/impact/small-stat-1.png" alt="Additional Statistics">
-    </div>
-    <div class="chart-half">
-      <img src="/assets/images/impact/small-stat-2.png" alt="Additional Statistics">
-    </div>
-  </div>
-</div>
+![Cat Statistics 2017-2020](/assets/images/impact/cat-statistics-chart.png)
 
+![Dog Statistics 2017-2020](/assets/images/impact/dog-statistics-chart.png)
+
+</div>
+<div class="adoptions-right">
+
+![Dog](/assets/images/impact/animal-breakdown-dog.png)
+
+![Cats](/assets/images/impact/animal-breakdown-cats.png)
+
+</div>
+</div>
 
 </section>
 
@@ -81,16 +77,45 @@ Firefly, Moonbug, and and Lightning Bug came to CVAS after being severely burned
 **These slides may be disturbing to view, so please do so with discretion.**
 </div>
 
-<div class="kitten-images">
-  <img src="/assets/images/impact/fire-kitten-1.png" alt="Fire kitten recovery photo">
-  <img src="/assets/images/impact/fire-kitten-2.png" alt="Fire kitten medical treatment">
+<div class="kitten-carousel">
+  <div class="carousel-viewport">
+    <div class="carousel-container">
+      <div class="carousel-slide">
+        <img src="/assets/images/impact/fire-kittens-recovered.png" alt="Fire kittens recovered in new homes">
+      </div>
+      <div class="carousel-slide">
+        <img src="/assets/images/impact/fire-kittens-treatment.png" alt="Firefly during treatment">
+      </div>
+      <div class="carousel-slide">
+        <img src="/assets/images/impact/fire-kittens-after-1.png" alt="Fire kittens after recovery">
+      </div>
+      <div class="carousel-slide">
+        <img src="/assets/images/impact/fire-kittens-after-2.png" alt="Firefly at intake and during care">
+      </div>
+    </div>
+  </div>
+  <div class="carousel-nav">
+    <div class="carousel-controls">
+      <button class="carousel-btn carousel-prev">Previous</button>
+      <button class="carousel-btn carousel-next">Next</button>
+    </div>
+    <div class="carousel-dots">
+      <button class="dot active" aria-label="Slide 1"></button>
+      <button class="dot" aria-label="Slide 2"></button>
+      <button class="dot" aria-label="Slide 3"></button>
+      <button class="dot" aria-label="Slide 4"></button>
+    </div>
+  </div>
 </div>
 
 </section>
 
-<section class="impact-section">
+<section class="impact-section volunteers-section">
 
 ## Volunteers
+
+<div class="volunteers-content">
+<div class="volunteers-text">
 
 - We are forever grateful for the amazing service that our volunteers bring to the sanctuary every day.
 
@@ -100,36 +125,22 @@ Firefly, Moonbug, and and Lightning Bug came to CVAS after being severely burned
 
 - The COVID pandemic has hurt us on how many people are allowed to be at CVAS during 2020, but our volunteers look forward to getting into the sanctuary when it is their scheduled time.
 
-<div class="volunteer-carousel">
-  <div class="carousel-container">
-    <div class="carousel-slide">
-      <img src="/assets/images/impact/volunteer-1.png" alt="Volunteers working at CVAS">
-    </div>
-    <div class="carousel-slide">
-      <img src="/assets/images/impact/volunteer-2.png" alt="Volunteer activities">
-    </div>
-    <div class="carousel-slide">
-      <img src="/assets/images/impact/volunteer-3.png" alt="Volunteer with animals">
-    </div>
-    <div class="carousel-slide">
-      <img src="/assets/images/impact/volunteer-4.png" alt="Volunteer team">
-    </div>
-  </div>
-  <div class="carousel-dots">
-    <span class="dot active"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-  </div>
-  <div class="carousel-controls">
-    <button class="carousel-btn carousel-prev">Previous</button>
-    <button class="carousel-btn carousel-next">Next</button>
-  </div>
+</div>
+<div class="volunteers-image">
+
+![Tiny kitten in hands](/assets/images/impact/volunteer-kitten.png)
+
+</div>
+</div>
+
+<div class="volunteer-charts">
+  <img src="/assets/images/impact/volunteer-hours-2019.png" alt="Volunteer Hours 2019">
+  <img src="/assets/images/impact/volunteer-hours-2020.png" alt="Volunteer Hours 2020">
 </div>
 
 </section>
 
-<section class="impact-section">
+<section class="impact-section programs-section">
 
 ## Programs
 
@@ -153,62 +164,42 @@ Our programs help assist families all over Stevens County. We've instated new ed
 
 We hope to expand our programs in 2021. Although times are uncertain, what remains consistent is the need for animal welfare in Stevens County. If you're interested in participating in any of our programs, information can be found on our Programs page.
 
-</section>
+### Vaccine & Microchip Clinic
+#### Households/Animals helped 2017-2020
 
-<section class="impact-section">
-
-## Vaccine & Microchip Clinic
-### Households/Animals helped 2017-2020
-
-<div class="stats-grid">
-  <div>
-    <img src="/assets/images/impact/households-chart.png" alt="Households helped 2017-2020">
-  </div>
-  <div>
-    <img src="/assets/images/impact/animals-chart.png" alt="Animals helped 2017-2020">
-  </div>
+<div class="program-charts">
+  <img src="/assets/images/impact/households-chart.png" alt="Households helped 2017-2020">
+  <img src="/assets/images/impact/animals-chart.png" alt="Animals helped 2017-2020">
 </div>
 
 </section>
 
-<section class="impact-section">
 
-## Pet Food bank Households Helped 2018-2020
-
-<div class="stats-grid">
-  <div>
-    <img src="/assets/images/impact/pet-food-bank-chart.png" alt="Pet Food Bank households helped">
-  </div>
-  <div>
-    <img src="/assets/images/impact/pet-food-bank-chart2.png" alt="Pet Food Bank additional statistics">
-  </div>
-</div>
-
-</section>
-
-<section class="cta-section">
+<section class="impact-section moving-forward-section">
 
 ## Moving Forward - How Can You help us help them?
 
-<div class="cta-grid">
-  <div class="cta-item">
-    <a href="/adopt">Adopt</a>
-  </div>
-  <div class="cta-item">
-    <a href="/foster-program">Foster</a>
-  </div>
-  <div class="cta-item">
-    <a href="/volunteer-with-us">Volunteer</a>
-  </div>
-  <div class="cta-item">
-    <a href="/donate">Donate</a>
-  </div>
-  <div class="cta-item">
-    <a href="/sponsorship-program">Sponsor</a>
-  </div>
-  <div class="cta-item">
-    <a href="#share">Share</a>
-  </div>
+<div class="moving-forward-content">
+<div class="moving-forward-text">
+
+• **Adopt:** all pets come altered, up to date on shots, de-wormed, microchipped.
+
+• **Foster:** take in an animal with needs or a litter of kittens to be trained and socialized.
+
+• **Volunteer:** give some of your time to clean, do yard work, remodel, socialize, office help. Many volunteers do a 2hr shift.
+
+• **Donate:** help financially with a one-time, recurring, round-up, bequest, AmazonSmile or purchase needed items. Visit our donation page or see our wish lists on Chewy and Amazon.
+
+• **Sponsor:** a project financially only or funding and completing the project also. Want some ideas? CVAS needs a new heating stove in main building, decking w/wheelchair ramp, gravel, concrete, yard beautification. .. the list goes on.
+
+• **Share CVAS**: join us on Facebook, our email newsletters, then share with your family and friends.
+
+</div>
+<div class="moving-forward-image">
+
+![Abby](/assets/images/impact/moving-forward-abby.jpg)
+
+</div>
 </div>
 
 </section>
