@@ -319,6 +319,31 @@ content:
                 options:
                   values: [primary, secondary]
 
+  # Impact Page
+  - name: impact
+    label: Impact Page
+    path: src/content/pages/impact.md
+    type: file
+    fields:
+      - name: title
+        label: Title
+        type: string
+      - name: permalink
+        label: Permalink
+        type: string
+        hidden: true
+      - name: layout
+        label: Layout
+        type: string
+        hidden: true
+      - name: hero_image
+        label: Hero Image
+        type: image
+      - name: body
+        label: Content
+        type: markdown
+        description: Full page content including all sections
+
   # Site Settings
   - name: settings
     label: Site Settings

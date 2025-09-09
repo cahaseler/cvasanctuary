@@ -1,65 +1,203 @@
 ---
-title: "Colville Valley Animal Sanctuary"
+title: "CVAS Then, Now, and Looking Forward…"
 permalink: /cvas-impact/
-content_type: "page"
-layout: "layouts/page.njk"
-organization:
-  name: "Colville Valley Animal Sanctuary"
-  address:
-    street: "501 Old Arden Hwy"
-    city: "Colville"
-    state: "WA"
-    postal_code: "99114"
-  phone: "509-684-1475"
-  email: "office@cvasanctuary.org"
-powered_by: "Squarespace"
+layout: layouts/impact.njk
+content_type: page
 ---
 
-- About CVAS
-- Mission & Vision
-- Impact
-- Our Board
-- AdoptVolunteerFoster A PetPrograms
-- Vaccination & Microchip Clinic
-- Pet Food Bank
-- TNR & Barn Cats
-- Sponsorship Program
-- Seniors Saving Seniors
-- News
-- Newsletter Sign Up
-- Community Partners
-- Our Forever Angels
-- Kitten Cam LiveResourcesContact and Hours
-- Donate
+<section class="impact-section">
 
-We couldn't find the page you were looking for. This is either because:
+## History of CVAS
 
-- There is an error in the URL entered into your web browser. Please check the URL and try again.
-- The page you are looking for has been moved or deleted.
+- Established in 2002 by several caring individuals.
 
-You can return to our homepage by clicking here, or you can try searching for the content you are seeking by clicking here.
+- Helping dogs was our original purpose
 
-### COLVILLE VALLEY ANIMAL SANCTUARY
+- Originally known as Colville Pet Refuge
 
-501 Old Arden Hwy
-Colville, WA 99114
+- We started taking in unwanted cats in 2010. There is no other place for unwanted cats to go in Stevens County. CVAS became known for taking care of cats, but we care for dogs, too.
 
-509-684-1475
-office@cvasanctuary.org
+- In Sept of 2016, CVAS started making changes around the property with animal housing, initiating occupancy maximum numbers. Years prior, no animal was turned away and over crowding and animal mental wellness was fragile.
 
-Powered by:
-Squarespace
+- In 2018 a new Board of Directors and Acting ED (all volunteers) started a reboot of CVAS.
 
-### INFO
+<div class="history-images">
+  <figure>
+    <img src="/assets/images/impact/history-old-main.png" alt="Old Main Building">
+    <figcaption>Old Main Building</figcaption>
+  </figure>
+  <figure>
+    <img src="/assets/images/impact/history-old-dog-areas.png" alt="Old Dog Areas">
+    <figcaption>Old Dog Areas</figcaption>
+  </figure>
+  <figure>
+    <img src="/assets/images/impact/history-old-dog-building.png" alt="Old dog building that burned down and was rebuilt to be the current cat building">
+    <figcaption>Old dog building that burned down and was rebuilt to be the current cat building</figcaption>
+  </figure>
+</div>
 
-- Mission
-- Partners
-- Programs
+</section>
 
-### ACTION
+<section class="impact-section">
 
-- Volunteer
-- Contact
-- Donate
+## Adoptions
 
-Sign Up for our E-Newsletter!
+Adoption services are at the core of what CVAS does. Our #1 priority is to get animals into loving homes. The graphs below show the types of animals adopted with us and the types of animals transferred to partnering shelters. The data shows that a lot has changed in a few short years. For every fur baby brought into the shelter, we hope to find a corresponding furrever home!
+
+When an animal is surrendered to CVAS, whether in a simple re-homing case or in the saddest medical case, our responsibility is to care for the animal and get that animal out of the shelter. While life at CVAS is blissful, it's not a permanent place for a pet. Cats and dogs need reliable socialization, their favorite food and treats, and a spacious home to explore.
+
+### Animal Breakdown:
+
+<div class="charts-container">
+  <div class="chart-full">
+    <img src="/assets/images/impact/animal-intake-chart.png" alt="Animal Intake Statistics">
+  </div>
+  <div class="chart-full">
+    <img src="/assets/images/impact/transfer-chart.png" alt="Transfer Statistics">
+  </div>
+  <div class="chart-full">
+    <img src="/assets/images/impact/adoption-chart.png" alt="Adoption Numbers">
+  </div>
+  <div class="charts-row">
+    <div class="chart-half">
+      <img src="/assets/images/impact/small-stat-1.png" alt="Additional Statistics">
+    </div>
+    <div class="chart-half">
+      <img src="/assets/images/impact/small-stat-2.png" alt="Additional Statistics">
+    </div>
+  </div>
+</div>
+
+
+</section>
+
+<section class="impact-section">
+
+## Fire Kittens from Inchelium, WA Wildfires of Summer 2020
+
+Firefly, Moonbug, and and Lightning Bug came to CVAS after being severely burned and injured by the Inchelium wildfires. They were rescued during the panic and brought to CVAS for care. Fortunately, we had amazing donors fund their care, which consisted of three times daily baths and ointment as well as plenty of pain medications. These wonderful animals were given a second chance at life and now wonder around their new furrever homes!
+
+<div class="warning-box">
+**These slides may be disturbing to view, so please do so with discretion.**
+</div>
+
+<div class="kitten-images">
+  <img src="/assets/images/impact/fire-kitten-1.png" alt="Fire kitten recovery photo">
+  <img src="/assets/images/impact/fire-kitten-2.png" alt="Fire kitten medical treatment">
+</div>
+
+</section>
+
+<section class="impact-section">
+
+## Volunteers
+
+- We are forever grateful for the amazing service that our volunteers bring to the sanctuary every day.
+
+- Volunteers help with laundry/dishes, socializing, office help, lawn care, remodeling, vaccination clinics, transporting animals for surgeries or adoption events, fundraising, Furry Tale program and helping our limited staff
+
+- Every hour volunteers work saves money for the animals and programs of CVAS.
+
+- The COVID pandemic has hurt us on how many people are allowed to be at CVAS during 2020, but our volunteers look forward to getting into the sanctuary when it is their scheduled time.
+
+<div class="volunteer-carousel">
+  <div class="carousel-container">
+    <div class="carousel-slide">
+      <img src="/assets/images/impact/volunteer-1.png" alt="Volunteers working at CVAS">
+    </div>
+    <div class="carousel-slide">
+      <img src="/assets/images/impact/volunteer-2.png" alt="Volunteer activities">
+    </div>
+    <div class="carousel-slide">
+      <img src="/assets/images/impact/volunteer-3.png" alt="Volunteer with animals">
+    </div>
+    <div class="carousel-slide">
+      <img src="/assets/images/impact/volunteer-4.png" alt="Volunteer team">
+    </div>
+  </div>
+  <div class="carousel-dots">
+    <span class="dot active"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+  <div class="carousel-controls">
+    <button class="carousel-btn carousel-prev">Previous</button>
+    <button class="carousel-btn carousel-next">Next</button>
+  </div>
+</div>
+
+</section>
+
+<section class="impact-section">
+
+## Programs
+
+Our programs help assist families all over Stevens County. We've instated new educational programs that we can't wait to see flourish. Our vaccination and microchip clinic is a huge hit every month, bringing in more people and funds to CVAS than any other program. When someone donates pet supplies, those are donated straight to our pet food bank if CVAS is not able to use them. Then we have several adoption programs for people looking for specific pets. Each of these programs yield numbers that we like to improve upon every year. Here's a look at what we do:
+
+• Holds Low-Cost Vaccination Clinics. (With retired veterinarian)
+
+• Allows a mobile veterinarian free parking for public low-cost spay/neuters clinic. (Good weather months)
+
+• Has a Pet-Food Bank, no income requirements.
+
+• Seniors Saving Seniors Program is where we pair seniors with seniors pets at no cost to the adopter.
+
+• TNR Program where we loan traps, help get feral cats fixed and then returned to their environment.
+
+• Barn/Shop Program where we take unwanted feral cats and give them a purpose with little human interaction.
+
+• Furry-Tale Reading program (before COVID). Kids read to the animals, have a snack, a craft project, and then write in their journals. This is a FREE program that helps children with their reading, writing skills, and animal skills.
+
+• A location for individuals to fulfill their community service hours.
+
+We hope to expand our programs in 2021. Although times are uncertain, what remains consistent is the need for animal welfare in Stevens County. If you're interested in participating in any of our programs, information can be found on our Programs page.
+
+</section>
+
+<section class="impact-section">
+
+## Vaccine & Microchip Clinic
+### Households/Animals helped 2017-2020
+
+<div class="stats-grid">
+  <div>
+    <h3>Households Helped</h3>
+    <img src="/assets/images/impact/households-chart.png" alt="Households helped 2017-2020">
+  </div>
+  <div>
+    <h3>Animals Helped</h3>
+    <img src="/assets/images/impact/animals-chart.png" alt="Animals helped 2017-2020">
+  </div>
+</div>
+
+</section>
+
+<section class="cta-section">
+
+## Moving Forward...
+
+<p>There are many ways you can help CVAS continue our mission:</p>
+
+<div class="cta-grid">
+  <div class="cta-item">
+    <a href="/adopt">Adopt</a>
+  </div>
+  <div class="cta-item">
+    <a href="/foster-program">Foster</a>
+  </div>
+  <div class="cta-item">
+    <a href="/volunteer-with-us">Volunteer</a>
+  </div>
+  <div class="cta-item">
+    <a href="/donate">Donate</a>
+  </div>
+  <div class="cta-item">
+    <a href="/sponsorship-program">Sponsor</a>
+  </div>
+  <div class="cta-item">
+    <a href="#share">Share</a>
+  </div>
+</div>
+
+</section>
