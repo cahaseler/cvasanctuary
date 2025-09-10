@@ -4,6 +4,10 @@ media:
   input: src/assets/images
   output: /assets/images
 
+settings:
+  content:
+    merge: true  # Preserve existing content when editing
+
 content:
   # Homepage
   - name: homepage
@@ -184,10 +188,12 @@ content:
       - name: permalink
         label: Permalink
         type: string
+        default: /mission/
         hidden: true
       - name: layout
         label: Layout
         type: string
+        default: layouts/mission.njk
         hidden: true
       - name: hero_image
         label: Hero Image
@@ -208,10 +214,12 @@ content:
       - name: layout
         label: Layout
         type: string
+        default: layouts/board.njk
         hidden: true
       - name: permalink
         label: Permalink
         type: string
+        default: /our-board/
         hidden: true
       - name: hero_image
         label: Hero Image
@@ -251,9 +259,12 @@ content:
       - name: permalink
         label: Permalink
         type: string
+        default: /adopt-a-pet/
+        hidden: true
       - name: layout
         label: Layout
         type: string
+        default: layouts/adopt.njk
         hidden: true
       - name: description
         label: Description
@@ -331,10 +342,12 @@ content:
       - name: permalink
         label: Permalink
         type: string
+        default: /impact/
         hidden: true
       - name: layout
         label: Layout
         type: string
+        default: layouts/impact.njk
         hidden: true
       - name: hero_image
         label: Hero Image
