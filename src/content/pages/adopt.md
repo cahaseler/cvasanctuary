@@ -1,18 +1,14 @@
 ---
 title: Adopt a Pet from CVAS
-permalink: /adopt/
+permalink: /adopt-a-pet/
 layout: layouts/adopt.njk
-description: >-
-  Find your perfect companion! Browse our adoptable pets and learn about our
-  adoption process at Colville Valley Animal Sanctuary.
-
-
-  TEST EDIT
+description: Find your perfect companion! Browse our adoptable pets and learn
+  about our adoption process at Colville Valley Animal Sanctuary.
 hero:
   title: When you adopt with CVAS...
   collageImage: /assets/images/common/photo-collage.png
 adoptContent:
-  title: An Animal Finds a Home and a Life is Saved
+  title: An Animal Finds a Home and a Life is Saved TEST EDIT
   description: >
     Does your heart long for a furrever companion? Do you need the purrfect pet
     to make home feel like, well, home? Colville Valley Animal Sanctuary is
