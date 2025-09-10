@@ -188,7 +188,7 @@ content:
       - name: permalink
         label: Permalink
         type: string
-        default: /mission/
+        default: /cvas-mission/
         hidden: true
       - name: layout
         label: Layout
@@ -259,7 +259,7 @@ content:
       - name: permalink
         label: Permalink
         type: string
-        default: /adopt-a-pet/
+        default: /adopt/
         hidden: true
       - name: layout
         label: Layout
@@ -342,7 +342,7 @@ content:
       - name: permalink
         label: Permalink
         type: string
-        default: /impact/
+        default: /cvas-impact/
         hidden: true
       - name: layout
         label: Layout

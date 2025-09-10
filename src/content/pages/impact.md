@@ -3,9 +3,45 @@ title: "CVAS Then, Now, and Looking Forward…"
 permalink: /cvas-impact/
 layout: layouts/impact.njk
 content_type: page
----
 
-<section class="impact-section">
+history_images:
+  - src: assets/images/impact/history-old-main.png
+    alt: Old Main Building
+    caption: Old Main Building
+  - src: assets/images/impact/history-old-dog-areas.png
+    alt: Old Dog Areas
+    caption: Old Dog Areas
+  - src: assets/images/impact/history-old-dog-building.png
+    alt: Old dog building that burned down and was rebuilt to be the current cat building
+    caption: Old dog building that burned down and was rebuilt to be the current cat building
+
+adoption_charts:
+  cat_stats: assets/images/impact/cat-statistics-chart.png
+  dog_stats: assets/images/impact/dog-statistics-chart.png
+  dog_image: assets/images/impact/animal-breakdown-dog.png
+  cat_image: assets/images/impact/animal-breakdown-cats.png
+
+fire_kitten_slides:
+  - src: assets/images/impact/fire-kittens-recovered.png
+    alt: Fire kittens recovered in new homes
+  - src: assets/images/impact/fire-kittens-treatment.png
+    alt: Firefly during treatment
+  - src: assets/images/impact/fire-kittens-after-1.png
+    alt: Fire kittens after recovery
+  - src: assets/images/impact/fire-kittens-after-2.png
+    alt: Firefly at intake and during care
+
+volunteer_images:
+  kitten: assets/images/impact/volunteer-kitten.png
+  hours_2019: assets/images/impact/volunteer-hours-2019.png
+  hours_2020: assets/images/impact/volunteer-hours-2020.png
+
+program_charts:
+  households: assets/images/impact/households-chart.png
+  animals: assets/images/impact/animals-chart.png
+
+moving_forward_image: assets/images/impact/moving-forward-abby.jpg
+---
 
 ## History of CVAS
 
@@ -21,28 +57,6 @@ content_type: page
 
 - In 2018 a new Board of Directors and Acting ED (all volunteers) started a reboot of CVAS.
 
-<div class="history-images">
-  <figure>
-    <img src="/assets/images/impact/history-old-main.png" alt="Old Main Building">
-    <figcaption>Old Main Building</figcaption>
-  </figure>
-  <figure>
-    <img src="/assets/images/impact/history-old-dog-areas.png" alt="Old Dog Areas">
-    <figcaption>Old Dog Areas</figcaption>
-  </figure>
-  <figure>
-    <img src="/assets/images/impact/history-old-dog-building.png" alt="Old dog building that burned down and was rebuilt to be the current cat building">
-    <figcaption>Old dog building that burned down and was rebuilt to be the current cat building</figcaption>
-  </figure>
-</div>
-
-</section>
-
-<section class="impact-section adoptions-section">
-
-<div class="adoptions-grid">
-<div class="adoptions-left">
-
 ## Adoptions
 
 Adoption services are at the core of what CVAS does. Our #1 priority is to get animals into loving homes. The graphs below show the types of animals adopted with us and the types of animals transferred to partnering shelters. The data shows that a lot has changed in a few short years. For every fur baby brought into the shelter, we hope to find a corresponding furrever home!
@@ -51,71 +65,13 @@ When an animal is surrendered to CVAS, whether in a simple re-homing case or in 
 
 ### Animal Breakdown:
 
-![Cat Statistics 2017-2020](/assets/images/impact/cat-statistics-chart.png)
-
-![Dog Statistics 2017-2020](/assets/images/impact/dog-statistics-chart.png)
-
-</div>
-<div class="adoptions-right">
-
-![Dog](/assets/images/impact/animal-breakdown-dog.png)
-
-![Cats](/assets/images/impact/animal-breakdown-cats.png)
-
-</div>
-</div>
-
-</section>
-
-<section class="impact-section">
-
 ## Fire Kittens from Inchelium, WA Wildfires of Summer 2020
 
 Firefly, Moonbug, and and Lightning Bug came to CVAS after being severely burned and injured by the Inchelium wildfires. They were rescued during the panic and brought to CVAS for care. Fortunately, we had amazing donors fund their care, which consisted of three times daily baths and ointment as well as plenty of pain medications. These wonderful animals were given a second chance at life and now wonder around their new furrever homes!
 
-<div class="warning-box">
 **These slides may be disturbing to view, so please do so with discretion.**
-</div>
-
-<div class="kitten-carousel">
-  <div class="carousel-viewport">
-    <div class="carousel-container">
-      <div class="carousel-slide">
-        <img src="/assets/images/impact/fire-kittens-recovered.png" alt="Fire kittens recovered in new homes">
-      </div>
-      <div class="carousel-slide">
-        <img src="/assets/images/impact/fire-kittens-treatment.png" alt="Firefly during treatment">
-      </div>
-      <div class="carousel-slide">
-        <img src="/assets/images/impact/fire-kittens-after-1.png" alt="Fire kittens after recovery">
-      </div>
-      <div class="carousel-slide">
-        <img src="/assets/images/impact/fire-kittens-after-2.png" alt="Firefly at intake and during care">
-      </div>
-    </div>
-  </div>
-  <div class="carousel-nav">
-    <div class="carousel-controls">
-      <button class="carousel-btn carousel-prev">Previous</button>
-      <button class="carousel-btn carousel-next">Next</button>
-    </div>
-    <div class="carousel-dots">
-      <button class="dot active" aria-label="Slide 1"></button>
-      <button class="dot" aria-label="Slide 2"></button>
-      <button class="dot" aria-label="Slide 3"></button>
-      <button class="dot" aria-label="Slide 4"></button>
-    </div>
-  </div>
-</div>
-
-</section>
-
-<section class="impact-section volunteers-section">
 
 ## Volunteers
-
-<div class="volunteers-content">
-<div class="volunteers-text">
 
 - We are forever grateful for the amazing service that our volunteers bring to the sanctuary every day.
 
@@ -124,23 +80,6 @@ Firefly, Moonbug, and and Lightning Bug came to CVAS after being severely burned
 - Every hour volunteers work saves money for the animals and programs of CVAS.
 
 - The COVID pandemic has hurt us on how many people are allowed to be at CVAS during 2020, but our volunteers look forward to getting into the sanctuary when it is their scheduled time.
-
-</div>
-<div class="volunteers-image">
-
-![Tiny kitten in hands](/assets/images/impact/volunteer-kitten.png)
-
-</div>
-</div>
-
-<div class="volunteer-charts">
-  <img src="/assets/images/impact/volunteer-hours-2019.png" alt="Volunteer Hours 2019">
-  <img src="/assets/images/impact/volunteer-hours-2020.png" alt="Volunteer Hours 2020">
-</div>
-
-</section>
-
-<section class="impact-section programs-section">
 
 ## Programs
 
@@ -167,20 +106,8 @@ We hope to expand our programs in 2021. Although times are uncertain, what remai
 ### Vaccine & Microchip Clinic
 #### Households/Animals helped 2017-2020
 
-<div class="program-charts">
-  <img src="/assets/images/impact/households-chart.png" alt="Households helped 2017-2020">
-  <img src="/assets/images/impact/animals-chart.png" alt="Animals helped 2017-2020">
-</div>
-
-</section>
-
-
-<section class="impact-section moving-forward-section">
 
 ## Moving Forward - How Can You help us help them?
-
-<div class="moving-forward-content">
-<div class="moving-forward-text">
 
 • **Adopt:** all pets come altered, up to date on shots, de-wormed, microchipped.
 
@@ -193,13 +120,3 @@ We hope to expand our programs in 2021. Although times are uncertain, what remai
 • **Sponsor:** a project financially only or funding and completing the project also. Want some ideas? CVAS needs a new heating stove in main building, decking w/wheelchair ramp, gravel, concrete, yard beautification. .. the list goes on.
 
 • **Share CVAS**: join us on Facebook, our email newsletters, then share with your family and friends.
-
-</div>
-<div class="moving-forward-image">
-
-![Abby](/assets/images/impact/moving-forward-abby.jpg)
-
-</div>
-</div>
-
-</section>

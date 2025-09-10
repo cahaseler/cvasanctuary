@@ -1,0 +1,242 @@
+---
+layout: layouts/base.njk
+---
+
+<style>
+  .volunteer-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .volunteer-page img[alt="Volunteer Collage"] {
+    width: 100%;
+    height: auto;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+  }
+
+  .volunteer-page h2 {
+    color: var(--color-primary);
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .volunteer-page h3 {
+    color: var(--color-primary);
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .volunteer-page p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .volunteer-page ul {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-left: 2rem;
+  }
+
+  .volunteer-button {
+    display: inline-block;
+    background: var(--color-primary);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 2rem 0;
+    transition: background 0.3s;
+  }
+
+  .volunteer-button:hover {
+    background: var(--color-primary-dark);
+  }
+
+  /* Volunteer carousel */
+  .volunteer-carousel {
+    margin: 3rem 0;
+  }
+
+  .volunteer-carousel h3 {
+    text-align: center;
+    color: var(--color-primary);
+    margin-bottom: 2rem;
+  }
+
+  .carousel-viewport {
+    overflow: hidden;
+    border-radius: 8px;
+    background: #f5f5f5;
+  }
+
+  .carousel-container {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+
+  .carousel-slide {
+    flex: 0 0 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f5f5;
+    min-height: 400px;
+  }
+
+  .carousel-slide img {
+    max-width: 100%;
+    max-height: 600px;
+    height: auto;
+    width: auto;
+    display: block;
+  }
+
+  .carousel-nav {
+    margin-top: 1rem;
+  }
+
+  .carousel-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .carousel-btn {
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .carousel-btn:hover {
+    background: var(--color-primary-dark);
+  }
+
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ccc;
+    cursor: pointer;
+    transition: background 0.3s;
+    border: none;
+    padding: 0;
+  }
+
+  .dot.active {
+    background: var(--color-primary);
+  }
+
+  @media (max-width: 768px) {
+    .volunteer-page h2 {
+      font-size: 2rem;
+    }
+
+    .volunteer-button {
+      display: block;
+      text-align: center;
+    }
+  }
+</style>
+
+<div class="volunteer-page">
+  {{ content | safe }}
+
+  <div class="volunteer-carousel">
+    <h3>Our Amazing Volunteers in Action</h3>
+    <div class="carousel-viewport">
+      <div class="carousel-container">
+        <div class="carousel-slide">
+          <img src="/assets/images/volunteer/volunteer-1.jpg" alt="Volunteer with kitten">
+        </div>
+        <div class="carousel-slide">
+          <img src="/assets/images/volunteer/volunteer-2.jpg" alt="Volunteer at sanctuary">
+        </div>
+        <div class="carousel-slide">
+          <img src="/assets/images/volunteer/volunteer-3.jpg" alt="Volunteer with dog">
+        </div>
+        <div class="carousel-slide">
+          <img src="/assets/images/volunteer/volunteer-4.jpg" alt="Volunteer caring for animals">
+        </div>
+        <div class="carousel-slide">
+          <img src="/assets/images/volunteer/volunteer-5.jpg" alt="Volunteer with corgi">
+        </div>
+      </div>
+    </div>
+    <div class="carousel-nav">
+      <div class="carousel-controls">
+        <button class="carousel-btn carousel-prev">Previous</button>
+        <button class="carousel-btn carousel-next">Next</button>
+      </div>
+      <div class="carousel-dots">
+        <button class="dot active" aria-label="Slide 1"></button>
+        <button class="dot" aria-label="Slide 2"></button>
+        <button class="dot" aria-label="Slide 3"></button>
+        <button class="dot" aria-label="Slide 4"></button>
+        <button class="dot" aria-label="Slide 5"></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const carousel = document.querySelector('.volunteer-carousel');
+  if (carousel) {
+    const container = carousel.querySelector('.carousel-container');
+    const slides = carousel.querySelectorAll('.carousel-slide');
+    const dots = carousel.querySelectorAll('.dot');
+    const prevBtn = carousel.querySelector('.carousel-prev');
+    const nextBtn = carousel.querySelector('.carousel-next');
+    let currentSlide = 0;
+
+    function showSlide(index) {
+      if (container && slides.length > 0) {
+        currentSlide = (index + slides.length) % slides.length;
+        container.style.transform = `translateX(-${currentSlide * 100}%)`;
+        
+        // Update dots
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === currentSlide);
+        });
+      }
+    }
+
+    // Dot click handlers
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => showSlide(index));
+    });
+
+    // Button handlers
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => showSlide(currentSlide - 1));
+    }
+    
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => showSlide(currentSlide + 1));
+    }
+
+    // Auto-advance carousel
+    setInterval(() => {
+      showSlide(currentSlide + 1);
+    }, 5000);
+  }
+});
+</script>
