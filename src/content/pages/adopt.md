@@ -8,7 +8,7 @@ hero:
   title: When you adopt with CVAS...
   collageImage: /assets/images/common/photo-collage.png
 adoptContent:
-  title: An Animal Finds a Home and a Life is Saved TEST EDIT 2
+  title: An Animal Finds a Home and a Life is Saved
   description: >
     Does your heart long for a furrever companion? Do you need the purrfect pet
     to make home feel like, well, home? Colville Valley Animal Sanctuary is
