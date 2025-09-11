@@ -102,117 +102,148 @@ layout: layouts/base.njk
 
   .history-images figcaption {
     margin-top: 0.5rem;
-    font-style: italic;
+    font-size: 0.9rem;
     color: #666;
+    font-style: italic;
   }
 
-  /* Charts */
+  /* Chart sections */
+  .charts-container {
+    margin: 2rem 0;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .chart-full {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  .chart-full img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
   .charts-row {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: 1fr 1fr;
     gap: 2rem;
     margin: 2rem 0;
   }
 
-  .charts-row img {
+  .chart-half img {
     width: 100%;
     height: auto;
+    display: block;
   }
 
-  /* Fire Kittens carousel */
+  /* Fire Kittens section with warning */
   .warning-box {
     background: #fff3cd;
-    border: 1px solid #ffc107;
+    border: 2px solid #ffc107;
+    border-radius: 8px;
     padding: 1rem;
-    margin: 1rem 0;
-    border-radius: 4px;
-    text-align: center;
-  }
-
-  .kitten-carousel {
-    position: relative;
-    max-width: 800px;
     margin: 2rem auto;
+    max-width: 600px;
+    text-align: center;
+    font-style: italic;
   }
 
-  .carousel-viewport {
+  /* Fire Kittens carousel - Modern CSS approach */
+  .kitten-carousel {
+    margin: 2rem auto;
+    max-width: 800px;
+  }
+  
+  .kitten-carousel .carousel-viewport {
     overflow: hidden;
     border-radius: 8px;
+    background: #f5f5f5;
   }
 
-  .carousel-container {
+  .kitten-carousel .carousel-container {
     display: flex;
-    transition: transform 0.3s ease;
+    transition: transform 0.5s ease;
   }
 
-  .carousel-slide {
-    min-width: 100%;
+  .kitten-carousel .carousel-slide {
+    flex: 0 0 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    background: #f5f5f5;
   }
 
-  .carousel-slide img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
+  .kitten-carousel img {
+    max-width: 100%;
     max-height: 500px;
+    height: auto;
+    width: auto;
+    display: block;
   }
-
-  .carousel-nav {
+  
+  .kitten-carousel .carousel-nav {
     margin-top: 1rem;
   }
-
-  .carousel-controls {
+  
+  .kitten-carousel .carousel-controls {
     display: flex;
     justify-content: center;
     gap: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
   }
-
-  .carousel-btn {
-    background: var(--color-primary);
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    border-radius: 4px;
-  }
-
-  .carousel-btn:hover {
-    background: var(--color-primary-dark);
-  }
-
-  .carousel-dots {
+  
+  .kitten-carousel .carousel-dots {
     display: flex;
     justify-content: center;
     gap: 0.5rem;
   }
-
-  .dot {
+  
+  .kitten-carousel .dot {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    border: none;
     background: #ccc;
     cursor: pointer;
+    transition: background 0.3s;
+    border: none;
+    padding: 0;
   }
 
-  .dot.active {
+  .kitten-carousel .dot.active {
     background: var(--color-primary);
   }
+  
+  .kitten-carousel .carousel-btn {
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
 
-  /* Volunteers section */
+  .kitten-carousel .carousel-btn:hover {
+    background: var(--color-primary-dark);
+  }
+
+  /* Volunteers section layout */
   .volunteers-content {
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;
-    align-items: start;
+    margin-bottom: 2rem;
   }
   
   @media (min-width: 768px) {
     .volunteers-content {
       grid-template-columns: 2fr 1fr;
+      align-items: start;
     }
   }
   
@@ -224,9 +255,15 @@ layout: layouts/base.njk
   
   .volunteer-charts {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 2rem;
     margin-top: 2rem;
+  }
+  
+  @media (min-width: 768px) {
+    .volunteer-charts {
+      grid-template-columns: 1fr 1fr;
+    }
   }
   
   .volunteer-charts img {
@@ -234,87 +271,23 @@ layout: layouts/base.njk
     height: auto;
   }
 
-  /* Programs section */
+  /* Programs section charts */
   .program-charts {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 2rem;
     margin-top: 2rem;
+  }
+  
+  @media (min-width: 768px) {
+    .program-charts {
+      grid-template-columns: 1fr 1fr;
+    }
   }
   
   .program-charts img {
     width: 100%;
     height: auto;
-  }
-
-  /* Stats */
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    margin: 2rem auto;
-    max-width: 600px;
-  }
-
-  .stats-grid img {
-    width: 100%;
-    height: auto;
-  }
-  
-  .stats-charts {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin: 2rem auto;
-    max-width: 600px;
-  }
-  
-  .stats-charts img {
-    width: 100%;
-    height: auto;
-  }
-
-  /* Call to action */
-  .cta-section {
-    background: var(--color-primary);
-    color: white;
-    padding: 3rem 2rem;
-    border-radius: 8px;
-    text-align: center;
-    margin-top: 3rem;
-  }
-
-  .cta-section h2 {
-    color: white;
-    margin-bottom: 2rem;
-  }
-
-  .cta-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 2rem;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .cta-item {
-    text-align: center;
-  }
-
-  .cta-item a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.2rem;
-    font-weight: bold;
-    display: block;
-    padding: 1rem;
-    background: rgba(255,255,255,0.1);
-    border-radius: 8px;
-    transition: background 0.3s;
-  }
-
-  .cta-item a:hover {
-    background: rgba(255,255,255,0.2);
   }
 
   /* Moving Forward section with two columns */
@@ -331,7 +304,8 @@ layout: layouts/base.njk
     }
   }
   
-  .moving-forward-section img {
+  .moving-forward-section img,
+  .moving-forward-image img {
     width: 100%;
     height: auto;
     border-radius: 8px;
@@ -358,10 +332,16 @@ layout: layouts/base.njk
 <div class="impact-page">
   <h1 class="impact-title">{{ title }}</h1>
 
-  <!-- History Section -->
   <section class="impact-section">
-    {{ content | safe | replace("## History of CVAS", "<h2>History of CVAS</h2>") | replace("</h2>", "</h2><div>") | replace("</ul>", "</ul></div>") | safe }}
-    
+    <h2>History of CVAS</h2>
+    <ul>
+      <li><p>Established in 2002 by several caring individuals.</p></li>
+      <li><p>Helping dogs was our original purpose</p></li>
+      <li><p>Originally known as Colville Pet Refuge</p></li>
+      <li><p>We started taking in unwanted cats in 2010. There is no other place for unwanted cats to go in Stevens County. CVAS became known for taking care of cats, but we care for dogs, too.</p></li>
+      <li><p>In Sept of 2016, CVAS started making changes around the property with animal housing, initiating occupancy maximum numbers. Years prior, no animal was turned away and over crowding and animal mental wellness was fragile.</p></li>
+      <li><p>In 2018 a new Board of Directors and Acting ED (all volunteers) started a reboot of CVAS.</p></li>
+    </ul>
     {% if history_images %}
     <div class="history-images">
       {% for image in history_images %}
@@ -374,46 +354,36 @@ layout: layouts/base.njk
     {% endif %}
   </section>
 
-  <!-- Adoptions Section -->
   <section class="impact-section adoptions-section">
-    {% set adoptions_content = content | safe %}
-    {% set adoptions_start = adoptions_content.indexOf("## Adoptions") %}
-    {% set fire_kittens_start = adoptions_content.indexOf("## Fire Kittens") %}
-    {% if adoptions_start > -1 and fire_kittens_start > -1 %}
-      {% set adoptions_section = adoptions_content.substring(adoptions_start, fire_kittens_start) %}
-      
-      <div class="adoptions-grid">
-        <div class="adoptions-left">
-          {{ adoptions_section | replace("## Adoptions", "<h2>Adoptions</h2>") | safe }}
-          
-          {% if adoption_charts.cat_stats %}
-            <img src="{{ adoption_charts.cat_stats | url }}" alt="Cat Statistics 2017-2020">
-          {% endif %}
-          {% if adoption_charts.dog_stats %}
-            <img src="{{ adoption_charts.dog_stats | url }}" alt="Dog Statistics 2017-2020">
-          {% endif %}
-        </div>
-        <div class="adoptions-right">
-          {% if adoption_charts.dog_image %}
-            <img src="{{ adoption_charts.dog_image | url }}" alt="Dog">
-          {% endif %}
-          {% if adoption_charts.cat_image %}
-            <img src="{{ adoption_charts.cat_image | url }}" alt="Cats">
-          {% endif %}
-        </div>
+    <div class="adoptions-grid">
+      <div class="adoptions-left">
+        <h2>Adoptions</h2>
+        <p>Adoption services are at the core of what CVAS does. Our #1 priority is to get animals into loving homes. The graphs below show the types of animals adopted with us and the types of animals transferred to partnering shelters. The data shows that a lot has changed in a few short years. For every fur baby brought into the shelter, we hope to find a corresponding furrever home!</p>
+        <p>When an animal is surrendered to CVAS, whether in a simple re-homing case or in the saddest medical case, our responsibility is to care for the animal and get that animal out of the shelter. While life at CVAS is blissful, it's not a permanent place for a pet. Cats and dogs need reliable socialization, their favorite food and treats, and a spacious home to explore.</p>
+        <h3>Animal Breakdown:</h3>
+        {% if adoption_charts.left %}
+          {% for chart in adoption_charts.left %}
+            <p><img src="{{ chart.src | url }}" alt="{{ chart.alt }}"></p>
+          {% endfor %}
+        {% endif %}
       </div>
-    {% endif %}
+      <div class="adoptions-right">
+        {% if adoption_charts.right %}
+          {% for chart in adoption_charts.right %}
+            <p><img src="{{ chart.src | url }}" alt="{{ chart.alt }}"></p>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
   </section>
 
-  <!-- Fire Kittens Section -->
   <section class="impact-section">
-    {% set fire_content = content | safe %}
-    {% set fire_start = fire_content.indexOf("## Fire Kittens") %}
-    {% set volunteers_start = fire_content.indexOf("## Volunteers") %}
-    {% if fire_start > -1 and volunteers_start > -1 %}
-      {% set fire_section = fire_content.substring(fire_start, volunteers_start) %}
-      {{ fire_section | replace("## Fire Kittens", "<h2>Fire Kittens") | replace("2020", "2020</h2>") | replace("**These slides", "<div class='warning-box'><strong>These slides") | replace("discretion.**", "discretion.</strong></div>") | safe }}
-    {% endif %}
+    <h2>Fire Kittens from Inchelium, WA Wildfires of Summer 2020</h2>
+    <p>Firefly, Moonbug, and and Lightning Bug came to CVAS after being severely burned and injured by the Inchelium wildfires. They were rescued during the panic and brought to CVAS for care. Fortunately, we had amazing donors fund their care, which consisted of three times daily baths and ointment as well as plenty of pain medications. These wonderful animals were given a second chance at life and now wonder around their new furrever homes!</p>
+    
+    <div class="warning-box">
+      <strong>These slides may be disturbing to view, so please do so with discretion.</strong>
+    </div>
     
     {% if fire_kitten_slides %}
     <div class="kitten-carousel">
@@ -441,110 +411,119 @@ layout: layouts/base.njk
     {% endif %}
   </section>
 
-  <!-- Volunteers Section -->
   <section class="impact-section volunteers-section">
-    {% set vol_content = content | safe %}
-    {% set vol_start = vol_content.indexOf("## Volunteers") %}
-    {% set programs_start = vol_content.indexOf("## Programs") %}
-    {% if vol_start > -1 and programs_start > -1 %}
-      {% set vol_section = vol_content.substring(vol_start, programs_start) %}
-      
-      <div class="volunteers-content">
-        <div class="volunteers-text">
-          {{ vol_section | replace("## Volunteers", "<h2>Volunteers</h2>") | safe }}
-        </div>
-        <div class="volunteers-image">
-          {% if volunteer_images.kitten %}
-            <img src="{{ volunteer_images.kitten | url }}" alt="Tiny kitten in hands">
-          {% endif %}
-        </div>
+    <h2>Volunteers</h2>
+    <div class="volunteers-content">
+      <div class="volunteers-text">
+        <ul>
+          <li><p>We are forever grateful for the amazing service that our volunteers bring to the sanctuary every day.</p></li>
+          <li><p>Volunteers help with laundry/dishes, socializing, office help, lawn care, remodeling, vaccination clinics, transporting animals for surgeries or adoption events, fundraising, Furry Tale program and helping our limited staff</p></li>
+          <li><p>Every hour volunteers work saves money for the animals and programs of CVAS.</p></li>
+          <li><p>The COVID pandemic has hurt us on how many people are allowed to be at CVAS during 2020, but our volunteers look forward to getting into the sanctuary when it is their scheduled time.</p></li>
+        </ul>
       </div>
-      
-      {% if volunteer_images.hours_2019 and volunteer_images.hours_2020 %}
-      <div class="volunteer-charts">
-        <img src="{{ volunteer_images.hours_2019 | url }}" alt="Volunteer Hours 2019">
-        <img src="{{ volunteer_images.hours_2020 | url }}" alt="Volunteer Hours 2020">
+      <div class="volunteers-image">
+        {% if volunteer_images.kitten %}
+          <p><img src="{{ volunteer_images.kitten.src | url }}" alt="{{ volunteer_images.kitten.alt }}"></p>
+        {% endif %}
       </div>
-      {% endif %}
+    </div>
+    
+    {% if volunteer_images.charts %}
+    <div class="volunteer-charts">
+      {% for chart in volunteer_images.charts %}
+        <img src="{{ chart.src | url }}" alt="{{ chart.alt }}">
+      {% endfor %}
+    </div>
     {% endif %}
   </section>
 
-  <!-- Programs Section -->
   <section class="impact-section programs-section">
-    {% set prog_content = content | safe %}
-    {% set prog_start = prog_content.indexOf("## Programs") %}
-    {% set moving_start = prog_content.indexOf("## Moving Forward") %}
-    {% if prog_start > -1 and moving_start > -1 %}
-      {% set prog_section = prog_content.substring(prog_start, moving_start) %}
-      {{ prog_section | replace("## Programs", "<h2>Programs</h2>") | safe }}
-      
-      {% if program_charts.households and program_charts.animals %}
-      <div class="program-charts">
-        <img src="{{ program_charts.households | url }}" alt="Households helped 2017-2020">
-        <img src="{{ program_charts.animals | url }}" alt="Animals helped 2017-2020">
-      </div>
-      {% endif %}
+    <h2>Programs</h2>
+    <p>Our programs help assist families all over Stevens County. We've instated new educational programs that we can't wait to see flourish. Our vaccination and microchip clinic is a huge hit every month, bringing in more people and funds to CVAS than any other program. When someone donates pet supplies, those are donated straight to our pet food bank if CVAS is not able to use them. Then we have several adoption programs for people looking for specific pets. Each of these programs yield numbers that we like to improve upon every year. Here's a look at what we do:</p>
+    <p>• Holds Low-Cost Vaccination Clinics. (With retired veterinarian)</p>
+    <p>• Allows a mobile veterinarian free parking for public low-cost spay/neuters clinic. (Good weather months)</p>
+    <p>• Has a Pet-Food Bank, no income requirements.</p>
+    <p>• Seniors Saving Seniors Program is where we pair seniors with seniors pets at no cost to the adopter.</p>
+    <p>• TNR Program where we loan traps, help get feral cats fixed and then returned to their environment.</p>
+    <p>• Barn/Shop Program where we take unwanted feral cats and give them a purpose with little human interaction.</p>
+    <p>• Furry-Tale Reading program (before COVID). Kids read to the animals, have a snack, a craft project, and then write in their journals. This is a FREE program that helps children with their reading, writing skills, and animal skills.</p>
+    <p>• A location for individuals to fulfill their community service hours.</p>
+    <p>We hope to expand our programs in 2021. Although times are uncertain, what remains consistent is the need for animal welfare in Stevens County. If you're interested in participating in any of our programs, information can be found on our Programs page.</p>
+    <h3>Vaccine & Microchip Clinic</h3>
+    <h4>Households/Animals helped 2017-2020</h4>
+    {% if program_charts %}
+    <div class="program-charts">
+      {% for chart in program_charts %}
+        <img src="{{ chart.src | url }}" alt="{{ chart.alt }}">
+      {% endfor %}
+    </div>
     {% endif %}
   </section>
 
-  <!-- Moving Forward Section -->
   <section class="impact-section moving-forward-section">
-    {% set moving_content = content | safe %}
-    {% set moving_start = moving_content.indexOf("## Moving Forward") %}
-    {% if moving_start > -1 %}
-      {% set moving_section = moving_content.substring(moving_start) %}
-      
-      <h2>Moving Forward - How Can You help us help them?</h2>
-      <div class="moving-forward-content">
-        <div class="moving-forward-text">
-          {{ moving_section | replace("## Moving Forward - How Can You help us help them?", "") | safe }}
-        </div>
-        <div class="moving-forward-image">
-          {% if moving_forward_image %}
-            <img src="{{ moving_forward_image | url }}" alt="Abby">
-          {% endif %}
-        </div>
+    <h2>Moving Forward - How Can You help us help them?</h2>
+    <div class="moving-forward-content">
+      <div class="moving-forward-text">
+        <p>• <strong>Adopt:</strong> all pets come altered, up to date on shots, de-wormed, microchipped.</p>
+        <p>• <strong>Foster:</strong> take in an animal with needs or a litter of kittens to be trained and socialized.</p>
+        <p>• <strong>Volunteer:</strong> give some of your time to clean, do yard work, remodel, socialize, office help. Many volunteers do a 2hr shift.</p>
+        <p>• <strong>Donate:</strong> help financially with a one-time, recurring, round-up, bequest, AmazonSmile or purchase needed items. Visit our donation page or see our wish lists on Chewy and Amazon.</p>
+        <p>• <strong>Sponsor:</strong> a project financially only or funding and completing the project also. Want some ideas? CVAS needs a new heating stove in main building, decking w/wheelchair ramp, gravel, concrete, yard beautification. .. the list goes on.</p>
+        <p>• <strong>Share CVAS</strong>: join us on Facebook, our email newsletters, then share with your family and friends.</p>
       </div>
-    {% endif %}
+      <div class="moving-forward-image">
+        {% if moving_forward_image %}
+          <p><img src="{{ moving_forward_image.src | url }}" alt="{{ moving_forward_image.alt }}"></p>
+        {% endif %}
+      </div>
+    </div>
   </section>
 
 </div>
 
 <script>
-  // Carousel functionality
-  const container = document.querySelector('.carousel-container');
-  const slides = document.querySelectorAll('.carousel-slide');
-  const dots = document.querySelectorAll('.dot');
-  const prevBtn = document.querySelector('.carousel-prev');
-  const nextBtn = document.querySelector('.carousel-next');
-  
-  let currentSlide = 0;
-  
-  function showSlide(index) {
-    if (container && slides.length > 0) {
-      currentSlide = (index + slides.length) % slides.length;
-      container.style.transform = `translateX(-${currentSlide * 100}%)`;
-      
-      // Update dots
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === currentSlide);
-      });
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize kitten carousel specifically
+  const kittenCarousel = document.querySelector('.kitten-carousel');
+  if (kittenCarousel) {
+    const container = kittenCarousel.querySelector('.carousel-container');
+    const slides = kittenCarousel.querySelectorAll('.carousel-slide');
+    const dots = kittenCarousel.querySelectorAll('.dot');
+    const prevBtn = kittenCarousel.querySelector('.carousel-prev');
+    const nextBtn = kittenCarousel.querySelector('.carousel-next');
+    let currentSlide = 0;
+
+    function showSlide(index) {
+      if (container && slides.length > 0) {
+        currentSlide = (index + slides.length) % slides.length;
+        container.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+        
+        // Update dots
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === currentSlide);
+        });
+      }
     }
+
+    // Dot click handlers
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => showSlide(index));
+    });
+
+    // Button handlers
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => showSlide(currentSlide - 1));
+    }
+    
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => showSlide(currentSlide + 1));
+    }
+
+    // Auto-advance
+    setInterval(() => {
+      showSlide(currentSlide + 1);
+    }, 5000);
   }
-  
-  // Add event listeners
-  if (prevBtn) {
-    prevBtn.addEventListener('click', () => showSlide(currentSlide - 1));
-  }
-  
-  if (nextBtn) {
-    nextBtn.addEventListener('click', () => showSlide(currentSlide + 1));
-  }
-  
-  dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => showSlide(index));
-  });
-  
-  // Auto-play (optional)
-  // setInterval(() => showSlide(currentSlide + 1), 5000);
+});
 </script>

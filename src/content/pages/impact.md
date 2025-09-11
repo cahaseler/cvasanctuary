@@ -5,42 +5,57 @@ layout: layouts/impact.njk
 content_type: page
 
 history_images:
-  - src: assets/images/impact/history-old-main.png
+  - src: /assets/images/impact/history-old-main.png
     alt: Old Main Building
     caption: Old Main Building
-  - src: assets/images/impact/history-old-dog-areas.png
+  - src: /assets/images/impact/history-old-dog-areas.png
     alt: Old Dog Areas
     caption: Old Dog Areas
-  - src: assets/images/impact/history-old-dog-building.png
+  - src: /assets/images/impact/history-old-dog-building.png
     alt: Old dog building that burned down and was rebuilt to be the current cat building
     caption: Old dog building that burned down and was rebuilt to be the current cat building
 
 adoption_charts:
-  cat_stats: assets/images/impact/cat-statistics-chart.png
-  dog_stats: assets/images/impact/dog-statistics-chart.png
-  dog_image: assets/images/impact/animal-breakdown-dog.png
-  cat_image: assets/images/impact/animal-breakdown-cats.png
+  left:
+    - src: /assets/images/impact/cat-statistics-chart.png
+      alt: Cat Statistics 2017-2020
+    - src: /assets/images/impact/dog-statistics-chart.png
+      alt: Dog Statistics 2017-2020
+  right:
+    - src: /assets/images/impact/animal-breakdown-dog.png
+      alt: Dog
+    - src: /assets/images/impact/animal-breakdown-cats.png
+      alt: Cats
 
 fire_kitten_slides:
-  - src: assets/images/impact/fire-kittens-recovered.png
+  - src: /assets/images/impact/fire-kittens-recovered.png
     alt: Fire kittens recovered in new homes
-  - src: assets/images/impact/fire-kittens-treatment.png
+  - src: /assets/images/impact/fire-kittens-treatment.png
     alt: Firefly during treatment
-  - src: assets/images/impact/fire-kittens-after-1.png
+  - src: /assets/images/impact/fire-kittens-after-1.png
     alt: Fire kittens after recovery
-  - src: assets/images/impact/fire-kittens-after-2.png
+  - src: /assets/images/impact/fire-kittens-after-2.png
     alt: Firefly at intake and during care
 
 volunteer_images:
-  kitten: assets/images/impact/volunteer-kitten.png
-  hours_2019: assets/images/impact/volunteer-hours-2019.png
-  hours_2020: assets/images/impact/volunteer-hours-2020.png
+  kitten: 
+    src: /assets/images/impact/volunteer-kitten.png
+    alt: Tiny kitten in hands
+  charts:
+    - src: /assets/images/impact/volunteer-hours-2019.png
+      alt: Volunteer Hours 2019
+    - src: /assets/images/impact/volunteer-hours-2020.png
+      alt: Volunteer Hours 2020
 
 program_charts:
-  households: assets/images/impact/households-chart.png
-  animals: assets/images/impact/animals-chart.png
+  - src: /assets/images/impact/households-chart.png
+    alt: Households helped 2017-2020
+  - src: /assets/images/impact/animals-chart.png
+    alt: Animals helped 2017-2020
 
-moving_forward_image: assets/images/impact/moving-forward-abby.jpg
+moving_forward_image:
+  src: /assets/images/impact/moving-forward-abby.jpg
+  alt: Abby
 ---
 
 ## History of CVAS
@@ -105,7 +120,6 @@ We hope to expand our programs in 2021. Although times are uncertain, what remai
 
 ### Vaccine & Microchip Clinic
 #### Households/Animals helped 2017-2020
-
 
 ## Moving Forward - How Can You help us help them?
 
