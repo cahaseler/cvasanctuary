@@ -165,6 +165,93 @@ Use Eleventy Image plugin to automatically optimize pet photos for different scr
 - **Budget Priority**: Always choose free tier options. If something would incur costs, find an alternative.
 - **Maintenance**: Keep dependencies minimal and use well-established tools with long-term support.
 
+## Content Architecture & Template Best Practices
+
+### The Structured Data Pattern (REQUIRED)
+**NEVER put HTML or content directly in templates.** All content must be structured as YAML frontmatter in markdown files, with templates consuming this data.
+
+#### Correct Approach:
+1. **Markdown files** (`src/content/pages/*.md`):
+   - Use YAML frontmatter for ALL content and data
+   - Structure data logically with sections, lists, and objects
+   - Keep markdown body empty or minimal (only for simple pages)
+   
+2. **Template files** (`src/_includes/layouts/*.njk`):
+   - Consume data from frontmatter variables
+   - Use conditional blocks (`{% if section %}`) for optional content
+   - Loop through arrays for repeating content
+   - Apply the `| url` filter to all image/asset paths
+
+3. **PagesCMS configuration** (`.pages.yml`):
+   - Define fields matching the exact frontmatter structure
+   - Use nested `object` types for complex sections
+   - Use `list: true` for repeating items
+   - Hide technical fields (layout, permalink) from editors
+
+#### Example Structure:
+```yaml
+# In markdown file (e.g., impact.md)
+---
+title: "Page Title"
+sections:
+  hero:
+    title: "Hero Title"
+    description: "Hero description"
+    image: /assets/images/hero.jpg
+  features:
+    title: "Features"
+    items:
+      - label: "Feature 1"
+        text: "Description"
+      - label: "Feature 2"  
+        text: "Description"
+---
+```
+
+```nunjucks
+# In template file (e.g., impact.njk)
+{% if sections.hero %}
+<section>
+  <h1>{{ sections.hero.title }}</h1>
+  <p>{{ sections.hero.description }}</p>
+  <img src="{{ sections.hero.image | url }}" alt="">
+</section>
+{% endif %}
+
+{% if sections.features %}
+<section>
+  <h2>{{ sections.features.title }}</h2>
+  {% for item in sections.features.items %}
+  <div>
+    <strong>{{ item.label }}:</strong> {{ item.text }}
+  </div>
+  {% endfor %}
+</section>
+{% endif %}
+```
+
+### Common Mistakes to AVOID:
+1. ❌ **Hardcoding content in templates** - Makes content non-editable via CMS
+2. ❌ **Using HTML in markdown files** - Violates separation of concerns
+3. ❌ **Missing the `| url` filter** - Breaks images in production
+4. ❌ **Not updating PagesCMS config** - Leaves fields uneditable
+5. ❌ **Using unstructured markdown body** - Creates fragile, hard-to-edit content
+
+### Image Handling:
+- Always use leading slashes: `/assets/images/...`
+- Always apply the `| url` filter in templates
+- Store images in `src/assets/images/` organized by section
+- Define image fields as objects with `src` and `alt` properties
+
+### PagesCMS Field Types:
+- `string` - Single line text
+- `text` - Multi-line text
+- `markdown` - Rich text with formatting
+- `image` - File picker for images
+- `object` - Nested group of fields
+- `list: true` - Makes any field repeatable
+- `hidden: true` - Hides technical fields from editors
+
 ## Lessons Learned
 
 ### JavaScript String Building in Nunjucks Templates
