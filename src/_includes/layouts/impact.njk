@@ -332,19 +332,17 @@ layout: layouts/base.njk
 <div class="impact-page">
   <h1 class="impact-title">{{ title }}</h1>
 
+  {% if history %}
   <section class="impact-section">
-    <h2>History of CVAS</h2>
+    <h2>{{ history.title }}</h2>
     <ul>
-      <li><p>Established in 2002 by several caring individuals.</p></li>
-      <li><p>Helping dogs was our original purpose</p></li>
-      <li><p>Originally known as Colville Pet Refuge</p></li>
-      <li><p>We started taking in unwanted cats in 2010. There is no other place for unwanted cats to go in Stevens County. CVAS became known for taking care of cats, but we care for dogs, too.</p></li>
-      <li><p>In Sept of 2016, CVAS started making changes around the property with animal housing, initiating occupancy maximum numbers. Years prior, no animal was turned away and over crowding and animal mental wellness was fragile.</p></li>
-      <li><p>In 2018 a new Board of Directors and Acting ED (all volunteers) started a reboot of CVAS.</p></li>
+      {% for item in history.items %}
+      <li><p>{{ item }}</p></li>
+      {% endfor %}
     </ul>
-    {% if history_images %}
+    {% if history.images %}
     <div class="history-images">
-      {% for image in history_images %}
+      {% for image in history.images %}
       <figure>
         <img src="{{ image.src | url }}" alt="{{ image.alt }}">
         <figcaption>{{ image.caption }}</figcaption>
@@ -353,43 +351,48 @@ layout: layouts/base.njk
     </div>
     {% endif %}
   </section>
+  {% endif %}
 
+  {% if adoptions %}
   <section class="impact-section adoptions-section">
     <div class="adoptions-grid">
       <div class="adoptions-left">
-        <h2>Adoptions</h2>
-        <p>Adoption services are at the core of what CVAS does. Our #1 priority is to get animals into loving homes. The graphs below show the types of animals adopted with us and the types of animals transferred to partnering shelters. The data shows that a lot has changed in a few short years. For every fur baby brought into the shelter, we hope to find a corresponding furrever home!</p>
-        <p>When an animal is surrendered to CVAS, whether in a simple re-homing case or in the saddest medical case, our responsibility is to care for the animal and get that animal out of the shelter. While life at CVAS is blissful, it's not a permanent place for a pet. Cats and dogs need reliable socialization, their favorite food and treats, and a spacious home to explore.</p>
-        <h3>Animal Breakdown:</h3>
-        {% if adoption_charts.left %}
-          {% for chart in adoption_charts.left %}
+        <h2>{{ adoptions.title }}</h2>
+        {% for paragraph in adoptions.paragraphs %}
+        <p>{{ paragraph }}</p>
+        {% endfor %}
+        <h3>{{ adoptions.subtitle }}</h3>
+        {% if adoptions.charts.left %}
+          {% for chart in adoptions.charts.left %}
             <p><img src="{{ chart.src | url }}" alt="{{ chart.alt }}"></p>
           {% endfor %}
         {% endif %}
       </div>
       <div class="adoptions-right">
-        {% if adoption_charts.right %}
-          {% for chart in adoption_charts.right %}
+        {% if adoptions.charts.right %}
+          {% for chart in adoptions.charts.right %}
             <p><img src="{{ chart.src | url }}" alt="{{ chart.alt }}"></p>
           {% endfor %}
         {% endif %}
       </div>
     </div>
   </section>
+  {% endif %}
 
+  {% if fire_kittens %}
   <section class="impact-section">
-    <h2>Fire Kittens from Inchelium, WA Wildfires of Summer 2020</h2>
-    <p>Firefly, Moonbug, and and Lightning Bug came to CVAS after being severely burned and injured by the Inchelium wildfires. They were rescued during the panic and brought to CVAS for care. Fortunately, we had amazing donors fund their care, which consisted of three times daily baths and ointment as well as plenty of pain medications. These wonderful animals were given a second chance at life and now wonder around their new furrever homes!</p>
+    <h2>{{ fire_kittens.title }}</h2>
+    <p>{{ fire_kittens.description }}</p>
     
     <div class="warning-box">
-      <strong>These slides may be disturbing to view, so please do so with discretion.</strong>
+      <strong>{{ fire_kittens.warning }}</strong>
     </div>
     
-    {% if fire_kitten_slides %}
+    {% if fire_kittens.slides %}
     <div class="kitten-carousel">
       <div class="carousel-viewport">
         <div class="carousel-container">
-          {% for slide in fire_kitten_slides %}
+          {% for slide in fire_kittens.slides %}
           <div class="carousel-slide">
             <img src="{{ slide.src | url }}" alt="{{ slide.alt }}">
           </div>
@@ -402,7 +405,7 @@ layout: layouts/base.njk
           <button class="carousel-btn carousel-next">Next</button>
         </div>
         <div class="carousel-dots">
-          {% for slide in fire_kitten_slides %}
+          {% for slide in fire_kittens.slides %}
           <button class="dot {% if loop.first %}active{% endif %}" aria-label="Slide {{ loop.index }}"></button>
           {% endfor %}
         </div>
@@ -410,75 +413,73 @@ layout: layouts/base.njk
     </div>
     {% endif %}
   </section>
+  {% endif %}
 
+  {% if volunteers %}
   <section class="impact-section volunteers-section">
-    <h2>Volunteers</h2>
+    <h2>{{ volunteers.title }}</h2>
     <div class="volunteers-content">
       <div class="volunteers-text">
         <ul>
-          <li><p>We are forever grateful for the amazing service that our volunteers bring to the sanctuary every day.</p></li>
-          <li><p>Volunteers help with laundry/dishes, socializing, office help, lawn care, remodeling, vaccination clinics, transporting animals for surgeries or adoption events, fundraising, Furry Tale program and helping our limited staff</p></li>
-          <li><p>Every hour volunteers work saves money for the animals and programs of CVAS.</p></li>
-          <li><p>The COVID pandemic has hurt us on how many people are allowed to be at CVAS during 2020, but our volunteers look forward to getting into the sanctuary when it is their scheduled time.</p></li>
+          {% for item in volunteers.items %}
+          <li><p>{{ item }}</p></li>
+          {% endfor %}
         </ul>
       </div>
       <div class="volunteers-image">
-        {% if volunteer_images.kitten %}
-          <p><img src="{{ volunteer_images.kitten.src | url }}" alt="{{ volunteer_images.kitten.alt }}"></p>
+        {% if volunteers.kitten_image %}
+          <p><img src="{{ volunteers.kitten_image.src | url }}" alt="{{ volunteers.kitten_image.alt }}"></p>
         {% endif %}
       </div>
     </div>
     
-    {% if volunteer_images.charts %}
+    {% if volunteers.charts %}
     <div class="volunteer-charts">
-      {% for chart in volunteer_images.charts %}
+      {% for chart in volunteers.charts %}
         <img src="{{ chart.src | url }}" alt="{{ chart.alt }}">
       {% endfor %}
     </div>
     {% endif %}
   </section>
+  {% endif %}
 
+  {% if programs %}
   <section class="impact-section programs-section">
-    <h2>Programs</h2>
-    <p>Our programs help assist families all over Stevens County. We've instated new educational programs that we can't wait to see flourish. Our vaccination and microchip clinic is a huge hit every month, bringing in more people and funds to CVAS than any other program. When someone donates pet supplies, those are donated straight to our pet food bank if CVAS is not able to use them. Then we have several adoption programs for people looking for specific pets. Each of these programs yield numbers that we like to improve upon every year. Here's a look at what we do:</p>
-    <p>• Holds Low-Cost Vaccination Clinics. (With retired veterinarian)</p>
-    <p>• Allows a mobile veterinarian free parking for public low-cost spay/neuters clinic. (Good weather months)</p>
-    <p>• Has a Pet-Food Bank, no income requirements.</p>
-    <p>• Seniors Saving Seniors Program is where we pair seniors with seniors pets at no cost to the adopter.</p>
-    <p>• TNR Program where we loan traps, help get feral cats fixed and then returned to their environment.</p>
-    <p>• Barn/Shop Program where we take unwanted feral cats and give them a purpose with little human interaction.</p>
-    <p>• Furry-Tale Reading program (before COVID). Kids read to the animals, have a snack, a craft project, and then write in their journals. This is a FREE program that helps children with their reading, writing skills, and animal skills.</p>
-    <p>• A location for individuals to fulfill their community service hours.</p>
-    <p>We hope to expand our programs in 2021. Although times are uncertain, what remains consistent is the need for animal welfare in Stevens County. If you're interested in participating in any of our programs, information can be found on our Programs page.</p>
-    <h3>Vaccine & Microchip Clinic</h3>
-    <h4>Households/Animals helped 2017-2020</h4>
-    {% if program_charts %}
+    <h2>{{ programs.title }}</h2>
+    <p>{{ programs.intro }}</p>
+    {% for item in programs.items %}
+    <p>• {{ item }}</p>
+    {% endfor %}
+    <p>{{ programs.conclusion }}</p>
+    <h3>{{ programs.clinic_title }}</h3>
+    <h4>{{ programs.clinic_subtitle }}</h4>
+    {% if programs.charts %}
     <div class="program-charts">
-      {% for chart in program_charts %}
+      {% for chart in programs.charts %}
         <img src="{{ chart.src | url }}" alt="{{ chart.alt }}">
       {% endfor %}
     </div>
     {% endif %}
   </section>
+  {% endif %}
 
+  {% if moving_forward %}
   <section class="impact-section moving-forward-section">
-    <h2>Moving Forward - How Can You help us help them?</h2>
+    <h2>{{ moving_forward.title }}</h2>
     <div class="moving-forward-content">
       <div class="moving-forward-text">
-        <p>• <strong>Adopt:</strong> all pets come altered, up to date on shots, de-wormed, microchipped.</p>
-        <p>• <strong>Foster:</strong> take in an animal with needs or a litter of kittens to be trained and socialized.</p>
-        <p>• <strong>Volunteer:</strong> give some of your time to clean, do yard work, remodel, socialize, office help. Many volunteers do a 2hr shift.</p>
-        <p>• <strong>Donate:</strong> help financially with a one-time, recurring, round-up, bequest, AmazonSmile or purchase needed items. Visit our donation page or see our wish lists on Chewy and Amazon.</p>
-        <p>• <strong>Sponsor:</strong> a project financially only or funding and completing the project also. Want some ideas? CVAS needs a new heating stove in main building, decking w/wheelchair ramp, gravel, concrete, yard beautification. .. the list goes on.</p>
-        <p>• <strong>Share CVAS</strong>: join us on Facebook, our email newsletters, then share with your family and friends.</p>
+        {% for item in moving_forward.items %}
+        <p>• <strong>{{ item.label }}:</strong> {{ item.text }}</p>
+        {% endfor %}
       </div>
       <div class="moving-forward-image">
-        {% if moving_forward_image %}
-          <p><img src="{{ moving_forward_image.src | url }}" alt="{{ moving_forward_image.alt }}"></p>
+        {% if moving_forward.image %}
+          <p><img src="{{ moving_forward.image.src | url }}" alt="{{ moving_forward.image.alt }}"></p>
         {% endif %}
       </div>
     </div>
   </section>
+  {% endif %}
 
 </div>
 
