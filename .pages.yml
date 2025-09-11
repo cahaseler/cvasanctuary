@@ -533,6 +533,98 @@ content:
                 label: Alt Text
                 type: string
 
+  # Volunteer Page
+  - name: volunteers
+    label: Volunteers Page
+    path: src/content/pages/volunteers.md
+    type: file
+    fields:
+      - name: title
+        label: Title
+        type: string
+      - name: permalink
+        label: Permalink
+        type: string
+        default: /volunteer-with-us/
+        hidden: true
+      - name: layout
+        label: Layout
+        type: string
+        default: layouts/volunteer.njk
+        hidden: true
+      - name: hero
+        label: Hero Section
+        type: object
+        fields:
+          - name: title
+            label: Section Title
+            type: string
+          - name: collage_image
+            label: Collage Image
+            type: object
+            fields:
+              - name: src
+                label: Image Path
+                type: image
+              - name: alt
+                label: Alt Text
+                type: string
+          - name: intro
+            label: Introduction Text
+            type: text
+      - name: getting_started
+        label: Getting Started Section
+        type: object
+        fields:
+          - name: title
+            label: Section Title
+            type: string
+          - name: description
+            label: Description
+            type: text
+          - name: cta
+            label: Call to Action
+            type: object
+            fields:
+              - name: text
+                label: Button Text
+                type: string
+              - name: url
+                label: Button URL
+                type: string
+          - name: contact_info
+            label: Contact Information
+            type: text
+      - name: areas_of_need
+        label: Areas of Need Section
+        type: object
+        fields:
+          - name: title
+            label: Section Title
+            type: string
+          - name: items
+            label: Need Areas
+            type: string
+            list: true
+      - name: volunteer_carousel
+        label: Volunteer Carousel
+        type: object
+        fields:
+          - name: title
+            label: Carousel Title
+            type: string
+          - name: slides
+            label: Volunteer Photos
+            type: object
+            list: true
+            fields:
+              - name: src
+                label: Image Path
+                type: image
+              - name: alt
+                label: Alt Text
+                type: string
+
   # Site Settings
   - name: settings
     label: Site Settings

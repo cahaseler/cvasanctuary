@@ -9,7 +9,7 @@ layout: layouts/base.njk
     padding: 2rem;
   }
 
-  .volunteer-page img[alt="Volunteer Collage"] {
+  .volunteer-hero img {
     width: 100%;
     height: auto;
     margin-bottom: 2rem;
@@ -157,27 +157,48 @@ layout: layouts/base.njk
 </style>
 
 <div class="volunteer-page">
-  {{ content | safe }}
+  {% if hero %}
+  <div class="volunteer-hero">
+    {% if hero.collage_image %}
+    <img src="{{ hero.collage_image.src | url }}" alt="{{ hero.collage_image.alt }}">
+    {% endif %}
+    <h2>{{ hero.title }}</h2>
+    <p>{{ hero.intro }}</p>
+  </div>
+  {% endif %}
 
+  {% if getting_started %}
+  <section>
+    <h3>{{ getting_started.title }}</h3>
+    <p>{{ getting_started.description }}</p>
+    {% if getting_started.cta %}
+    <a href="{{ getting_started.cta.url }}" class="volunteer-button">{{ getting_started.cta.text }}</a>
+    {% endif %}
+    <p>{{ getting_started.contact_info }}</p>
+  </section>
+  {% endif %}
+
+  {% if areas_of_need %}
+  <section>
+    <h3>{{ areas_of_need.title }}</h3>
+    <ul>
+      {% for item in areas_of_need.items %}
+      <li>{{ item }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  {% if volunteer_carousel %}
   <div class="volunteer-carousel">
-    <h3>Our Amazing Volunteers in Action</h3>
+    <h3>{{ volunteer_carousel.title }}</h3>
     <div class="carousel-viewport">
       <div class="carousel-container">
+        {% for slide in volunteer_carousel.slides %}
         <div class="carousel-slide">
-          <img src="/assets/images/volunteer/volunteer-1.jpg" alt="Volunteer with kitten">
+          <img src="{{ slide.src | url }}" alt="{{ slide.alt }}">
         </div>
-        <div class="carousel-slide">
-          <img src="/assets/images/volunteer/volunteer-2.jpg" alt="Volunteer at sanctuary">
-        </div>
-        <div class="carousel-slide">
-          <img src="/assets/images/volunteer/volunteer-3.jpg" alt="Volunteer with dog">
-        </div>
-        <div class="carousel-slide">
-          <img src="/assets/images/volunteer/volunteer-4.jpg" alt="Volunteer caring for animals">
-        </div>
-        <div class="carousel-slide">
-          <img src="/assets/images/volunteer/volunteer-5.jpg" alt="Volunteer with corgi">
-        </div>
+        {% endfor %}
       </div>
     </div>
     <div class="carousel-nav">
@@ -186,14 +207,13 @@ layout: layouts/base.njk
         <button class="carousel-btn carousel-next">Next</button>
       </div>
       <div class="carousel-dots">
-        <button class="dot active" aria-label="Slide 1"></button>
-        <button class="dot" aria-label="Slide 2"></button>
-        <button class="dot" aria-label="Slide 3"></button>
-        <button class="dot" aria-label="Slide 4"></button>
-        <button class="dot" aria-label="Slide 5"></button>
+        {% for slide in volunteer_carousel.slides %}
+        <button class="dot {% if loop.first %}active{% endif %}" aria-label="Slide {{ loop.index }}"></button>
+        {% endfor %}
       </div>
     </div>
   </div>
+  {% endif %}
 </div>
 
 <script>
@@ -210,31 +230,31 @@ document.addEventListener('DOMContentLoaded', function() {
     function showSlide(index) {
       if (container && slides.length > 0) {
         currentSlide = (index + slides.length) % slides.length;
-        container.style.transform = `translateX(-${currentSlide * 100}%)`;
+        container.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
         
         // Update dots
-        dots.forEach((dot, i) => {
+        dots.forEach(function(dot, i) {
           dot.classList.toggle('active', i === currentSlide);
         });
       }
     }
 
     // Dot click handlers
-    dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => showSlide(index));
+    dots.forEach(function(dot, index) {
+      dot.addEventListener('click', function() { showSlide(index); });
     });
 
     // Button handlers
     if (prevBtn) {
-      prevBtn.addEventListener('click', () => showSlide(currentSlide - 1));
+      prevBtn.addEventListener('click', function() { showSlide(currentSlide - 1); });
     }
     
     if (nextBtn) {
-      nextBtn.addEventListener('click', () => showSlide(currentSlide + 1));
+      nextBtn.addEventListener('click', function() { showSlide(currentSlide + 1); });
     }
 
     // Auto-advance carousel
-    setInterval(() => {
+    setInterval(function() {
       showSlide(currentSlide + 1);
     }, 5000);
   }
