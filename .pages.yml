@@ -349,13 +349,189 @@ content:
         type: string
         default: layouts/impact.njk
         hidden: true
-      - name: hero_image
-        label: Hero Image
-        type: image
-      - name: body
-        label: Content
-        type: markdown
-        description: Full page content including all sections
+      - name: history
+        label: History Section
+        type: object
+        fields:
+          - name: title
+            label: Section Title
+            type: string
+          - name: items
+            label: History Points
+            type: string
+            list: true
+          - name: images
+            label: History Images
+            type: object
+            list: true
+            fields:
+              - name: src
+                label: Image Path
+                type: image
+              - name: alt
+                label: Alt Text
+                type: string
+              - name: caption
+                label: Caption
+                type: string
+      - name: adoptions
+        label: Adoptions Section
+        type: object
+        fields:
+          - name: title
+            label: Section Title
+            type: string
+          - name: paragraphs
+            label: Content Paragraphs
+            type: text
+            list: true
+          - name: subtitle
+            label: Subtitle
+            type: string
+          - name: charts
+            label: Charts
+            type: object
+            fields:
+              - name: left
+                label: Left Column Charts
+                type: object
+                list: true
+                fields:
+                  - name: src
+                    label: Image Path
+                    type: image
+                  - name: alt
+                    label: Alt Text
+                    type: string
+              - name: right
+                label: Right Column Charts
+                type: object
+                list: true
+                fields:
+                  - name: src
+                    label: Image Path
+                    type: image
+                  - name: alt
+                    label: Alt Text
+                    type: string
+      - name: fire_kittens
+        label: Fire Kittens Section
+        type: object
+        fields:
+          - name: title
+            label: Section Title
+            type: string
+          - name: description
+            label: Description
+            type: text
+          - name: warning
+            label: Warning Message
+            type: string
+          - name: slides
+            label: Carousel Slides
+            type: object
+            list: true
+            fields:
+              - name: src
+                label: Image Path
+                type: image
+              - name: alt
+                label: Alt Text
+                type: string
+      - name: volunteers
+        label: Volunteers Section
+        type: object
+        fields:
+          - name: title
+            label: Section Title
+            type: string
+          - name: items
+            label: Volunteer Points
+            type: text
+            list: true
+          - name: kitten_image
+            label: Kitten Image
+            type: object
+            fields:
+              - name: src
+                label: Image Path
+                type: image
+              - name: alt
+                label: Alt Text
+                type: string
+          - name: charts
+            label: Volunteer Charts
+            type: object
+            list: true
+            fields:
+              - name: src
+                label: Image Path
+                type: image
+              - name: alt
+                label: Alt Text
+                type: string
+      - name: programs
+        label: Programs Section
+        type: object
+        fields:
+          - name: title
+            label: Section Title
+            type: string
+          - name: intro
+            label: Introduction
+            type: text
+          - name: items
+            label: Program List
+            type: string
+            list: true
+          - name: conclusion
+            label: Conclusion
+            type: text
+          - name: clinic_title
+            label: Clinic Title
+            type: string
+          - name: clinic_subtitle
+            label: Clinic Subtitle
+            type: string
+          - name: charts
+            label: Program Charts
+            type: object
+            list: true
+            fields:
+              - name: src
+                label: Image Path
+                type: image
+              - name: alt
+                label: Alt Text
+                type: string
+      - name: moving_forward
+        label: Moving Forward Section
+        type: object
+        fields:
+          - name: title
+            label: Section Title
+            type: string
+          - name: items
+            label: Action Items
+            type: object
+            list: true
+            fields:
+              - name: label
+                label: Label
+                type: string
+              - name: text
+                label: Description
+                type: text
+          - name: image
+            label: Section Image
+            type: object
+            fields:
+              - name: src
+                label: Image Path
+                type: image
+              - name: alt
+                label: Alt Text
+                type: string
 
   # Site Settings
   - name: settings
