@@ -305,10 +305,6 @@ section {
   padding: var(--spacing-section) 0;
 }
 
-section:nth-child(even) {
-  background: var(--color-bg-white);
-}
-
 /* Cards and Grid layouts */
 .program-cards,
 .help-grid {
