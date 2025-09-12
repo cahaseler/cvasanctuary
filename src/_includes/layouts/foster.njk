@@ -1,0 +1,126 @@
+---
+layout: layouts/base.njk
+---
+
+<div class="hero">
+  <div class="container">
+    <h1>{{ hero.title }}</h1>
+  </div>
+</div>
+
+<section class="foster-content">
+  <div class="container">
+    <div class="two-column-layout">
+      <div class="left-column">
+        {{ content.leftColumn | markdown | safe }}
+      </div>
+      <div class="right-column">
+        <img src="{{ content.rightImage | url }}" alt="{{ content.rightImageAlt }}" class="foster-image">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="foster-forms">
+  <div class="container">
+    <div class="form-buttons">
+      {% for form in forms %}
+      <a href="{{ form.url }}" class="form-button" target="_blank" rel="noopener noreferrer">
+        {{ form.title }}
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 4rem 0;
+    margin-bottom: 3rem;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+    margin: 0;
+    text-align: center;
+  }
+
+  .foster-content {
+    margin-bottom: 3rem;
+  }
+
+  .two-column-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .left-column p {
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+    color: #333;
+  }
+
+  .foster-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .foster-forms {
+    background-color: #f7f7f7;
+    padding: 3rem 0;
+  }
+
+  .form-buttons {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .form-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: #667eea;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(102, 126, 234, 0.25);
+  }
+
+  .form-button:hover {
+    background: #5a67d8;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(102, 126, 234, 0.35);
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 2rem;
+    }
+
+    .two-column-layout {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .form-buttons {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .form-button {
+      text-align: center;
+      width: 100%;
+    }
+  }
+</style>
