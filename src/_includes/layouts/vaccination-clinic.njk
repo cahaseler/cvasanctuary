@@ -18,6 +18,14 @@ layout: layouts/base.njk
         <img src="{{ images.scheduleImage | url }}" 
              alt="{{ images.scheduleAlt }}" 
              class="schedule-image">
+      </div>
+      
+      <!-- Right Column -->
+      <div class="right-column">
+        <!-- Clinic Photo -->
+        <img src="{{ images.clinicPhoto | url }}" 
+             alt="{{ images.clinicPhotoAlt }}" 
+             class="clinic-photo">
         
         <!-- Location Info -->
         <div class="location-info">
@@ -36,14 +44,6 @@ layout: layouts/base.njk
             <p><strong>Email:</strong> <a href="mailto:{{ contactInfo.email }}">{{ contactInfo.email }}</a></p>
           </div>
         </div>
-      </div>
-      
-      <!-- Right Column -->
-      <div class="right-column">
-        <!-- Clinic Photo -->
-        <img src="{{ images.clinicPhoto | url }}" 
-             alt="{{ images.clinicPhotoAlt }}" 
-             class="clinic-photo">
       </div>
       
     </div>
@@ -83,9 +83,17 @@ layout: layouts/base.njk
     width: 100%;
     height: auto;
     display: block;
-    margin-bottom: 2rem;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .clinic-photo {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
   }
 
   .location-info {
@@ -137,14 +145,6 @@ layout: layouts/base.njk
 
   .contact-info a:hover {
     text-decoration: underline;
-  }
-
-  .clinic-photo {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   }
 
   @media (max-width: 768px) {
