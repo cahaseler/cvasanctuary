@@ -625,6 +625,136 @@ content:
                 label: Alt Text
                 type: string
 
+  # Foster Page
+  - name: foster
+    label: Foster Program Page
+    path: src/content/pages/foster.md
+    type: file
+    fields:
+      - name: title
+        label: Page Title
+        type: string
+      - name: permalink
+        label: Permalink
+        type: string
+        default: /foster-program/
+        hidden: true
+      - name: layout
+        label: Layout
+        type: string
+        default: layouts/foster.njk
+        hidden: true
+      - name: hero
+        label: Hero Section
+        type: object
+        fields:
+          - name: title
+            label: Title
+            type: string
+      - name: pageContent
+        label: Page Content
+        type: object
+        fields:
+          - name: leftColumn
+            label: Main Content
+            type: markdown
+          - name: rightImage
+            label: Right Column Image
+            type: image
+          - name: rightImageAlt
+            label: Image Alt Text
+            type: string
+      - name: forms
+        label: Application Forms
+        type: object
+        list: true
+        fields:
+          - name: title
+            label: Form Title
+            type: string
+          - name: url
+            label: Form URL
+            type: string
+
+  # Community Resources Page
+  - name: community-resources
+    label: Community Resources Page
+    path: src/content/pages/community-resources.md
+    type: file
+    fields:
+      - name: title
+        label: Page Title
+        type: string
+      - name: permalink
+        label: Permalink
+        type: string
+        default: /community-resources/
+        hidden: true
+      - name: layout
+        label: Layout
+        type: string
+        default: layouts/community-resources.njk
+        hidden: true
+      - name: hero
+        label: Hero Section
+        type: object
+        fields:
+          - name: title
+            label: Title
+            type: string
+      - name: sections
+        label: Resource Sections
+        type: object
+        fields:
+          - name: spayNeuter
+            label: Spay/Neuter Services
+            type: object
+            fields:
+              - name: title
+                label: Section Title
+                type: string
+              - name: organizations
+                label: Organizations
+                type: object
+                list: true
+                fields:
+                  - name: name
+                    label: Organization Name
+                    type: string
+                  - name: contact
+                    label: Contact Person
+                    type: string
+                  - name: description
+                    label: Description
+                    type: text
+                  - name: phone
+                    label: Phone
+                    type: string
+                  - name: email
+                    label: Email
+                    type: string
+                  - name: url
+                    label: Website URL
+                    type: string
+              - name: veterinarians
+                label: Veterinary Clinics
+                type: object
+                fields:
+                  - name: title
+                    label: Title
+                    type: string
+                  - name: clinics
+                    label: Clinics
+                    type: object
+                    list: true
+                    fields:
+                      - name: name
+                        label: Clinic Name
+                        type: string
+                      - name: phone
+                        label: Phone
+                        type: string
+
   # Site Settings
   - name: settings
     label: Site Settings
