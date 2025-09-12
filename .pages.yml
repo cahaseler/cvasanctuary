@@ -859,47 +859,22 @@ content:
           - name: title
             label: Title
             type: string
-      - name: programInfo
-        label: Program Information
+      - name: images
+        label: Images
         type: object
         fields:
-          - name: description
-            label: Description
-            type: text
-          - name: type
-            label: Clinic Type
+          - name: scheduleImage
+            label: Schedule Image
+            type: image
+          - name: scheduleAlt
+            label: Schedule Image Alt Text
             type: string
-      - name: schedule
-        label: Schedule
-        type: object
-        fields:
-          - name: year
-            label: Year
-            type: number
-          - name: time
-            label: Clinic Hours
+          - name: clinicPhoto
+            label: Clinic Photo
+            type: image
+          - name: clinicPhotoAlt
+            label: Clinic Photo Alt Text
             type: string
-          - name: clinicDates
-            label: Clinic Dates
-            type: object
-            list: true
-            fields:
-              - name: date
-                label: Date
-                type: string
-              - name: status
-                label: Status
-                type: select
-                options:
-                  - value: active
-                    label: Active
-                  - value: canceled
-                    label: Canceled
-                  - value: weather
-                    label: Weather Dependent
-              - name: note
-                label: Note (optional)
-                type: string
       - name: location
         label: Location
         type: object
@@ -929,12 +904,6 @@ content:
           - name: email
             label: Email
             type: string
-          - name: appointmentNeeded
-            label: Appointment Needed?
-            type: boolean
-          - name: driveThru
-            label: Drive-Thru Clinic?
-            type: boolean
 
   # Site Settings
   - name: settings

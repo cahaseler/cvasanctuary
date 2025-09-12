@@ -11,27 +11,11 @@ layout: layouts/base.njk
 <div class="clinic-content">
   <div class="container">
     
-    <!-- Main Info Section -->
-    <div class="clinic-info">
-      <p class="clinic-description">{{ programInfo.description }}</p>
-      <div class="clinic-type">{{ programInfo.type }}</div>
-    </div>
-
-    <!-- Schedule Section -->
+    <!-- Schedule Image Section -->
     <section class="schedule-section">
-      <h2>{{ schedule.year }} Clinic Dates/Time</h2>
-      <p class="clinic-hours">Clinics run from <strong>{{ schedule.time }}</strong></p>
-      
-      <div class="dates-grid">
-        {% for clinicDate in schedule.clinicDates %}
-        <div class="date-item {% if clinicDate.status == 'canceled' %}canceled{% elif clinicDate.status == 'weather' %}weather-dependent{% endif %}">
-          <span class="date">{{ clinicDate.date }}</span>
-          {% if clinicDate.note %}
-          <span class="note">{{ clinicDate.note }}</span>
-          {% endif %}
-        </div>
-        {% endfor %}
-      </div>
+      <img src="{{ images.scheduleImage | url }}" 
+           alt="{{ images.scheduleAlt }}" 
+           class="schedule-image">
     </section>
 
     <!-- Location Section -->
@@ -46,11 +30,16 @@ layout: layouts/base.njk
         </address>
       </div>
       
-      {% if not contactInfo.appointmentNeeded %}
       <div class="appointment-info">
         <p class="no-appointment">No Appointment Needed</p>
       </div>
-      {% endif %}
+    </section>
+
+    <!-- Clinic Photo -->
+    <section class="photo-section">
+      <img src="{{ images.clinicPhoto | url }}" 
+           alt="{{ images.clinicPhotoAlt }}" 
+           class="clinic-photo">
     </section>
 
     <!-- Contact Section -->
@@ -92,36 +81,23 @@ layout: layouts/base.njk
     max-width: 1000px;
   }
 
-  .clinic-info {
-    text-align: center;
-    margin-bottom: 3rem;
-  }
-
-  .clinic-description {
-    font-size: 1.3rem;
-    color: #333;
-    margin-bottom: 1rem;
-  }
-
-  .clinic-type {
-    display: inline-block;
-    background: #4a7c59;
-    color: white;
-    padding: 0.5rem 1.5rem;
-    border-radius: 25px;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-  }
-
   .schedule-section,
   .location-section,
+  .photo-section,
   .contact-section {
     margin-bottom: 3rem;
   }
 
-  .schedule-section h2,
+  .schedule-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    max-width: 800px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
   .location-section h2,
   .contact-section h2 {
     color: #4a7c59;
@@ -129,73 +105,6 @@ layout: layouts/base.njk
     margin-bottom: 1.5rem;
     padding-bottom: 0.5rem;
     border-bottom: 2px solid #4a7c59;
-  }
-
-  .clinic-hours {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-
-  .dates-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
-
-  .date-item {
-    background: #f8fbf4;
-    padding: 1.5rem;
-    border-radius: 8px;
-    text-align: center;
-    border: 2px solid #e0e0e0;
-    transition: all 0.3s ease;
-  }
-
-  .date-item:hover:not(.canceled) {
-    border-color: #4a7c59;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  }
-
-  .date-item .date {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #333;
-    display: block;
-  }
-
-  .date-item .note {
-    display: block;
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
-    font-weight: 600;
-  }
-
-  .date-item.canceled {
-    background: #fee;
-    border-color: #f99;
-    opacity: 0.7;
-  }
-
-  .date-item.canceled .date {
-    text-decoration: line-through;
-    color: #999;
-  }
-
-  .date-item.canceled .note {
-    color: #c00;
-  }
-
-  .date-item.weather-dependent {
-    background: #fff9e6;
-    border-color: #ffcc66;
-  }
-
-  .date-item.weather-dependent .note {
-    color: #996600;
-    font-style: italic;
   }
 
   .location-info {
@@ -233,6 +142,16 @@ layout: layouts/base.njk
     letter-spacing: 0.5px;
   }
 
+  .clinic-photo {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
   .contact-details {
     background: #f8fbf4;
     padding: 2rem;
@@ -258,10 +177,6 @@ layout: layouts/base.njk
   @media (max-width: 768px) {
     .hero h1 {
       font-size: 2rem;
-    }
-
-    .dates-grid {
-      grid-template-columns: 1fr;
     }
 
     .location-info,
