@@ -1,0 +1,277 @@
+---
+layout: layouts/base.njk
+---
+
+<div class="hero">
+  <div class="container">
+    <h1>{{ hero.title }}</h1>
+  </div>
+</div>
+
+<div class="resources-content">
+  <div class="container">
+    
+    <!-- Spay/Neuter Services -->
+    <section class="resource-section">
+      <h2>{{ sections.spayNeuter.title }}</h2>
+      <div class="organizations">
+        {% for org in sections.spayNeuter.organizations %}
+        <div class="org-card">
+          <h3>{{ org.name }}</h3>
+          {% if org.contact %}<p class="contact">{{ org.contact }}</p>{% endif %}
+          {% if org.description %}<p>{{ org.description }}</p>{% endif %}
+          <div class="contact-info">
+            {% if org.phone %}<p><strong>Phone:</strong> {{ org.phone }}</p>{% endif %}
+            {% if org.email %}<p><strong>Email:</strong> {{ org.email }}</p>{% endif %}
+            {% if org.url %}<p><strong>Website:</strong> <a href="{{ org.url }}" target="_blank" rel="noopener">{{ org.url }}</a></p>{% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      
+      {% if sections.spayNeuter.veterinarians %}
+      <div class="vet-section">
+        <h3>{{ sections.spayNeuter.veterinarians.title }}</h3>
+        <ul class="vet-list">
+          {% for clinic in sections.spayNeuter.veterinarians.clinics %}
+          <li><strong>{{ clinic.name }}:</strong> {{ clinic.phone }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+    </section>
+
+    <!-- Lost/Found Animals -->
+    <section class="resource-section">
+      <h2>{{ sections.lostFound.title }}</h2>
+      <p>{{ sections.lostFound.intro }}</p>
+      <p>{{ sections.lostFound.facebookIntro }}</p>
+      <div class="link-list">
+        {% for group in sections.lostFound.facebookGroups %}
+        <a href="{{ group.url }}" target="_blank" rel="noopener" class="facebook-link">
+          <strong>{{ group.name }}</strong>
+        </a>
+        {% endfor %}
+      </div>
+      <p>{{ sections.lostFound.foundPetAdvice }}</p>
+      <p>{{ sections.lostFound.lostPetAdvice }}</p>
+      <a href="{{ sections.lostFound.animalControl.url }}" target="_blank" rel="noopener" class="official-link">
+        {{ sections.lostFound.animalControl.name }}
+      </a>
+    </section>
+
+    <!-- Cats in Trees -->
+    <section class="resource-section">
+      <h2>{{ sections.catsInTrees.title }}</h2>
+      <p>{{ sections.catsInTrees.text }} <strong>{{ sections.catsInTrees.service.name }}: {{ sections.catsInTrees.service.phone }}</strong></p>
+    </section>
+
+    <!-- Pet Re-homing -->
+    <section class="resource-section">
+      <h2>{{ sections.petRehoming.title }}</h2>
+      {% for paragraph in sections.petRehoming.paragraphs %}
+      <p>{{ paragraph | replace("PetFinder", '<a href="' + sections.petRehoming.petfinderUrl + '" target="_blank" rel="noopener">PetFinder</a>') | safe }}</p>
+      {% endfor %}
+    </section>
+
+    <!-- New Pet Owners -->
+    <section class="resource-section">
+      <h2>{{ sections.newPetOwners.title }}</h2>
+      <p>{{ sections.newPetOwners.intro }}</p>
+      
+      {% for subsection in sections.newPetOwners.subsections %}
+      <div class="subsection">
+        <h3>{{ subsection.title }}</h3>
+        <p>{{ subsection.content | replace("City of Colville's website", '<a href="' + subsection.colvilleUrl + '" target="_blank" rel="noopener">City of Colville\'s website</a>') | safe }}</p>
+        
+        {% if subsection.links %}
+        <ul class="resource-links">
+          {% for link in subsection.links %}
+          <li><a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.text }}</a></li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        
+        {% if subsection.trainers %}
+        <ul class="trainer-list">
+          {% for trainer in subsection.trainers %}
+          <li><strong>{{ trainer.name }}:</strong> {{ trainer.phone }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </section>
+
+    <!-- Additional Resources -->
+    <section class="resource-section">
+      <h2>{{ sections.additionalResources.title }}</h2>
+      
+      <div class="subsection">
+        <h3>{{ sections.additionalResources.petLoss.title }}</h3>
+        <ul class="resource-links">
+          {% for link in sections.additionalResources.petLoss.links %}
+          <li><a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.text }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      
+      <div class="subsection">
+        <h3>{{ sections.additionalResources.emergencyPrep.title }}</h3>
+        <a href="{{ sections.additionalResources.emergencyPrep.link.url }}" target="_blank" rel="noopener">
+          {{ sections.additionalResources.emergencyPrep.link.text }}
+        </a>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<style>
+  .hero {
+    background: linear-gradient(135deg, #4a7c59 0%, #6b9e77 100%);
+    color: white;
+    padding: 4rem 0;
+    margin-bottom: 3rem;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+    margin: 0;
+    text-align: center;
+  }
+
+  .resources-content {
+    padding: 2rem 0 4rem;
+  }
+
+  .resource-section {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .resource-section:last-child {
+    border-bottom: none;
+  }
+
+  .resource-section h2 {
+    color: #4a7c59;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #4a7c59;
+    padding-bottom: 0.5rem;
+  }
+
+  .resource-section h3 {
+    color: #333;
+    font-size: 1.3rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .organizations {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .org-card {
+    background: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #4a7c59;
+  }
+
+  .org-card h3 {
+    margin-top: 0;
+    color: #4a7c59;
+  }
+
+  .contact-info p {
+    margin: 0.5rem 0;
+  }
+
+  .vet-list, .trainer-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+
+  .vet-list li, .trainer-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px dotted #ddd;
+  }
+
+  .link-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+
+  .facebook-link, .official-link {
+    display: inline-block;
+    padding: 0.75rem 1rem;
+    background: #f0f7f3;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #4a7c59;
+    border: 1px solid #4a7c59;
+    transition: all 0.3s ease;
+  }
+
+  .facebook-link:hover, .official-link:hover {
+    background: #4a7c59;
+    color: white;
+  }
+
+  .subsection {
+    margin: 2rem 0;
+    padding-left: 1rem;
+    border-left: 3px solid #e0e0e0;
+  }
+
+  .resource-links {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+
+  .resource-links li {
+    margin: 0.5rem 0;
+  }
+
+  .resource-links a {
+    color: #4a7c59;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+  }
+
+  .resource-links a:hover {
+    border-bottom-color: #4a7c59;
+  }
+
+  a {
+    color: #4a7c59;
+  }
+
+  a:hover {
+    color: #3d6a4d;
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 2rem;
+    }
+
+    .resource-section h2 {
+      font-size: 1.5rem;
+    }
+
+    .subsection {
+      padding-left: 0.5rem;
+    }
+  }
+</style>
