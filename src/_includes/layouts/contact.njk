@@ -10,9 +10,9 @@ layout: layouts/base.njk
 
 <div class="contact-content">
   <div class="container">
-    <div class="contact-grid">
+    <div class="contact-main">
       
-      <!-- Contact Information Column -->
+      <!-- Contact Information Section -->
       <div class="contact-info-section">
         <h2>Contact Information</h2>
         
@@ -26,7 +26,7 @@ layout: layouts/base.njk
 
         <div class="info-block">
           <h3>Phone</h3>
-          <p><a href="tel:{{ contactInfo.phone | replace('-', '') }}">{{ contactInfo.phone }}</a></p>
+          <p class="phone-number"><a href="tel:{{ contactInfo.phone | replace('-', '') }}">{{ contactInfo.phone }}</a></p>
           <p class="note">{{ contactInfo.note }}</p>
         </div>
 
@@ -34,49 +34,18 @@ layout: layouts/base.njk
           <h3>Email</h3>
           <p><a href="mailto:{{ contactInfo.email }}">{{ contactInfo.email }}</a></p>
         </div>
-
-        <div class="hours-section">
-          <h2>{{ hours.title }}</h2>
-          <p class="hours-main">{{ hours.text }}</p>
-          <div class="hours-details">
-            <p><strong>Hours:</strong> {{ hours.time }}</p>
-            <p><strong>Days:</strong> {{ hours.days }}</p>
-          </div>
-          <p class="appointment-note">{{ hours.appointment }}</p>
-          <p class="closed-note">{{ hours.closed }}</p>
-        </div>
       </div>
 
-      <!-- Contact Form Column -->
-      <div class="contact-form-section">
-        <h2>{{ contactForm.title }}</h2>
-        <form id="contact-form" class="contact-form">
-          {% for field in contactForm.fields %}
-          <div class="form-group">
-            <label for="{{ field.name }}">{{ field.label }}{% if field.required %}*{% endif %}</label>
-            {% if field.type == 'textarea' %}
-            <textarea 
-              id="{{ field.name }}" 
-              name="{{ field.name }}"
-              placeholder="{{ field.placeholder }}"
-              {% if field.required %}required{% endif %}
-              rows="6"
-            ></textarea>
-            {% else %}
-            <input 
-              type="{{ field.type }}" 
-              id="{{ field.name }}" 
-              name="{{ field.name }}"
-              placeholder="{{ field.placeholder }}"
-              {% if field.required %}required{% endif %}
-            >
-            {% endif %}
-          </div>
-          {% endfor %}
-          
-          <button type="submit" class="submit-button">{{ contactForm.submitText }}</button>
-          <div class="form-message" style="display: none;">{{ contactForm.thankYouMessage }}</div>
-        </form>
+      <!-- Hours Section -->
+      <div class="hours-section">
+        <h2>{{ hours.title }}</h2>
+        <p class="hours-main">{{ hours.text }}</p>
+        <div class="hours-details">
+          <p><strong>Hours:</strong> {{ hours.time }}</p>
+          <p><strong>Days:</strong> {{ hours.days }}</p>
+        </div>
+        <p class="appointment-note">{{ hours.appointment }}</p>
+        <p class="closed-note">{{ hours.closed }}</p>
       </div>
 
     </div>
@@ -101,16 +70,13 @@ layout: layouts/base.njk
     padding: 2rem 0 4rem;
   }
 
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    max-width: 1000px;
+  .contact-main {
+    max-width: 800px;
     margin: 0 auto;
   }
 
   .contact-info-section h2,
-  .contact-form-section h2 {
+  .hours-section h2 {
     color: #4a7c59;
     font-size: 1.8rem;
     margin-bottom: 1.5rem;
@@ -154,6 +120,15 @@ layout: layouts/base.njk
     padding-top: 2rem;
     border-top: 1px solid #e0e0e0;
   }
+  
+  .phone-number {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  
+  .phone-number a {
+    color: #4a7c59;
+  }
 
   .hours-main {
     font-size: 1.1rem;
@@ -183,111 +158,13 @@ layout: layouts/base.njk
     font-style: italic;
   }
 
-  /* Contact Form Styles */
-  .contact-form {
-    background: #f8fbf4;
-    padding: 2rem;
-    border-radius: 8px;
-  }
-
-  .form-group {
-    margin-bottom: 1.5rem;
-  }
-
-  .form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #333;
-    font-weight: 600;
-  }
-
-  .form-group input,
-  .form-group textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
-  }
-
-  .form-group input:focus,
-  .form-group textarea:focus {
-    outline: none;
-    border-color: #4a7c59;
-    box-shadow: 0 0 0 2px rgba(74, 124, 89, 0.1);
-  }
-
-  .form-group textarea {
-    resize: vertical;
-    min-height: 120px;
-  }
-
-  .submit-button {
-    background: #4a7c59;
-    color: white;
-    padding: 1rem 2rem;
-    border: none;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 100%;
-  }
-
-  .submit-button:hover {
-    background: #3d6a4d;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(74, 124, 89, 0.3);
-  }
-
-  .form-message {
-    margin-top: 1rem;
-    padding: 1rem;
-    background: #d4edda;
-    color: #155724;
-    border-radius: 4px;
-    text-align: center;
-    font-weight: 600;
-  }
-
   @media (max-width: 768px) {
     .hero h1 {
       font-size: 2rem;
     }
 
-    .contact-grid {
-      grid-template-columns: 1fr;
-      gap: 3rem;
-    }
-
     .hours-section {
       margin-top: 2rem;
     }
-
-    .contact-form {
-      padding: 1.5rem;
-    }
   }
 </style>
-
-<script>
-  // Simple form handler - in production, this would submit to a backend
-  document.getElementById('contact-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Show thank you message
-    const message = this.querySelector('.form-message');
-    message.style.display = 'block';
-    
-    // Reset form after a delay
-    setTimeout(() => {
-      this.reset();
-      message.style.display = 'none';
-    }, 3000);
-    
-    // In production, you would submit the form data here
-    console.log('Form would be submitted with:', new FormData(this));
-  });
-</script>
