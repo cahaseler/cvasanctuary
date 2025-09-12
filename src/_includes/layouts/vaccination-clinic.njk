@@ -10,52 +10,43 @@ layout: layouts/base.njk
 
 <div class="clinic-content">
   <div class="container">
-    
-    <!-- Schedule Image Section -->
-    <section class="schedule-section">
-      <img src="{{ images.scheduleImage | url }}" 
-           alt="{{ images.scheduleAlt }}" 
-           class="schedule-image">
-    </section>
-
-    <!-- Location Section -->
-    <section class="location-section">
-      <h2>Location</h2>
-      <div class="location-info">
-        <p class="location-type">Clinics are drive-thru at our facility at:</p>
-        <address>
-          <strong>{{ location.name }}</strong><br>
-          {{ location.street }}<br>
-          {{ location.city }}, {{ location.state }} {{ location.zip }}
-        </address>
+    <div class="two-column-layout">
+      
+      <!-- Left Column -->
+      <div class="left-column">
+        <!-- Schedule Image -->
+        <img src="{{ images.scheduleImage | url }}" 
+             alt="{{ images.scheduleAlt }}" 
+             class="schedule-image">
+        
+        <!-- Location Info -->
+        <div class="location-info">
+          <p class="location-type">Clinics are drive-thru at our facility at:</p>
+          <address>
+            <strong>{{ location.name }}</strong><br>
+            {{ location.street }}<br>
+            {{ location.city }}, {{ location.state }} {{ location.zip }}
+          </address>
+          
+          <p class="no-appointment">No Appointment Needed</p>
+          
+          <div class="contact-info">
+            <p>For more information:</p>
+            <p><strong>Phone:</strong> <a href="tel:{{ contactInfo.phone | replace('-', '') }}">{{ contactInfo.phone }}</a></p>
+            <p><strong>Email:</strong> <a href="mailto:{{ contactInfo.email }}">{{ contactInfo.email }}</a></p>
+          </div>
+        </div>
       </div>
       
-      <div class="appointment-info">
-        <p class="no-appointment">No Appointment Needed</p>
+      <!-- Right Column -->
+      <div class="right-column">
+        <!-- Clinic Photo -->
+        <img src="{{ images.clinicPhoto | url }}" 
+             alt="{{ images.clinicPhotoAlt }}" 
+             class="clinic-photo">
       </div>
-    </section>
-
-    <!-- Clinic Photo -->
-    <section class="photo-section">
-      <img src="{{ images.clinicPhoto | url }}" 
-           alt="{{ images.clinicPhotoAlt }}" 
-           class="clinic-photo">
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact-section">
-      <h2>Contact Information</h2>
-      <div class="contact-details">
-        <p>For more information about services and pricing, please contact us:</p>
-        <p class="contact-phone">
-          <strong>Phone:</strong> <a href="tel:{{ contactInfo.phone | replace('-', '') }}">{{ contactInfo.phone }}</a>
-        </p>
-        <p class="contact-email">
-          <strong>Email:</strong> <a href="mailto:{{ contactInfo.email }}">{{ contactInfo.email }}</a>
-        </p>
-      </div>
-    </section>
-
+      
+    </div>
   </div>
 </div>
 
@@ -78,40 +69,29 @@ layout: layouts/base.njk
   }
 
   .clinic-content .container {
-    max-width: 1000px;
+    max-width: 1200px;
   }
 
-  .schedule-section,
-  .location-section,
-  .photo-section,
-  .contact-section {
-    margin-bottom: 3rem;
+  .two-column-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
   }
 
   .schedule-image {
     width: 100%;
     height: auto;
     display: block;
-    margin: 0 auto;
-    max-width: 800px;
+    margin-bottom: 2rem;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  }
-
-  .location-section h2,
-  .contact-section h2 {
-    color: #4a7c59;
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid #4a7c59;
   }
 
   .location-info {
     background: #f8fbf4;
     padding: 2rem;
     border-radius: 8px;
-    margin-bottom: 1.5rem;
   }
 
   .location-type {
@@ -124,54 +104,47 @@ layout: layouts/base.njk
     font-style: normal;
     line-height: 1.8;
     font-size: 1.1rem;
-  }
-
-  .appointment-info {
-    text-align: center;
+    margin-bottom: 1.5rem;
   }
 
   .no-appointment {
-    display: inline-block;
     background: #4a7c59;
     color: white;
-    padding: 1rem 2rem;
-    border-radius: 8px;
-    font-size: 1.2rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    display: inline-block;
+    margin: 1rem 0;
+  }
+
+  .contact-info {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e0e0e0;
+  }
+
+  .contact-info p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+  }
+
+  .contact-info a {
+    color: #4a7c59;
+    text-decoration: none;
+  }
+
+  .contact-info a:hover {
+    text-decoration: underline;
   }
 
   .clinic-photo {
     width: 100%;
     height: auto;
     display: block;
-    margin: 0 auto;
-    max-width: 600px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  }
-
-  .contact-details {
-    background: #f8fbf4;
-    padding: 2rem;
-    border-radius: 8px;
-  }
-
-  .contact-details p {
-    margin: 0.5rem 0;
-    font-size: 1.1rem;
-  }
-
-  .contact-phone a,
-  .contact-email a {
-    color: #4a7c59;
-    text-decoration: none;
-  }
-
-  .contact-phone a:hover,
-  .contact-email a:hover {
-    text-decoration: underline;
   }
 
   @media (max-width: 768px) {
@@ -179,8 +152,12 @@ layout: layouts/base.njk
       font-size: 2rem;
     }
 
-    .location-info,
-    .contact-details {
+    .two-column-layout {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .location-info {
       padding: 1.5rem;
     }
   }
