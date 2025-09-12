@@ -833,6 +833,109 @@ content:
             label: Closed Days Note
             type: string
 
+  # Vaccination Clinic Page
+  - name: vaccination-clinic
+    label: Vaccination & Microchip Clinic
+    path: src/content/programs/vaccination-microchip-clinic.md
+    type: file
+    fields:
+      - name: title
+        label: Page Title
+        type: string
+      - name: permalink
+        label: Permalink
+        type: string
+        default: /programs/
+        hidden: true
+      - name: layout
+        label: Layout
+        type: string
+        default: layouts/vaccination-clinic.njk
+        hidden: true
+      - name: hero
+        label: Hero Section
+        type: object
+        fields:
+          - name: title
+            label: Title
+            type: string
+      - name: programInfo
+        label: Program Information
+        type: object
+        fields:
+          - name: description
+            label: Description
+            type: text
+          - name: type
+            label: Clinic Type
+            type: string
+      - name: schedule
+        label: Schedule
+        type: object
+        fields:
+          - name: year
+            label: Year
+            type: number
+          - name: time
+            label: Clinic Hours
+            type: string
+          - name: clinicDates
+            label: Clinic Dates
+            type: object
+            list: true
+            fields:
+              - name: date
+                label: Date
+                type: string
+              - name: status
+                label: Status
+                type: select
+                options:
+                  - value: active
+                    label: Active
+                  - value: canceled
+                    label: Canceled
+                  - value: weather
+                    label: Weather Dependent
+              - name: note
+                label: Note (optional)
+                type: string
+      - name: location
+        label: Location
+        type: object
+        fields:
+          - name: name
+            label: Location Name
+            type: string
+          - name: street
+            label: Street Address
+            type: string
+          - name: city
+            label: City
+            type: string
+          - name: state
+            label: State
+            type: string
+          - name: zip
+            label: ZIP Code
+            type: string
+      - name: contactInfo
+        label: Contact Information
+        type: object
+        fields:
+          - name: phone
+            label: Phone
+            type: string
+          - name: email
+            label: Email
+            type: string
+          - name: appointmentNeeded
+            label: Appointment Needed?
+            type: boolean
+          - name: driveThru
+            label: Drive-Thru Clinic?
+            type: boolean
+
   # Site Settings
   - name: settings
     label: Site Settings
