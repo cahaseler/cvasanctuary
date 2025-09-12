@@ -755,6 +755,84 @@ content:
                         label: Phone
                         type: string
 
+  # Contact Page
+  - name: contact
+    label: Contact and Hours Page
+    path: src/content/pages/contact-hours.md
+    type: file
+    fields:
+      - name: title
+        label: Page Title
+        type: string
+      - name: permalink
+        label: Permalink
+        type: string
+        default: /contact-us/
+        hidden: true
+      - name: layout
+        label: Layout
+        type: string
+        default: layouts/contact.njk
+        hidden: true
+      - name: hero
+        label: Hero Section
+        type: object
+        fields:
+          - name: title
+            label: Title
+            type: string
+      - name: contactInfo
+        label: Contact Information
+        type: object
+        fields:
+          - name: address
+            label: Address
+            type: object
+            fields:
+              - name: street
+                label: Street
+                type: string
+              - name: city
+                label: City
+                type: string
+              - name: state
+                label: State
+                type: string
+              - name: zip
+                label: ZIP Code
+                type: string
+          - name: phone
+            label: Phone Number
+            type: string
+          - name: email
+            label: Email Address
+            type: string
+          - name: note
+            label: Phone Note
+            type: text
+      - name: hours
+        label: Hours of Operation
+        type: object
+        fields:
+          - name: title
+            label: Section Title
+            type: string
+          - name: text
+            label: Main Text
+            type: text
+          - name: days
+            label: Days Open
+            type: string
+          - name: time
+            label: Hours
+            type: string
+          - name: appointment
+            label: Appointment Note
+            type: string
+          - name: closed
+            label: Closed Days Note
+            type: string
+
   # Site Settings
   - name: settings
     label: Site Settings
