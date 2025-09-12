@@ -12,10 +12,10 @@ layout: layouts/base.njk
   <div class="container">
     <div class="two-column-layout">
       <div class="left-column">
-        {{ content.leftColumn | markdown | safe }}
+        {{ pageContent.leftColumn | markdown | safe }}
       </div>
       <div class="right-column">
-        <img src="{{ content.rightImage | url }}" alt="{{ content.rightImageAlt }}" class="foster-image">
+        <img src="{{ pageContent.rightImage | url }}" alt="{{ pageContent.rightImageAlt }}" class="foster-image">
       </div>
     </div>
   </div>

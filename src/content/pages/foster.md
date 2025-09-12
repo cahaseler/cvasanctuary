@@ -4,7 +4,7 @@ title: Foster a Pet
 permalink: /foster-program/
 hero:
   title: Foster a Pet
-content:
+pageContent:
   leftColumn: |
     Fostering a cat or dog can be a rewarding experience for the loving and gracious families who participate in the program with CVAS. To become a part of the program, please fill out the application found below. We have a need for cat fosters and dog foster, so please select the form for either cat or dog, or fill out both forms if you are interested in fostering both cats and dogs.
 
