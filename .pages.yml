@@ -905,6 +905,101 @@ content:
             label: Email
             type: string
 
+  # Pet Food Bank Page
+  - name: pet-food-bank
+    label: Pet Food Bank
+    path: src/content/programs/pet-food-bank.md
+    type: file
+    fields:
+      - name: title
+        label: Page Title
+        type: string
+        required: true
+      - name: layout
+        label: Layout
+        type: string
+        default: layouts/pet-food-bank.njk
+        hidden: true
+      - name: hero
+        label: Hero Section
+        type: object
+        fields:
+          - name: title
+            label: Title
+            type: string
+      - name: intro
+        label: Introduction Text
+        type: text
+      - name: services
+        label: Services Section
+        type: object
+        fields:
+          - name: description
+            label: Description
+            type: string
+          - name: items
+            label: Service Items
+            type: string
+            list: true
+      - name: participation
+        label: Participation Information
+        type: text
+      - name: additionalInfo
+        label: Additional Information
+        type: text
+      - name: hours
+        label: Hours
+        type: object
+        fields:
+          - name: schedule
+            label: Schedule
+            type: string
+          - name: note
+            label: Special Note
+            type: string
+      - name: location
+        label: Location
+        type: object
+        fields:
+          - name: street
+            label: Street Address
+            type: string
+          - name: city
+            label: City
+            type: string
+          - name: state
+            label: State
+            type: string
+          - name: zip
+            label: ZIP Code
+            type: string
+      - name: contactInfo
+        label: Contact Information
+        type: object
+        fields:
+          - name: phone
+            label: Phone
+            type: string
+          - name: email
+            label: Email
+            type: string
+      - name: images
+        label: Images
+        type: object
+        fields:
+          - name: graphic
+            label: Food Bank Graphic
+            type: image
+          - name: graphicAlt
+            label: Graphic Alt Text
+            type: string
+          - name: photo
+            label: Food Bank Photo
+            type: image
+          - name: photoAlt
+            label: Photo Alt Text
+            type: string
+
   # Site Settings
   - name: settings
     label: Site Settings
