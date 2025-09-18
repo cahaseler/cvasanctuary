@@ -1074,6 +1074,102 @@ content:
           - name: message
             label: Message
             type: text
+  # Forever Angels Page
+  - name: forever-angels
+    label: Forever Angels Page
+    path: src/content/pages/forever-angels.md
+    type: file
+    fields:
+      - name: title
+        label: Page Title
+        type: string
+      - name: permalink
+        label: Permalink
+        type: string
+        default: /forever-angels/
+        hidden: true
+      - name: layout
+        label: Layout
+        type: string
+        default: layouts/forever-angels.njk
+        hidden: true
+      - name: hero
+        label: Hero Section
+        type: object
+        fields:
+          - name: title
+            label: Title
+            type: string
+      - name: introduction
+        label: Introduction Section
+        type: object
+        fields:
+          - name: message
+            label: Introduction Message
+            type: text
+          - name: bequest
+            label: Bequest Information
+            type: object
+            fields:
+              - name: text
+                label: Bequest Text
+                type: string
+              - name: boardLink
+                label: Board Link
+                type: string
+              - name: boardText
+                label: Board Link Text
+                type: string
+              - name: suffix
+                label: Suffix Text
+                type: string
+          - name: donateLink
+            label: Donate Link
+            type: object
+            fields:
+              - name: text
+                label: Link Text
+                type: string
+              - name: url
+                label: URL
+                type: string
+      - name: angelImage
+        label: Angel Image
+        type: object
+        fields:
+          - name: src
+            label: Image
+            type: image
+          - name: alt
+            label: Alt Text
+            type: string
+      - name: memorials
+        label: Memorial Profiles
+        type: object
+        list: true
+        fields:
+          - name: name
+            label: Name
+            type: string
+          - name: displayName
+            label: Display Name
+            type: string
+          - name: years
+            label: Years
+            type: string
+          - name: image
+            label: Memorial Photo
+            type: object
+            fields:
+              - name: src
+                label: Image
+                type: image
+              - name: alt
+                label: Alt Text
+                type: string
+          - name: obituary
+            label: Obituary Text
+            type: markdown
   # Community Resources Page
   - name: community-resources
     label: Community Resources Page
