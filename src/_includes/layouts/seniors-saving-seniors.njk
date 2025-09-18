@@ -19,41 +19,47 @@ layout: layouts/base.njk
       <p class="appointment-text">{{ appointment.text }}</p>
     </div>
 
-    {% if eligibility %}
-    <div class="eligibility-section">
-      <h2>{{ eligibility.title }}</h2>
-      <ul class="requirements-list">
-        {% for requirement in eligibility.requirements %}
-        <li>{{ requirement }}</li>
-        {% endfor %}
-      </ul>
-    </div>
-    {% endif %}
+    <div class="two-column-layout">
+      <div class="left-column">
+        {% if eligibility %}
+        <div class="eligibility-section">
+          <h2>{{ eligibility.title }}</h2>
+          <ul class="requirements-list">
+            {% for requirement in eligibility.requirements %}
+            <li>{{ requirement }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
 
-    <div class="contact-section">
-      <h2>{{ contactInfo.title }}</h2>
-      <div class="contact-info">
-        <a href="tel:{{ contactInfo.phone }}" class="phone-number">{{ contactInfo.phone }}</a>
+        <div class="contact-section">
+          <h2>{{ contactInfo.title }}</h2>
+          <div class="contact-info">
+            <a href="tel:{{ contactInfo.phone }}" class="phone-number">{{ contactInfo.phone }}</a>
+          </div>
+          {% if contactInfo.location %}
+          <div class="location-info">
+            <h3>{{ contactInfo.location.title }}</h3>
+            <p class="address">
+              {{ contactInfo.location.street }}<br>
+              {{ contactInfo.location.city }}, {{ contactInfo.location.state }} {{ contactInfo.location.zip }}
+            </p>
+          </div>
+          {% endif %}
+        </div>
       </div>
-      {% if contactInfo.location %}
-      <div class="location-info">
-        <h3>{{ contactInfo.location.title }}</h3>
-        <p class="address">
-          {{ contactInfo.location.street }}<br>
-          {{ contactInfo.location.city }}, {{ contactInfo.location.state }} {{ contactInfo.location.zip }}
-        </p>
-      </div>
-      {% endif %}
-    </div>
 
-    {% if successStory %}
-    <div class="success-story">
-      <div class="story-image">
-        <img src="{{ successStory.image.src | url }}" alt="{{ successStory.image.alt }}" class="snook-photo">
-        <p class="image-caption">{{ successStory.caption }}</p>
+      <div class="right-column">
+        {% if successStory %}
+        <div class="success-story">
+          <div class="story-image">
+            <img src="{{ successStory.image.src | url }}" alt="{{ successStory.image.alt }}" class="snook-photo">
+            <p class="image-caption">{{ successStory.caption }}</p>
+          </div>
+        </div>
+        {% endif %}
       </div>
     </div>
-    {% endif %}
 
     <div class="adopt-section">
       <a href="/adopt/" class="btn-adopt">Adopt</a>
@@ -122,21 +128,30 @@ layout: layouts/base.njk
     font-weight: 500;
   }
 
-  .eligibility-section {
-    background: #f8f8f8;
-    border-radius: 12px;
-    padding: 2rem;
+  .two-column-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
     margin-bottom: 3rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+  }
+
+  .left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .eligibility-section {
+    padding: 0;
+    margin-bottom: 0;
   }
 
   .eligibility-section h2 {
     color: #4a7c59;
     font-size: 1.6rem;
     margin-bottom: 1.5rem;
-    text-align: center;
+    text-align: left;
   }
 
   .requirements-list {
@@ -150,7 +165,7 @@ layout: layouts/base.njk
     border-bottom: 1px solid #e0e0e0;
     color: #555;
     font-size: 1.1rem;
-    text-align: center;
+    text-align: left;
   }
 
   .requirements-list li:last-child {
@@ -165,8 +180,8 @@ layout: layouts/base.njk
   }
 
   .contact-section {
-    text-align: center;
-    margin-bottom: 3rem;
+    text-align: left;
+    margin-bottom: 0;
   }
 
   .contact-section h2 {
@@ -204,13 +219,12 @@ layout: layouts/base.njk
   }
 
   .success-story {
-    margin: 3rem 0;
-    text-align: center;
+    margin: 0;
   }
 
   .story-image {
-    max-width: 400px;
-    margin: 0 auto;
+    max-width: 100%;
+    margin: 0;
   }
 
   .snook-photo {
@@ -224,6 +238,7 @@ layout: layouts/base.njk
     font-size: 1rem;
     color: #666;
     font-style: italic;
+    text-align: center;
   }
 
   .adopt-section {
@@ -261,6 +276,32 @@ layout: layouts/base.njk
       font-size: 1.1rem;
     }
 
+    .two-column-layout {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .left-column {
+      order: 2;
+    }
+
+    .right-column {
+      order: 1;
+    }
+
+    .eligibility-section h2,
+    .contact-section h2 {
+      text-align: center;
+    }
+
+    .requirements-list li {
+      text-align: center;
+    }
+
+    .contact-section {
+      text-align: center;
+    }
+
     .phone-number {
       font-size: 1.5rem;
     }
@@ -271,10 +312,6 @@ layout: layouts/base.njk
 
     .container {
       padding: 0 1rem;
-    }
-
-    .eligibility-section {
-      margin: 0 1rem 2rem;
     }
   }
 </style>
