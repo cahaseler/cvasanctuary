@@ -49,5 +49,5 @@ partners:
       alt: Colville Country Store
 donationBoxes:
   title: Donation Box Locations
-  message: Thank you to the following businesses for collecting donations for us! We appreciATE YOU!
+  message: Thank you to the following businesses for collecting donations for us! We appreciate YOU!
 ---
