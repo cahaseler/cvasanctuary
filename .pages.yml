@@ -1013,6 +1013,67 @@ content:
               - name: alt
                 label: Alt Text
                 type: string
+  # Community Partners Page
+  - name: community-partners
+    label: Community Partners Page
+    path: src/content/pages/community-partners.md
+    type: file
+    fields:
+      - name: title
+        label: Page Title
+        type: string
+      - name: permalink
+        label: Permalink
+        type: string
+        default: /communitypartners/
+        hidden: true
+      - name: layout
+        label: Layout
+        type: string
+        default: layouts/community-partners.njk
+        hidden: true
+      - name: hero
+        label: Hero Section
+        type: object
+        fields:
+          - name: title
+            label: Title
+            type: string
+      - name: thankYou
+        label: Thank You Section
+        type: object
+        fields:
+          - name: message
+            label: Thank You Message
+            type: text
+      - name: partners
+        label: Partners
+        type: object
+        list: true
+        fields:
+          - name: name
+            label: Partner Name
+            type: string
+          - name: image
+            label: Partner Logo
+            type: object
+            fields:
+              - name: src
+                label: Image
+                type: image
+              - name: alt
+                label: Alt Text
+                type: string
+      - name: donationBoxes
+        label: Donation Boxes Section
+        type: object
+        fields:
+          - name: title
+            label: Section Title
+            type: string
+          - name: message
+            label: Message
+            type: text
   # Community Resources Page
   - name: community-resources
     label: Community Resources Page
