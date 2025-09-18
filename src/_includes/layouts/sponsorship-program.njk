@@ -14,30 +14,37 @@ layout: layouts/base.njk
       <p class="overview-text">{{ overview.description }}</p>
     </div>
 
-    {% if sponsorshipTiers and sponsorshipTiers.length > 0 %}
-    <div class="sponsorship-options">
-      <h2>Sponsorship Options</h2>
-      <div class="tiers-grid">
-        {% for tier in sponsorshipTiers %}
-        <div class="tier-card">
-          <h3>{{ tier.type }}</h3>
-          <div class="amount">{{ tier.amount }}</div>
-          <div class="description">{{ tier.description }}</div>
-          <p>{{ tier.benefits }}</p>
-        </div>
-        {% endfor %}
-      </div>
+    {% if petKennelSponsorship %}
+    <div class="sponsorship-section">
+      <h2>{{ petKennelSponsorship.title }}</h2>
+      <p>{{ petKennelSponsorship.description }}</p>
     </div>
     {% endif %}
 
-    {% if projects and projects.items and projects.items.length > 0 %}
-    <div class="projects-section">
-      <h2>{{ projects.title }}</h2>
-      <ul class="projects-list">
-        {% for item in projects.items %}
-        <li>{{ item }}</li>
-        {% endfor %}
-      </ul>
+    {% if buildingProjectSponsorship %}
+    <div class="sponsorship-section">
+      <h2>{{ buildingProjectSponsorship.title }}</h2>
+      <p>{{ buildingProjectSponsorship.description }}</p>
+    </div>
+    {% endif %}
+
+    {% if sponsorshipOptions %}
+    <div class="sponsorship-options">
+      <h2>{{ sponsorshipOptions.title }}</h2>
+      <div class="tiers-grid">
+        {% if sponsorshipOptions.petKennel %}
+        <div class="tier-card">
+          <h3>{{ sponsorshipOptions.petKennel.title }}</h3>
+          <div class="amount">{{ sponsorshipOptions.petKennel.amount }}</div>
+        </div>
+        {% endif %}
+        {% if sponsorshipOptions.buildingProject %}
+        <div class="tier-card">
+          <h3>{{ sponsorshipOptions.buildingProject.title }}</h3>
+          <div class="amount">{{ sponsorshipOptions.buildingProject.amount }}</div>
+        </div>
+        {% endif %}
+      </div>
     </div>
     {% endif %}
 
@@ -53,31 +60,6 @@ layout: layouts/base.njk
       </div>
     </div>
 
-    <div class="contact-section">
-      <div class="contact-box">
-        <h3>{{ contactInfo.title }}</h3>
-        <p>{{ contactInfo.description }}</p>
-
-        <div class="contact-details">
-          <div class="contact-item">
-            <strong>Phone:</strong> {{ contactInfo.phone }}
-          </div>
-          <div class="contact-item">
-            <strong>Email:</strong> {{ contactInfo.email }}
-          </div>
-          <div class="contact-item">
-            <strong>Address:</strong><br>
-            {{ contactInfo.address.street }}<br>
-            {{ contactInfo.address.city }}, {{ contactInfo.address.state }} {{ contactInfo.address.zip }}
-          </div>
-        </div>
-
-        <div class="cta-buttons">
-          <a href="/contact-hours/" class="btn btn-primary">Contact Us</a>
-          <a href="/donate/" class="btn btn-secondary">Donate Now</a>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -111,6 +93,22 @@ layout: layouts/base.njk
     font-size: 1.2rem;
     line-height: 1.8;
     color: #333;
+  }
+
+  .sponsorship-section {
+    margin-bottom: 3rem;
+  }
+
+  .sponsorship-section h2 {
+    color: #4a7c59;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .sponsorship-section p {
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 1rem;
   }
 
   .sponsorship-options {
@@ -172,33 +170,6 @@ layout: layouts/base.njk
     color: #555;
   }
 
-  .projects-section {
-    margin-bottom: 4rem;
-    text-align: center;
-  }
-
-  .projects-section h2 {
-    color: #4a7c59;
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .projects-list {
-    list-style: none;
-    padding: 0;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .projects-list li {
-    background: #f0f8f2;
-    padding: 1rem 1.5rem;
-    margin-bottom: 0.5rem;
-    border-radius: 8px;
-    border-left: 4px solid #4a7c59;
-    font-weight: 500;
-    color: #333;
-  }
 
   .featured-animal-section {
     display: grid;
@@ -229,84 +200,6 @@ layout: layouts/base.njk
     color: #555;
   }
 
-  .contact-section {
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .contact-box {
-    background: #f8f8f8;
-    border: 1px solid #e0e0e0;
-    border-radius: 12px;
-    padding: 2.5rem;
-    text-align: center;
-  }
-
-  .contact-box h3 {
-    color: #4a7c59;
-    font-size: 1.6rem;
-    margin-bottom: 1rem;
-  }
-
-  .contact-box > p {
-    margin-bottom: 2rem;
-    color: #666;
-    line-height: 1.6;
-  }
-
-  .contact-details {
-    margin-bottom: 2rem;
-    text-align: left;
-  }
-
-  .contact-item {
-    margin-bottom: 1rem;
-    color: #333;
-    line-height: 1.6;
-  }
-
-  .contact-item strong {
-    color: #4a7c59;
-  }
-
-  .cta-buttons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-  }
-
-  .btn {
-    display: inline-block;
-    padding: 0.8rem 2rem;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    transition: all 0.3s ease;
-  }
-
-  .btn-primary {
-    background: #4a7c59;
-    color: white;
-  }
-
-  .btn-primary:hover {
-    background: #5a8c69;
-    transform: translateY(-2px);
-  }
-
-  .btn-secondary {
-    background: white;
-    color: #4a7c59;
-    border: 2px solid #4a7c59;
-  }
-
-  .btn-secondary:hover {
-    background: #4a7c59;
-    color: white;
-    transform: translateY(-2px);
-  }
 
   @media (max-width: 768px) {
     .hero h1 {
@@ -327,14 +220,6 @@ layout: layouts/base.njk
       order: -1;
     }
 
-    .cta-buttons {
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .btn {
-      width: 200px;
-    }
 
     .sponsorship-main {
       padding: 1rem 0 3rem;

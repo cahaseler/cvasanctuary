@@ -837,34 +837,53 @@ content:
           - name: description
             label: Description
             type: markdown
-      - name: sponsorshipTiers
-        label: Sponsorship Tiers
-        type: object
-        list: true
-        fields:
-          - name: type
-            label: Tier Type
-            type: string
-          - name: amount
-            label: Amount
-            type: string
-          - name: description
-            label: Description
-            type: string
-          - name: benefits
-            label: Benefits
-            type: markdown
-      - name: projects
-        label: Current Projects
+      - name: petKennelSponsorship
+        label: Pet/Kennel Sponsorship
         type: object
         fields:
           - name: title
             label: Section Title
             type: string
-          - name: items
-            label: Project Items
+          - name: description
+            label: Description
+            type: markdown
+      - name: buildingProjectSponsorship
+        label: Building/Project Sponsorship
+        type: object
+        fields:
+          - name: title
+            label: Section Title
             type: string
-            list: true
+          - name: description
+            label: Description
+            type: markdown
+      - name: sponsorshipOptions
+        label: Sponsorship Options
+        type: object
+        fields:
+          - name: title
+            label: Section Title
+            type: string
+          - name: petKennel
+            label: Pet/Kennel Option
+            type: object
+            fields:
+              - name: title
+                label: Title
+                type: string
+              - name: amount
+                label: Amount
+                type: string
+          - name: buildingProject
+            label: Building/Project Option
+            type: object
+            fields:
+              - name: title
+                label: Title
+                type: string
+              - name: amount
+                label: Amount
+                type: string
       - name: featuredAnimal
         label: Featured Animal
         type: object
@@ -884,38 +903,6 @@ content:
                 type: image
               - name: alt
                 label: Alt Text
-                type: string
-      - name: contactInfo
-        label: Contact Information
-        type: object
-        fields:
-          - name: title
-            label: Section Title
-            type: string
-          - name: description
-            label: Description
-            type: text
-          - name: phone
-            label: Phone Number
-            type: string
-          - name: email
-            label: Email
-            type: string
-          - name: address
-            label: Address
-            type: object
-            fields:
-              - name: street
-                label: Street Address
-                type: string
-              - name: city
-                label: City
-                type: string
-              - name: state
-                label: State
-                type: string
-              - name: zip
-                label: ZIP Code
                 type: string
   # Community Resources Page
   - name: community-resources
