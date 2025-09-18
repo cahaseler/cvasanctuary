@@ -1,0 +1,193 @@
+---
+layout: layouts/base.njk
+---
+
+<div class="hero">
+  <div class="container">
+    <h1>{{ hero.title }}</h1>
+  </div>
+</div>
+
+<section class="food-bank-main">
+  <div class="container">
+    <div class="two-column-layout">
+      <div class="content-column">
+        <div class="intro-text">
+          <p>{{ intro }}</p>
+        </div>
+
+        <div class="services-section">
+          <p>{{ services.description }}</p>
+          <ul class="services-list">
+            {% for item in services.items %}
+            <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+          <p>{{ additionalInfo }}</p>
+        </div>
+
+        <div class="participation-info">
+          <p>{{ participation }}</p>
+        </div>
+
+        <div class="hours-box">
+          <h3>FOOD BANK OPEN</h3>
+          <p class="hours-time"><strong>{{ hours.schedule }}</strong></p>
+          <p class="hours-note"><strong><em>{{ hours.note }}</em></strong></p>
+          <p class="phone">{{ contactInfo.phone }}</p>
+        </div>
+
+        <div class="location-box">
+          <h3>LOCATION</h3>
+          <p>{{ location.street }}<br>{{ location.city }}, {{ location.state }} {{ location.zip }}</p>
+        </div>
+      </div>
+
+      <div class="images-column">
+        <img src="{{ images.graphic | url }}" alt="{{ images.graphicAlt }}" class="food-bank-graphic">
+        <img src="{{ images.photo | url }}" alt="{{ images.photoAlt }}" class="food-bank-photo">
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    background: linear-gradient(135deg, #4a7c59 0%, #6b9e77 100%);
+    color: white;
+    padding: 4rem 0;
+    margin-bottom: 3rem;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+    margin: 0;
+    text-align: center;
+  }
+
+  .food-bank-main {
+    padding: 2rem 0 4rem;
+  }
+
+  .two-column-layout {
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .content-column {
+    padding-right: 2rem;
+  }
+
+  .intro-text, .services-section, .participation-info {
+    margin-bottom: 2rem;
+  }
+
+  .intro-text p, .services-section p, .participation-info p {
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+
+  .services-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+
+  .services-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #555;
+  }
+
+  .services-list li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #4a7c59;
+    font-weight: bold;
+  }
+
+  .hours-box, .location-box {
+    background: #f8f8f8;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .hours-box h3, .location-box h3 {
+    color: #4a7c59;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .hours-time {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .hours-note {
+    font-style: italic;
+    margin-bottom: 1rem;
+    color: #666;
+  }
+
+  .phone {
+    color: #4a7c59;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+
+  .images-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .food-bank-graphic, .food-bank-photo {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .food-bank-graphic {
+    max-width: 100%;
+  }
+
+  .food-bank-photo {
+    max-width: 100%;
+    object-fit: cover;
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 2rem;
+      padding: 0 1rem;
+    }
+
+    .two-column-layout {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .content-column {
+      padding-right: 0;
+    }
+
+    .hours-box, .location-box {
+      margin-bottom: 1rem;
+    }
+
+    .images-column {
+      order: -1; /* Move images to top on mobile */
+    }
+  }
+</style>
