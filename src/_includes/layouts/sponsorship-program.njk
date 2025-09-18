@@ -60,6 +60,10 @@ layout: layouts/base.njk
     </div>
     {% endif %}
 
+    <div class="donate-section">
+      <a href="/donate/" class="btn-donate">Donate</a>
+    </div>
+
   </div>
 </section>
 
@@ -177,9 +181,6 @@ layout: layouts/base.njk
     gap: 3rem;
     align-items: center;
     margin-bottom: 4rem;
-    background: #fafafa;
-    padding: 3rem;
-    border-radius: 12px;
   }
 
   .eva-photo {
@@ -200,6 +201,30 @@ layout: layouts/base.njk
     color: #555;
   }
 
+  .donate-section {
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .btn-donate {
+    display: inline-block;
+    background: #4a7c59;
+    color: white;
+    padding: 1rem 3rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+  }
+
+  .btn-donate:hover {
+    background: #5a8c69;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(74, 124, 89, 0.3);
+  }
 
   @media (max-width: 768px) {
     .hero h1 {
