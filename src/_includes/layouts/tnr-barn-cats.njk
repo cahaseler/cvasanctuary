@@ -1,0 +1,205 @@
+---
+layout: layouts/base.njk
+---
+
+<div class="hero">
+  <div class="container">
+    <h1>{{ hero.title }}</h1>
+  </div>
+</div>
+
+<section class="tnr-main">
+  <div class="container">
+    <div class="programs-wrapper">
+      <!-- TNR Program Section -->
+      <div class="program-section tnr-section">
+        <h2>{{ tnrProgram.title }}</h2>
+        <p>{{ tnrProgram.description }}</p>
+        <p>{{ tnrProgram.services }}</p>
+        <p>{{ tnrProgram.availability }}
+          {% if tnrProgram.resources.spayNeuterLink %}
+            You can also <a href="{{ tnrProgram.resources.spayNeuterLink.url | url }}">{{ tnrProgram.resources.spayNeuterLink.text }}</a>.
+          {% endif %}
+        </p>
+        {% if tnrProgram.resources.aspca %}
+          <p><a href="{{ tnrProgram.resources.aspca.url }}" target="_blank" rel="noopener">{{ tnrProgram.resources.aspca.text }}</a>.</p>
+        {% endif %}
+      </div>
+
+      <!-- Barn Cat Program Section -->
+      <div class="program-section barn-cat-section">
+        <h2>{{ barnCatProgram.title }}</h2>
+        {% if image.src %}
+          <img src="{{ image.src | url }}" alt="{{ image.alt }}" class="barn-cat-image">
+        {% endif %}
+        <p>{{ barnCatProgram.description }}</p>
+        <p>{{ barnCatProgram.callToAction }}</p>
+      </div>
+
+      <!-- Contact Information -->
+      <div class="contact-section">
+        <div class="appointment-box">
+          <h3>{{ appointment.title }}</h3>
+          <p class="hours">{{ appointment.hours }}</p>
+          <p class="phone">{{ appointment.phone }}</p>
+        </div>
+
+        <div class="location-box">
+          <h3>{{ location.title }}</h3>
+          <p>{{ location.street }}<br>
+          {{ location.city }}, {{ location.state }} {{ location.zip }}</p>
+        </div>
+
+        <div class="contact-link">
+          <a href="/contact-hours/" class="btn-contact">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    background: linear-gradient(135deg, #4a7c59 0%, #6b9e77 100%);
+    color: white;
+    padding: 4rem 0;
+    margin-bottom: 3rem;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+    margin: 0;
+    text-align: center;
+  }
+
+  .tnr-main {
+    padding: 2rem 0 4rem;
+  }
+
+  .programs-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .program-section {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .program-section:last-of-type {
+    border-bottom: none;
+  }
+
+  .program-section h2 {
+    color: #4a7c59;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .program-section p {
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+
+  .program-section a {
+    color: #4a7c59;
+    text-decoration: underline;
+  }
+
+  .program-section a:hover {
+    color: #5a8c69;
+  }
+
+  .barn-cat-image {
+    float: right;
+    max-width: 300px;
+    width: 40%;
+    margin: 0 0 1.5rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .contact-section {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .appointment-box, .location-box {
+    background: #f8f8f8;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .appointment-box h3, .location-box h3 {
+    color: #4a7c59;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .hours {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .phone {
+    color: #4a7c59;
+    font-weight: 600;
+    font-size: 1.2rem;
+  }
+
+  .contact-link {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  .btn-contact {
+    display: inline-block;
+    background: #4a7c59;
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: background 0.3s ease;
+  }
+
+  .btn-contact:hover {
+    background: #5a8c69;
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 2rem;
+      padding: 0 1rem;
+    }
+
+    .barn-cat-image {
+      float: none;
+      width: 100%;
+      max-width: none;
+      margin: 1rem 0;
+    }
+
+    .contact-section {
+      grid-template-columns: 1fr;
+    }
+
+    .programs-wrapper {
+      padding: 0 1rem;
+    }
+  }
+</style>

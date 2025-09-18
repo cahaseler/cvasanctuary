@@ -676,6 +676,134 @@ content:
             label: Form URL
             type: string
 
+  # TNR & Barn Cats Page
+  - name: tnr-barn-cats
+    label: TNR & Barn Cats Page
+    path: src/content/pages/tnr-barn-cats.md
+    type: file
+    fields:
+      - name: title
+        label: Page Title
+        type: string
+      - name: permalink
+        label: Permalink
+        type: string
+        default: /tnr-barn-cats/
+        hidden: true
+      - name: layout
+        label: Layout
+        type: string
+        default: layouts/tnr-barn-cats.njk
+        hidden: true
+      - name: hero
+        label: Hero Section
+        type: object
+        fields:
+          - name: title
+            label: Title
+            type: string
+      - name: tnrProgram
+        label: TNR Program
+        type: object
+        fields:
+          - name: title
+            label: Section Title
+            type: string
+          - name: description
+            label: Description
+            type: markdown
+          - name: services
+            label: Services Description
+            type: markdown
+          - name: availability
+            label: Availability Info
+            type: markdown
+          - name: resources
+            label: Resources
+            type: object
+            fields:
+              - name: spayNeuterLink
+                label: Spay/Neuter Link
+                type: object
+                fields:
+                  - name: text
+                    label: Link Text
+                    type: string
+                  - name: url
+                    label: Link URL
+                    type: string
+              - name: aspca
+                label: ASPCA Resource
+                type: object
+                fields:
+                  - name: text
+                    label: Link Text
+                    type: string
+                  - name: url
+                    label: Link URL
+                    type: string
+      - name: barnCatProgram
+        label: Barn Cat Program
+        type: object
+        fields:
+          - name: title
+            label: Section Title
+            type: string
+          - name: description
+            label: Description
+            type: markdown
+          - name: callToAction
+            label: Call to Action
+            type: markdown
+      - name: appointment
+        label: Appointment Info
+        type: object
+        fields:
+          - name: title
+            label: Title
+            type: string
+          - name: hours
+            label: Hours
+            type: string
+          - name: phone
+            label: Phone Number
+            type: string
+      - name: location
+        label: Location
+        type: object
+        fields:
+          - name: title
+            label: Title
+            type: string
+          - name: street
+            label: Street Address
+            type: string
+          - name: city
+            label: City
+            type: string
+          - name: state
+            label: State
+            type: string
+          - name: zip
+            label: ZIP Code
+            type: string
+      - name: contactInfo
+        label: Contact Info
+        type: object
+        fields:
+          - name: email
+            label: Email
+            type: string
+      - name: image
+        label: Barn Cat Image
+        type: object
+        fields:
+          - name: src
+            label: Image
+            type: image
+          - name: alt
+            label: Alt Text
+            type: string
   # Community Resources Page
   - name: community-resources
     label: Community Resources Page
