@@ -445,9 +445,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const plainDescription = stripHtml(pet.description);
     const truncatedDescription = plainDescription ? plainDescription.substring(0, 150) + '...' : 'Click to learn more about this pet.';
 
-    // Use pet detail page URL instead of direct adoption form
-    const petId = pet.pet_id || pet.id;
-    const detailUrl = 'https://petstablished.com/pets/' + petId;
+    // Use public_url from API for pet detail page (redirects to wagtopia.com)
+    const detailUrl = pet.public_url ? 'https://petstablished.com' + pet.public_url : pet.adopt_url;
 
     return '<a href="' + escapeHtml(detailUrl) + '" target="_blank" rel="noopener noreferrer" ' +
            'class="pet-card" data-species="' + escapeHtml(speciesClass) + '">' +
