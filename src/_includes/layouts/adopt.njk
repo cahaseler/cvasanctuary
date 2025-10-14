@@ -436,16 +436,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const images = pet.images || [];
     const primaryImage = images[0];
     const imageUrl = primaryImage ? primaryImage.thumb_url : '/assets/images/pet-placeholder.jpg';
-    
+
     // Use animal field from individual pet API call
     let species = pet.animal || 'Unknown';
     let speciesClass = species.toLowerCase();
-    
+
     // Strip HTML from description and truncate
     const plainDescription = stripHtml(pet.description);
     const truncatedDescription = plainDescription ? plainDescription.substring(0, 150) + '...' : 'Click to learn more about this pet.';
-    
-    return '<a href="' + escapeHtml(pet.adopt_url) + '" target="_blank" rel="noopener noreferrer" ' +
+
+    // Use pet detail page URL instead of direct adoption form
+    const petId = pet.pet_id || pet.id;
+    const detailUrl = 'https://petstablished.com/pets/' + petId;
+
+    return '<a href="' + escapeHtml(detailUrl) + '" target="_blank" rel="noopener noreferrer" ' +
            'class="pet-card" data-species="' + escapeHtml(speciesClass) + '">' +
            '<img src="' + escapeHtml(imageUrl) + '" alt="' + escapeHtml(pet.name) + '" loading="lazy">' +
            '<div class="pet-details">' +
