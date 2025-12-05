@@ -22,7 +22,7 @@ hero:
     link: /donate
 announcement:
   enabled: true
-  title: 2025 Low Cost Vaccine and Microchip Clinic Dates
+  title: 2026 Low Cost Vaccine and Microchip Clinic Dates
   image: /assets/images/home/vaccination-image.jpg
   cta:
     text: View Schedule
