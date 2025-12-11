@@ -11,17 +11,17 @@ board_members:
     bio: >
       Zac has 40 years of project management, operational planning, and
       strategic planning experience in the federal government and the private
-      sector.  He retired this last year from the Department of Energy in
-      project management and before that he served in the U.S. Army for 32
-      years, retiring as a Colonel of Engineering working in both as a combat
-      and facility engineer and as an Army strategist.  From 1982 to 1996, Mr.
-      West served the Army as a reserve member and working as a process and
-      project engineer in industry from 1987 to 1996.  During this time he
-      worked on over 40 projects in various leadership and supporting roles in
-      the pulp and paper and utilities industries with focus on large
-      non-traditional fuel boilers to increase capacity over original design,
-      ensure safe operations, gain efficiency in operations, and to reduce or
-      mitigate emissions in order to meet increased compliance requirements.
+      sector.  He retired in 2024 from the Department of Energy in project
+      management and before that he served in the U.S. Army for 32 years,
+      retiring as a Colonel of Engineering working in both as a combat and
+      facility engineer and as an Army strategist.  From 1982 to 1996, Mr. West
+      served the Army as a reserve member and working as a process and project
+      engineer in industry from 1987 to 1996.  During this time, he worked on
+      over 40 projects in various leadership and supporting roles in the pulp
+      and paper and utilities industries with focus on large non-traditional
+      fuel boilers to increase capacity over original design, ensure safe
+      operations, gain efficiency in operations, and to reduce or mitigate
+      emissions in order to meet increased compliance requirements.
 
 
       In addition to volunteering with CVAS, Scouts, Veterans of Foreign Wars,
@@ -29,7 +29,7 @@ board_members:
       Club, he is a registered professional engineer in the State of Washington
       for chemical engineering and an Assistant Professor at National Defense
       University.  He is a Project Management Institute certified Project
-      Management Professional.  He has a master of science degree in Joint
+      Management Professional.  He has a Master of Science degree in Joint
       Campaign Planning and Strategy from the National Defense University, a
       Masters of Business Administration degree from Touro University
       International, and a Bachelor of Science in Pulp and Paper Science,
