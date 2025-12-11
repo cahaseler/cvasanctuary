@@ -110,6 +110,4 @@ waysToHelp:
           url: https://facebook.com/cvasanctuary
         - platform: Instagram
           url: https://instagram.com/cvasanctuary
-        - platform: TikTok
-          url: https://tiktok.com/@cvasanctuary
 ---
