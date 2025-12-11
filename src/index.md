@@ -96,7 +96,7 @@ waysToHelp:
         and/or foster.
       actions:
         - text: Foster
-          link: /foster-program
+          link: https://cahaseler.github.io/cvasanctuary/foster-program/
           type: secondary
         - text: Volunteer
           link: /volunteer-with-us
