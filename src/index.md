@@ -26,7 +26,7 @@ announcement:
   image: /assets/images/home/vaccination-image.jpg
   cta:
     text: View Schedule
-    link: /programs
+    link: /programs/
 adoption:
   enabled: true
   title: Adopt with Us
