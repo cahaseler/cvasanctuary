@@ -37,7 +37,7 @@ adoption:
   gridImage: /assets/images/common/photo-collage.png
   cta:
     text: Click Here to see Available Pets and Adoption Information
-    link: /adopt
+    link: https://cahaseler.github.io/cvasanctuary/adopt/
 programs:
   title: Our Programs
   description: Colville Valley Animal Sanctuary offers many different programs and
