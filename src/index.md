@@ -87,7 +87,7 @@ waysToHelp:
         run our programs. Donate to help CVAS continue this life-saving work!
       actions:
         - text: Donate
-          link: /donate
+          link: https://cahaseler.github.io/cvasanctuary/donate/
           type: primary
     - title: Volunteer and Foster Opportunities
       description: We have many different opportunities for volunteering and rely on
