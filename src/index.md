@@ -19,7 +19,7 @@ hero:
     or Federal programs and no one on our board is paid.
   cta:
     text: Donate to Help Us Help Them!
-    link: /donate
+    link: https://cahaseler.github.io/cvasanctuary/donate/
 announcement:
   enabled: true
   title: 2026 Low Cost Vaccine and Microchip Clinic Dates
