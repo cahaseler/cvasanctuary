@@ -99,7 +99,7 @@ waysToHelp:
           link: https://cahaseler.github.io/cvasanctuary/foster-program/
           type: secondary
         - text: Volunteer
-          link: /volunteer-with-us
+          link: https://cahaseler.github.io/cvasanctuary/volunteer-with-us/
           type: secondary
     - title: Follow Us on Social Media
       description: Facebook is the best way to hear the latest CVAS news. We post
