@@ -50,7 +50,7 @@ programs:
       description: Once a month (March - November), CVAS hosts a low cost vaccination
         and microchipping service. Click below for all the details and dates so
         you can keep your pet healthy and safe!
-      link: /programs
+      link: https://cahaseler.github.io/cvasanctuary/programs/
       linkText: Low Cost Vaccine and Microchip Clinic
       enabled: true
     - title: Foster a Pet
