@@ -69,7 +69,7 @@ programs:
         living in large communities. If you notice a colony of cats near you,
         take the appropriate action and get them altered to stop the production
         cycle.
-      link: /tnr-barn-cats
+      link: https://cahaseler.github.io/cvasanctuary/tnr-barn-cats/
       linkText: Barn Program
       enabled: true
     - title: Sponsor an Animal/Kennel
