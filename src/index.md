@@ -76,7 +76,7 @@ programs:
       description: CVAS hosts many kennels and a few full-time animal residents for
         the public to sponsor. Sponsor your favorite aspect of CVAS and get live
         updates on the progress you help make!
-      link: /sponsorship-program
+      link: https://cahaseler.github.io/cvasanctuary/sponsorship-program/
       linkText: Sponsor an Animal/Kennel
       enabled: true
 waysToHelp:
