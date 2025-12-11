@@ -58,7 +58,7 @@ programs:
         loving foster families that participate in our program. We are always in
         need of people who are looking to foster litters of kittens, senior
         cats, and more pets in unique circumstances!
-      link: /foster-program
+      link: https://cahaseler.github.io/cvasanctuary/foster-program/
       linkText: Foster Program and Application
       enabled: true
     - title: Barn Cat Program / TNR Program
