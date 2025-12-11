@@ -49,12 +49,12 @@ adoptionProcess:
     **Looking for more information on special adoption programs?**
   links:
     - text: Barn Cat Program
-      url: /tnr-barn-cats
+      url: /tnr-barn-cats/
       type: secondary
     - text: Seniors Saving Seniors
-      url: /sss
+      url: /sss/
       type: secondary
     - text: Volunteer with Us
-      url: /volunteer-with-us
+      url: /volunteer-with-us/
       type: primary
 ---

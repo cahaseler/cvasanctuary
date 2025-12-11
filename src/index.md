@@ -19,14 +19,14 @@ hero:
     or Federal programs and no one on our board is paid.
   cta:
     text: Donate to Help Us Help Them!
-    link: https://cahaseler.github.io/cvasanctuary/donate/
+    link: /donate/
 announcement:
   enabled: true
   title: 2026 Low Cost Vaccine and Microchip Clinic Dates
   image: /assets/images/home/vaccination-image.jpg
   cta:
     text: View Schedule
-    link: https://cahaseler.github.io/cvasanctuary/programs/
+    link: /programs/
 adoption:
   enabled: true
   title: Adopt with Us
@@ -37,7 +37,7 @@ adoption:
   gridImage: /assets/images/common/photo-collage.png
   cta:
     text: Click Here to see Available Pets and Adoption Information
-    link: https://cahaseler.github.io/cvasanctuary/adopt/
+    link: /adopt/
 programs:
   title: Our Programs
   description: Colville Valley Animal Sanctuary offers many different programs and
@@ -50,7 +50,7 @@ programs:
       description: Once a month (March - November), CVAS hosts a low cost vaccination
         and microchipping service. Click below for all the details and dates so
         you can keep your pet healthy and safe!
-      link: https://cahaseler.github.io/cvasanctuary/programs/
+      link: /programs/
       linkText: Low Cost Vaccine and Microchip Clinic
       enabled: true
     - title: Foster a Pet
@@ -58,7 +58,7 @@ programs:
         loving foster families that participate in our program. We are always in
         need of people who are looking to foster litters of kittens, senior
         cats, and more pets in unique circumstances!
-      link: https://cahaseler.github.io/cvasanctuary/foster-program/
+      link: /foster-program/
       linkText: Foster Program and Application
       enabled: true
     - title: Barn Cat Program / TNR Program
@@ -69,14 +69,14 @@ programs:
         living in large communities. If you notice a colony of cats near you,
         take the appropriate action and get them altered to stop the production
         cycle.
-      link: https://cahaseler.github.io/cvasanctuary/tnr-barn-cats/
+      link: /tnr-barn-cats/
       linkText: Barn Program
       enabled: true
     - title: Sponsor an Animal/Kennel
       description: CVAS hosts many kennels and a few full-time animal residents for
         the public to sponsor. Sponsor your favorite aspect of CVAS and get live
         updates on the progress you help make!
-      link: https://cahaseler.github.io/cvasanctuary/sponsorship-program/
+      link: /sponsorship-program/
       linkText: Sponsor an Animal/Kennel
       enabled: true
 waysToHelp:
@@ -87,7 +87,7 @@ waysToHelp:
         run our programs. Donate to help CVAS continue this life-saving work!
       actions:
         - text: Donate
-          link: https://cahaseler.github.io/cvasanctuary/donate/
+          link: /donate/
           type: primary
     - title: Volunteer and Foster Opportunities
       description: We have many different opportunities for volunteering and rely on
@@ -96,10 +96,10 @@ waysToHelp:
         and/or foster.
       actions:
         - text: Foster
-          link: https://cahaseler.github.io/cvasanctuary/foster-program/
+          link: /foster-program/
           type: secondary
         - text: Volunteer
-          link: https://cahaseler.github.io/cvasanctuary/volunteer-with-us/
+          link: /volunteer-with-us/
           type: secondary
     - title: Follow Us on Social Media
       description: Facebook is the best way to hear the latest CVAS news. We post

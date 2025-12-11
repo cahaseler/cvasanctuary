@@ -8,7 +8,7 @@ layout: layouts/base.njk
     <div class="hero-content">
       <h1>{{ hero.title }}</h1>
       <p class="hero-subtitle">{{ hero.subtitle }}</p>
-      <a href="{{ hero.cta.link }}" class="btn btn-primary btn-large">{{ hero.cta.text }}</a>
+      <a href="{{ hero.cta.link | url }}" class="btn btn-primary btn-large">{{ hero.cta.text }}</a>
       <p class="hero-description">{{ hero.description }}</p>
     </div>
   </div>
@@ -25,7 +25,7 @@ layout: layouts/base.njk
       <div class="announcement-text">
         <h2>{{ announcement.title }}</h2>
         <p>{{ announcement.subtitle }}</p>
-        <a href="{{ announcement.cta.link }}" class="btn btn-secondary">{{ announcement.cta.text }}</a>
+        <a href="{{ announcement.cta.link | url }}" class="btn btn-secondary">{{ announcement.cta.text }}</a>
       </div>
     </div>
   </div>
@@ -43,7 +43,7 @@ layout: layouts/base.njk
       <img src="{{ adoption.gridImage | url }}" alt="Adoptable pets" class="adoption-grid-image">
     </div>
     {% endif %}
-    <a href="{{ adoption.cta.link }}" class="btn btn-primary">{{ adoption.cta.text }}</a>
+    <a href="{{ adoption.cta.link | url }}" class="btn btn-primary">{{ adoption.cta.text }}</a>
   </div>
 </section>
 {% endif %}
@@ -61,7 +61,7 @@ layout: layouts/base.njk
       <div class="program-card">
         <h3>{{ program.title }}</h3>
         <p>{{ program.description }}</p>
-        <a href="{{ program.link }}" class="btn-link">{{ program.linkText or "Learn More" }} →</a>
+        <a href="{{ program.link | url }}" class="btn-link">{{ program.linkText or "Learn More" }} →
       </div>
       {% endif %}
       {% endfor %}
@@ -82,7 +82,7 @@ layout: layouts/base.njk
         {% if item.actions %}
         <div class="help-actions">
           {% for action in item.actions %}
-          <a href="{{ action.link }}" class="btn btn-{{ action.type }}">{{ action.text }}</a>
+          <a href="{{ action.link | url }}" class="btn btn-{{ action.type }}">{{ action.text }}</a>
           {% endfor %}
         </div>
         {% endif %}

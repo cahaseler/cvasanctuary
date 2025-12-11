@@ -15,7 +15,7 @@ tnrProgram:
   resources:
     spayNeuterLink:
       text: "Click here to see other low cost spay/neuter options in our area"
-      url: "/community-resources"
+      url: "/community-resources/"
     aspca:
       text: "More information about cat colonies and TNR programs can be found here"
       url: "https://www.aspca.org/animal-homelessness/shelter-intake-and-surrender/closer-look-community-cats"

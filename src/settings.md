@@ -27,71 +27,71 @@ contact:
 # Main Navigation
 navigation:
   - label: "About CVAS"
-    url: "/about-cvas"
+    url: "/about-cvas/"
     dropdown:
       - label: "Mission & Vision"
-        url: "/about-cvas"
+        url: "/about-cvas/"
       - label: "Impact"
-        url: "/cvas-impact"
+        url: "/cvas-impact/"
       - label: "Our Board"
-        url: "/our-board"
+        url: "/our-board/"
   - label: "Adopt"
-    url: "/adopt"
+    url: "/adopt/"
   - label: "Volunteer"
-    url: "/volunteer-with-us"
+    url: "/volunteer-with-us/"
   - label: "Foster A Pet"
-    url: "/foster-program"
+    url: "/foster-program/"
   - label: "Programs"
-    url: "/programs"
+    url: "/programs/"
     dropdown:
       - label: "Vaccination Clinic"
-        url: "/programs"
+        url: "/programs/"
       - label: "Pet Food Bank"
-        url: "/pet-food-bank"
+        url: "/pet-food-bank/"
       - label: "TNR & Barn Cats"
-        url: "/tnr-barn-cats"
+        url: "/tnr-barn-cats/"
       - label: "Sponsorships"
-        url: "/sponsorship-program"
+        url: "/sponsorship-program/"
       - label: "Seniors Saving Seniors"
-        url: "/sss"
+        url: "/sss/"
   - label: "News"
-    url: "/news"
+    url: "/news/"
     dropdown:
       - label: "Newsletter"
-        url: "/newsletter"
+        url: "/newsletter/"
       - label: "Partners"
-        url: "/communitypartners"
+        url: "/communitypartners/"
       - label: "Forever Angels"
-        url: "/forever-angels"
+        url: "/forever-angels/"
   - label: "Kitten Cam Live"
-    url: "/kitten-cam-live"
+    url: "/kitten-cam-live/"
   - label: "Resources"
-    url: "/community-resources"
+    url: "/community-resources/"
   - label: "Contact and Hours"
-    url: "/contact-us"
+    url: "/contact-us/"
 
 # Donate Button
 donateButton:
   label: "Donate"
-  url: "/donate"
+  url: "/donate/"
 
 # Footer Info Section
 footerInfo:
   - label: "Mission"
-    url: "/about-cvas"
+    url: "/about-cvas/"
   - label: "Partners"
-    url: "/communitypartners"
+    url: "/communitypartners/"
   - label: "Programs"
-    url: "/programs"
+    url: "/programs/"
 
 # Footer Action Section
 footerAction:
   - label: "Volunteer"
-    url: "/volunteer-with-us"
+    url: "/volunteer-with-us/"
   - label: "Contact"
-    url: "/contact-us"
+    url: "/contact-us/"
   - label: "Donate"
-    url: "/donate"
+    url: "/donate/"
 
 # Social Media
 social:
@@ -103,7 +103,7 @@ social:
 newsletter:
   title: "Newsletter"
   buttonText: "Sign Up"
-  url: "/newsletter"
+  url: "/newsletter/"
 
 # Badge
 badge:
