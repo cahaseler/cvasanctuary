@@ -61,7 +61,7 @@ layout: layouts/base.njk
       <div class="program-card">
         <h3>{{ program.title }}</h3>
         <p>{{ program.description }}</p>
-        <a href="{{ program.link | url }}" class="btn-link">{{ program.linkText or "Learn More" }} →
+        <a href="{{ program.link | url }}" class="btn-link">{{ program.linkText or "Learn More" }} →</a>
       </div>
       {% endif %}
       {% endfor %}

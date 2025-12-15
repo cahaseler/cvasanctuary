@@ -3,6 +3,15 @@ import Image from "@11ty/eleventy-img";
 import markdownIt from "markdown-it";
 
 export default function(eleventyConfig) {
+  function normalizePathPrefix(prefix) {
+    if (!prefix) return "/";
+    let normalized = prefix.trim();
+    if (!normalized.startsWith("/")) normalized = `/${normalized}`;
+    if (!normalized.endsWith("/")) normalized = `${normalized}/`;
+    if (normalized === "//") return "/";
+    return normalized;
+  }
+
   // Initialize markdown-it
   const md = new markdownIt({
     html: true,
@@ -17,6 +26,7 @@ export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/assets/css");
   eleventyConfig.addPassthroughCopy("src/assets/js");
   eleventyConfig.addPassthroughCopy("src/assets/images");
+  eleventyConfig.addPassthroughCopy("src/site.webmanifest");
 
   // Collections
   eleventyConfig.addCollection("settings", function(collection) {
@@ -90,7 +100,13 @@ export default function(eleventyConfig) {
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
     dataTemplateEngine: "njk",
-    // Path prefix for GitHub Pages deployment
-    pathPrefix: process.env.NODE_ENV === 'production' ? '/cvasanctuary/' : '/'
+    // Path prefix:
+    // - GitHub Pages project site uses `/cvasanctuary/`
+    // - Custom domain should use `/`
+    // Override with `ELEVENTY_PATH_PREFIX` when needed.
+    pathPrefix: normalizePathPrefix(
+      process.env.ELEVENTY_PATH_PREFIX ||
+      (process.env.NODE_ENV === 'production' ? '/cvasanctuary/' : '/')
+    )
   };
 };

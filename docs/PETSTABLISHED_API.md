@@ -250,39 +250,30 @@ GET https://petstablished.com/api/v2/public/search
 Since the API lacks CORS headers, you must implement a server-side proxy:
 
 ```javascript
-// Example Netlify Function (netlify/functions/petstablished-proxy.js)
-exports.handler = async (event) => {
-  const { path, ...params } = event.queryStringParameters;
-  const apiUrl = `https://petstablished.com/api/v2/public/${path}`;
-  
-  const queryString = new URLSearchParams(params).toString();
-  const fullUrl = queryString ? `${apiUrl}?${queryString}` : apiUrl;
-  
-  try {
-    const response = await fetch(fullUrl);
-    const data = await response.json();
-    
-    return {
-      statusCode: 200,
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      },
-      body: JSON.stringify(data)
-    };
-  } catch (error) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: 'Failed to fetch data' })
-    };
-  }
-};
+// Example Vercel Edge Function (api/api/petstablished.js)
+// See this repo's implementation for pagination + caching headers.
+export const config = { runtime: 'edge' };
+
+export default async function handler(request) {
+  const url = 'https://petstablished.com/api/v2/public/search/shelter_show/2928982';
+  const response = await fetch(url, {
+    headers: { Accept: 'application/json' },
+  });
+
+  return new Response(await response.text(), {
+    status: response.status,
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    },
+  });
+}
 ```
 
 ### Caching Strategy
 Implement caching to reduce API calls and improve performance:
 
-1. **Build-time caching**: Fetch and cache data during static site generation
+1. **Edge caching**: Set `Cache-Control` on proxy responses (e.g., `s-maxage` + `stale-while-revalidate`)
 2. **Runtime caching**: Cache API responses in browser with reasonable TTL
 3. **Fallback data**: Store last known good data for when API is unavailable
 

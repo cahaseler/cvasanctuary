@@ -348,33 +348,37 @@ document.addEventListener('DOMContentLoaded', function() {
   const petsLoading = document.getElementById('pets-loading');
   const petsError = document.getElementById('pets-error');
   const filterBtns = document.querySelectorAll('.filter-btn');
+  const placeholderImageUrl = '{{ "/assets/images/common/cvas-logo.jpg" | url }}';
   
   let allPets = [];
   let currentFilter = 'all';
   
-  // Complete breed to animal mapping from shelter_filters API response
-  const breedToAnimal = {};
-  
-  // Cat breeds
-  ["Domestic Medium Hair", "Domestic Long Hair", "Domestic Shorthair", "Domestic Short Hair", "Domestic Mediumhair", "American Short Hair", "Domestic Longhair", "Siamese", "Tabby", "Himalayan", "Siberian", "Persian", "Colorpoint Short Hair", "Other", "Russian Blue", "Ragdoll", "Tuxedo", "Tortoiseshell", "Manx", "Snowshoe", "Maine Coon", "Hemingway/Polydactyl", "Polydactyl/Hemingway", "Calico", "Turkish Van", "Norwegian Forest Cat", "Chausie", "Mixed Breed", "Bengal", "Abyssinian", "American Bobtail", "American Curl", "American Shorthair", "American Wire Hair", "American Wirehair", "Balinese", "Birman", "Bombay", "British Short Hair", "British Shorthair", "Burmese", "Canadian Hairless", "Chartreux", "Chaussie", "Cornish Rex", "Cymric", "Devon Rex", "Egyptian Mau", "European Burmese", "Exotic", "Havana Brown", "Japanese Bobtail", "Javanese", "Korat", "LaPerm", "Munchkin", "Nebelung", "Ocicat", "Oriental", "Oriental Long Hair", "Oriental Short Hair", "RagaMuffin", "Savannah", "Scottish Fold", "Selkirk Rex", "Singapura", "Somali", "Sphynx", "Tiger", "Tonkinese", "Turkish Angora", "Turkish Va", "Island Mix", "Unknown", "Dilute Tortoiseshell", "DSH", "Mixed Breed (Medium)", "Tortie"].forEach(breed => breedToAnimal[breed] = "Cat");
-  
-  // Dog breeds  
-  ["Golden Retriever", "Bernese Mountain Dog", "Terrier (Unknown Type, Small)", "Bichon Frise", "Border Collie", "Pembroke Welsh Corgi", "Chesapeake Bay Retriever", "Australian Cattle Dog", "Labrador Retriever", "Shepherd (Unknown Type)", "American Pit Bull Terrier", "Husky", "Rottweiler", "Australian Shepherd", "Jack Russell Terrier", "Poodle (Standard)", "Chihuahua", "Great Pyrenees", "Mixed Breed", "Labradoodle", "Siberian Husky", "German Shepherd Dog", "Boston Terrier", "Pit Bull Terrier", "Corgi", "Papillon", "Anatolian Shepherd", "Collie", "Blue Heeler", "Akbash", "Dachshund", "Other", "Pomeranian", "Wirehaired Jack Russell Terrier", "Boxer", "Shepherds (All Types)", "St. Bernard", "Catahoula Leopard Dog", "Black Mouth Cur", "Shih Tzu", "Nova Scotia Duck-Tolling Retriever", "Cardigan Welsh Corgi", "Tibetan Mastiff", "Schnauzer (Standard)", "Mastiff", "Yorkie, Yorkshire Terrier", "Whippet", "Rhodesian Ridgeback", "Havanese", "Karelian Bear Dog", "Great Dane", "Cockapoo", "Poodles (All Types)", "English Shepherd", "Springer Spaniel", "Cairn Terrier", "Staffordshire Bull Terrier", "Setter (Unknown Type)", "Airedale Terrier", "American Bully", "Dutch Shepherd", "Miniature Poodle", "Beagle", "Bluetick Coonhound", "Shiba Inu", "American Eskimo Dog", "Alaskan Malamute", "Bloodhound", "German Shorthaired Pointer", "Sheltie, Shetland Sheepdog", "Hound (Unknown Type)", "Skye Terrier", "Yorkie, Yorkshire Terrie", "Plott Hound", "Poodle (Miniature)", "Unknown", "Irish Setter", "Miniature Pinscher", "American Bulldog", "Maltese", "Goldendoodle", "French Bulldog", "Silky Terrier", "Portuguese Water Dog", "Basset Hound", "Patterdale Terrier (Fell Terrier)", "Pug", "Affenpinscher", "Afghan Hound", "Akita", "Alaskan Klee Kai", "American Hairless Terrier", "American Staffordshire Terrier", "American Water Spaniel", "Australian Kelpie", "Australian Terrier", "Basenji", "Basset Griffon Vendeen", "Bearded Collie", "Beauceron", "Bedlington Terrier", "Belgian Laekenois", "Belgian Malinois", "Belgian Shepherd", "Belgian Tervuren", "Black and Tan Coonhound", "Blue Lacy/Texas Lacy", "Bobtail", "Boerboel Mastiff", "Bolognese", "Border Terrier", "Borzoi", "Bouvier des Flandres", "Boykin Spaniel", "Briard", "Brittany", "Brussels Griffon", "Bull Terrier", "Bulldog", "Bullmastiff", "Canaan Dog", "Canary Dog", "Cane Corso", "Carolina Dog", "Cattle Dog", "Caucasion Shepherd", "Cavalier King Charles Spaniel", "Chinese Crested", "Chow Chow", "Clumber Spaniel", "Cocker Spaniel", "Coconut Retriever", "Coonhound", "Coonhound (Unknown Type)", "Coton de Tulear", "Curly-Coated Retriever", "Cute Canine Crosses", "Dalmatian", "Dandie Dinmont Terrier", "Deerhound", "Doberman Pinscher", "Dogo Argentino", "Dogue de Bordeaux", "English (Redtick) Coonhound", "English Bulldog", "English Mastiff", "English Pointer", "English Setter", "English Sheepdog", "English Springer Spaniel", "English Toy Spaniel", "Entlebucher", "Eskimo Dog", "Eskimo Spitz", "Feist", "Field Spaniel", "Fila Brasileiro", "Finnish Lapphund", "Finnish Spitz", "Flat-Coated Retriever", "Fox Terrier (Smooth)", "Fox Terrier (Toy)", "Fox Terrier (Wirehaired)", "Foxhound", "French Mastiff", "Gentle Giants", "German Pinscher", "German Wirehaired Pointer", "Giant Schnauzer", "Glen of Imaal Terrier", "Gordon Setter", "Greater Swiss Mountain Dog", "Greyhound", "Halden Hound (Haldenstrover)", "Harrier", "Hounds (All Types)", "Hovawart", "Hungarian Puli", "Hungarian Water Dog", "Ibizan Hound", "Irish Terrier", "Irish Water Spaniel", "Irish Wolfhound", "Island Mix", "Italian Greyhound", "Italian Spinone", "Japanese Chin", "Jindo", "Kai Dog", "Keeshond", "Kerry Blue Terrier", "King Charles Spaniel", "Kishu", "Komondor", "Kuvasz", "Kyi Leo", "Lakeland Terrier", "Lancashire Heeler", "Leonberger", "Lhasa Apso", "Löwchen", "Manchester Terrier", "Maremma Sheepdog", "Mexican Hairless", "Miniature Schnauzer", "Miniature Dachshund", "Mountain Cur", "Munsterlander", "Neapolitan Mastiff", "Newfoundland", "Norfolk Terrier", "Norwegian Buhund", "Norwegian Elkhound", "Norwich Terrier", "Old English Sheepdog", "Otterhound", "Parson Russell Terrier", "Pekingese", "Petit Basset Griffon Vendeen", "Pharaoh Hound", "Podengo Portugueso", "Pointer", "Polish Lowland Sheepdog", "Poodle (Toy or Tea Cup)", "Presa Canario", "Puli", "Pumi", "Rat Terrier", "Redbone Coonhound", "Redtick Coonhound", "Retriever (Unknown Type)", "Retrievers (All Types)", "Russian Wolfhound", "Saluki", "Samoyed", "Schiller Hound", "Schipperke", "Schnauzer (Giant)", "Schnauzer (Miniature)", "Scottie, Scottish Terrier", "Scottish Deerhound", "Sealyham Terrier", "Shar Pei", "Sloughi", "Smooth Fox Terrier", "Snow Dogs (Husky/Fluffy Types)", "Spaniel (Unknown Type)", "Spaniels (Medium)", "Spaniels (Small)", "Spitz (Unknown Type, Large)", "Spitz (Unknown Type, Medium)", "Spitz (Unknown Type, Small)", "Spitz Types (Medium)", "Standard Poodle", "Standard Schnauzer", "Sussex Spaniel", "Swedish Vallhund", "Tea Cup Poodle", "Terrier (Unknown Type, Medium)", "Terriers (Medium)", "Terriers (Small)", "Thai Ridgeback", "Tibetan Spaniel", "Tibetan Terrier", "Tosa Inu", "Toy Fox Terrier", "Toy Poodle", "Treeing Walker Coonhound", "Vizsla", "Weimaraner", "Welsh Corgi", "Welsh Springer Spaniel", "Welsh Terrier", "Westie, West Highland White Terrier", "Wheaten Terrier", "White German Shepherd", "Wirehaired Fox Terrier", "Wirehaired Pointing Griffon", "Xoloitzcuintle/Mexican Hairless", "Icelandic Sheepdog", "Black Russian Terrier", "Aussiedoodle", "31 Flavors Mixes", "Breed Olde English Bulldog", "Caucasian Shepherd", "Formosa Mountain Dog", "German Shepherd", "Shepherd", "Smithfield", "Spaniel", "Spaniels (All Types)", "Spitz Types (Small)", "Terrier", "Vietnamese/Phu Quoc Ridgeback", "Yorkshire Terrier Yorkie", "poodle (all types)", "poodle (unknown type)"].forEach(breed => breedToAnimal[breed] = "Dog");
-  
-  // Bird breeds
-  ["African Grey", "Amazon", "Brotogeris", "Budgie", "Button Quail", "Caique", "Canary", "Chicken", "Cockatiel", "Cockatoo", "Conure", "Dove", "Duck", "Eclectus", "Emu", "Finch", "Goose", "Guinea Fowl", "Kakariki", "Lorikeet", "Lovebird", "Macaw", "Mynah", "Ostrich", "Other/Unknown", "Parakeet - Other", "Parakeet - Quaker", "Parrot - Other", "Parrotlet", "Peacock", "Pheasant", "Pigeon", "Pionus", "Poicephalus (including Senegal and Meyer's)", "Quail", "Rhea", "Ringneck", "Rosella", "Softbill - Other", "Swan", "Toucan", "Turkey"].forEach(breed => breedToAnimal[breed] = "Bird");
-  
-  // Farm animal breeds
-  ["Alpaca", "Cow or Bull", "Goat", "Llama", "Other", "Pig (Farm)", "Pig (Potbellied)", "Sheep"].forEach(breed => breedToAnimal[breed] = "Farm Animal");
-  
-  // Horse breeds
-  ["Andalusian", "Appaloosa", "Appendix", "Arabian", "Belgian", "Clydesdale", "Curly Horse", "Donkey", "Draft", "Friesian", "Gaited", "Grade", "Gypsy Vanner", "Haflinger", "Lipizzaner", "Miniature", "Missouri Foxtrotter", "Morgan", "Mustang", "Norwegian Fjord", "Other/Unknown", "Paint/Pinto", "Palomino", "Paso Fino", "Percheron", "Peruvian Paso", "Pony - Chincoteague", "Pony - Connemara", "Pony - Dales", "Pony - Dartmoor", "Pony - Fell", "Pony - New Forest", "Pony - Other", "Pony - Shetland", "Pony - Welsh", "Pony - of America", "Quarterhorse", "Rocky Mountain", "Saddlebred", "Standardbred", "Tennessee Walking Horse", "Thoroughbred", "Trakhener", "Warmblood"].forEach(breed => breedToAnimal[breed] = "Horse");
-  
-  // Rabbit breeds
-  ["American", "American Fuzzy Lop", "American Sable", "Angora, English", "Angora, French", "Angora, Giant", "Angora, Satin", "Belgian Hare", "Beveren", "Blanc de Hotot", "Britannia Petite", "Californian", "Champagne D'Argent", "Checkered Giant", "Chinchilla", "Chinchilla, American", "Chinchilla, Giant", "Chinchilla, Standard", "Cinnamon", "Creme D'Argent", "Dutch", "Dwarf", "Dwarf Hotot", "English Lop", "English Spot", "Flemish Giant", "Florida White", "French-Lop", "Harlequin", "Havana", "Himalayan", "Holland Lop", "Holland-Lop", "Hotot", "Jersey Wooly", "Lilac", "Lionhead", "Lop Eared", "Lop, English", "Lop, French", "Lop, Holland", "Lop-Eared", "Mini Lop", "Mini Rex", "Mini Satin", "Mini-Lop", "Mix", "Netherland Dwarf", "New Zealand", "Other/Unknown", "Palomino", "Polish", "Rex", "Rhinelander", "Satin", "Silver", "Silver Fox", "Silver Marten", "Tan", "Thrianta"].forEach(breed => breedToAnimal[breed] = "Rabbit");
-  
-  // Small animal breeds
-  ["Abyssinian Guinea Pig", "American Guinea Pig", "Chinchilla", "Degu", "Ferret", "Gerbil", "Guinea Pig", "Hamster", "Hedgehog", "Mouse", "Prairie Dog", "Rat", "Roborovski Hamster", "Skunk", "Sugar Glider"].forEach(breed => breedToAnimal[breed] = "Small Animal");
+  function normalizeBreed(breed) {
+    return (breed || '').toString().trim().toLowerCase();
+  }
+
+  function buildBreedSets(shelterFilters) {
+    const breeds = (shelterFilters && shelterFilters.breeds) ? shelterFilters.breeds : {};
+    const catBreeds = new Set((breeds.cat || []).map(normalizeBreed));
+    const dogBreeds = new Set((breeds.dog || []).map(normalizeBreed));
+    return { catBreeds, dogBreeds };
+  }
+
+  function classifySpecies(pet, breedSets) {
+    const normalizedBreed = normalizeBreed(pet.primary_breed);
+    const inCat = normalizedBreed ? breedSets.catBreeds.has(normalizedBreed) : false;
+    const inDog = normalizedBreed ? breedSets.dogBreeds.has(normalizedBreed) : false;
+
+    const speciesTags = [];
+    if (inCat) speciesTags.push('cat');
+    if (inDog) speciesTags.push('dog');
+
+    // If breed is ambiguous (in both sets) or unknown, include in both so it doesn't get filtered out.
+    const finalTags = speciesTags.length > 0 ? speciesTags : ['cat', 'dog'];
+    const speciesLabel = finalTags.length === 2 ? 'Cat/Dog' : (finalTags[0] === 'cat' ? 'Cat' : 'Dog');
+
+    return { ...pet, speciesTags: finalTags, speciesLabel };
+  }
 
   // Load pets from API
   async function loadPets() {
@@ -388,13 +392,8 @@ document.addEventListener('DOMContentLoaded', function() {
       const data = await response.json();
       const shelterPets = data.shelter_pets || [];
       
-      // Add animal type based on breed mapping
-      const petsWithAnimal = shelterPets.map(pet => ({
-        ...pet,
-        animal: breedToAnimal[pet.primary_breed] || 'Unknown'
-      }));
-      
-      allPets = petsWithAnimal;
+      const breedSets = buildBreedSets(data.shelter_filters);
+      allPets = shelterPets.map(pet => classifySpecies(pet, breedSets));
       petsLoading.style.display = 'none';
       displayPets(allPets);
       
@@ -435,11 +434,10 @@ document.addEventListener('DOMContentLoaded', function() {
   function createPetCard(pet) {
     const images = pet.images || [];
     const primaryImage = images[0];
-    const imageUrl = primaryImage ? primaryImage.thumb_url : '/assets/images/pet-placeholder.jpg';
+    const imageUrl = primaryImage ? primaryImage.thumb_url : placeholderImageUrl;
 
-    // Use animal field from individual pet API call
-    let species = pet.animal || 'Unknown';
-    let speciesClass = species.toLowerCase();
+    const species = pet.speciesLabel || 'Unknown';
+    const speciesClass = (pet.speciesTags || []).join(' ');
 
     // Strip HTML from description and truncate
     const plainDescription = stripHtml(pet.description);
@@ -479,7 +477,7 @@ document.addEventListener('DOMContentLoaded', function() {
       let filteredPets = allPets;
       if (currentFilter !== 'all') {
         filteredPets = allPets.filter(pet => {
-          return pet.animal && pet.animal.toLowerCase() === currentFilter;
+          return pet.speciesTags && pet.speciesTags.includes(currentFilter);
         });
       }
       

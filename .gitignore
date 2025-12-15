@@ -1,6 +1,9 @@
 # Dependencies
 node_modules/
 
+# Eleventy cache
+.cache/
+
 # Build output
 _site/
 dist/
@@ -16,6 +19,7 @@ dist/
 # Development and testing files
 screenshots/
 screenshots-comparison/
+comparison-results/
 scraped-content/
 test-results/
 playwright-report/
@@ -47,3 +51,8 @@ Thumbs.db
 # AI/Claude configuration
 CLAUDE.md
 .claude/
+AGENTS.md
+
+# Local working notes / artifacts
+.private-journal/
+code-reviews/
