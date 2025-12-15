@@ -60,7 +60,7 @@ This is the official website for Colville Valley Animal Sanctuary (CVAS), a mode
 
 - **Static Site Generator**: Eleventy (11ty) - builds HTML from templates
 - **CMS**: PagesCMS - Git-based content management
-- **API**: Vercel Edge Function proxies Petstablished API (handles CORS)
+- **API**: Vercel Edge Function in `api/` proxies Petstablished API (handles CORS)
 - **Hosting**: GitHub Pages with GitHub Actions for deployment
 - **Templates**: Nunjucks (.njk files)
 
@@ -71,10 +71,13 @@ This is the official website for Colville Valley Animal Sanctuary (CVAS), a mode
 npm install
 
 # Run development server
-npx eleventy --serve
+npm run dev
 
-# Build for production
-npx eleventy --pathprefix=/cvasanctuary/
+# Build
+npm run build
+
+# Build (GitHub Pages path prefix)
+ELEVENTY_PATH_PREFIX=/cvasanctuary/ npm run build
 ```
 
 ### Project Structure
@@ -142,9 +145,16 @@ The site automatically deploys when changes are pushed to GitHub:
 ### API Configuration
 
 The Petstablished API proxy is hosted on Vercel:
-- Endpoint: https://cvasanctuary.vercel.app/api/petstablished
+- Endpoint: https://cvas-api.vercel.app/api/petstablished
 - Fetches from: Petstablished shelter ID 2928982
 - Caches responses for 5 minutes
+
+Reference docs:
+- `docs/PETSTABLISHED_API.md`
+- `api/README.md`
+ 
+DNS notes for the future custom domain:
+- `docs/DNS-SETUP.md`
 
 ## Troubleshooting
 

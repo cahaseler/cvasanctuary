@@ -2,42 +2,54 @@
 layout: layouts/base.njk
 ---
 
-<section class="hero hero-page">
+<section class="simple-hero">
   <div class="container">
-    <div class="hero-content">
-      <h1>{{ title }}</h1>
-    </div>
+    <h1>{{ title }}</h1>
+    {% if description %}
+    <p class="simple-hero-subtitle">{{ description }}</p>
+    {% endif %}
   </div>
 </section>
 
-<section class="content-main">
+<section class="simple-content">
   <div class="container">
-    <div class="content-wrapper">
-      <div class="coming-soon">
-        <h2>This page is coming soon.</h2>
-        <p>We're working hard to bring you an improved experience. Check back soon!</p>
-      </div>
+    <div class="simple-content-wrapper">
+      {{ content | safe }}
     </div>
   </div>
 </section>
 
 <style>
-.coming-soon {
+.simple-hero {
+  background: linear-gradient(135deg, #4a7c59 0%, #6b9e77 100%);
+  color: white;
+  padding: 4rem 0;
+}
+
+.simple-hero h1 {
+  color: white;
+  margin: 0;
   text-align: center;
-  padding: 4rem 2rem;
-  max-width: 600px;
+}
+
+.simple-hero-subtitle {
+  color: rgba(255, 255, 255, 0.95);
+  max-width: 900px;
+  margin: 1rem auto 0;
+  text-align: center;
+}
+
+.simple-content {
+  padding: 3rem 0 5rem;
+  background: var(--color-bg);
+}
+
+.simple-content-wrapper {
+  max-width: 900px;
   margin: 0 auto;
-}
-
-.coming-soon h2 {
-  color: var(--color-primary);
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.coming-soon p {
-  color: var(--color-text-secondary);
-  font-size: 1.1rem;
-  line-height: 1.6;
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 </style>

@@ -1,6 +1,8 @@
 # Product Requirements Document
 ## Animal Shelter Website Modernization
 
+> Note: This document is historical (early planning). The current implementation uses Eleventy + PagesCMS, deployed on GitHub Pages, with a Vercel Edge Function proxy in `api/` for Petstablished CORS.
+
 ### Executive Summary
 Replace an existing animal shelter website that uses problematic Petstablished iframes with a modern, maintainable solution using a static site generator, headless CMS, and API integration.
 

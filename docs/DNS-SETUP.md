@@ -177,4 +177,4 @@ For questions about:
 
 ---
 
-**Last Updated:** $(date +"%B %d, %Y")
+**Last Updated:** 2025-12-15
