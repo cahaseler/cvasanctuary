@@ -27,6 +27,7 @@ export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/assets/js");
   eleventyConfig.addPassthroughCopy("src/assets/images");
   eleventyConfig.addPassthroughCopy("src/site.webmanifest");
+  eleventyConfig.addPassthroughCopy("src/CNAME");
 
   // Collections
   eleventyConfig.addCollection("settings", function(collection) {
