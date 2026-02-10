@@ -13,9 +13,5 @@ pageContent:
     Can't Foster? Support our Foster Program by shopping our [Foster Amazon Wishlist](https://www.amazon.com/hz/wishlist/ls/2LEEDG5CM9U2G?ref_=wl_share)!
   rightImage: /assets/images/foster/clairebear.png
   rightImageAlt: Claire Bear the cat
-forms:
-  - title: CAT FOSTER CARE APPLICATION
-    url: https://petstablished.com/foster_application/new/shelter_id/2422664
-  - title: DOG FOSTER CARE APPLICATION
-    url: https://petstablished.com/foster_application/new/shelter_id/2422664
+forms: []
 ---

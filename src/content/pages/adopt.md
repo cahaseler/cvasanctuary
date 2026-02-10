@@ -13,11 +13,16 @@ adoptContent:
     Does your heart long for a furrever companion? Do you need the purrfect pet
     to make home feel like, well, home? Colville Valley Animal Sanctuary is
     Stevens County's go-to for cat and dog adoptions! We love bringing fur
-    babies and families together. Scroll through our adoptable animals listed
-    below. Click on the adopt button to start the adoption process! You can
+    babies and families together. Browse our adoptable animals below and click
+    on any pet to see more details and start the adoption process! You can
     reach us at 509-684-1475 if you have any questions.
 petsSection:
   title: Available for Adoption
+  apiUrl: https://cvas-api.vercel.app/api/shelterluv
+  shelterluvBaseUrl: https://www.shelterluv.com
+  donateUrl: https://www.cvasanctuary.org/donate
+  fallbackUrl: https://www.shelterluv.com/available_pets/15622
+  placeholderImage: /assets/images/common/cvas-logo.jpg
 adoptionHours:
   title: "ADOPTION HOURS: TUESDAY - SATURDAY BY APPOINTMENT, HOURS 10AM-3PM.
     SUNDAY CLOSED, AND MONDAY CLOSED FOR ADOPTIONS."

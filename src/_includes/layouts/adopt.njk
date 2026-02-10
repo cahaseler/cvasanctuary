@@ -38,42 +38,85 @@ layout: layouts/base.njk
   <div class="container">
     <div class="pets-header">
       <h3>{{ petsSection.title }}</h3>
-      <div class="pets-filters">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="dog">Dogs</button>
-        <button class="filter-btn" data-filter="cat">Cats</button>
-      </div>
     </div>
-    
+
+    <!-- Species filter pills (built dynamically from data) -->
+    <div class="pets-filters" id="species-filters"></div>
+
+    <!-- Advanced filters row -->
+    <div class="pets-advanced-filters" id="advanced-filters" style="display: none;">
+      <div class="filter-group search-group">
+        <label for="search-name" class="sr-only">Search by name</label>
+        <input type="text" id="search-name" placeholder="Search by name..." class="filter-input" autocomplete="off">
+      </div>
+      <div class="filter-group">
+        <label for="filter-sex">Sex</label>
+        <select id="filter-sex" class="filter-select">
+          <option value="all">Any Sex</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="filter-age">Age</label>
+        <select id="filter-age" class="filter-select">
+          <option value="all">Any Age</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="filter-breed">Breed</label>
+        <input type="text" id="filter-breed" list="breed-list" placeholder="Any breed..." class="filter-input" autocomplete="off">
+        <datalist id="breed-list"></datalist>
+      </div>
+      <div class="filter-group">
+        <label for="sort-by">Sort by</label>
+        <select id="sort-by" class="filter-select">
+          <option value="longest-stay">Longest Stay</option>
+          <option value="shortest-stay">Newest Arrivals</option>
+          <option value="name-az">Name (A-Z)</option>
+          <option value="name-za">Name (Z-A)</option>
+        </select>
+      </div>
+      <button class="filter-clear" id="clear-filters" style="display: none;">Clear Filters</button>
+    </div>
+
+    <!-- Results count -->
+    <div class="pets-result-count" id="pets-result-count" style="display: none;">
+      <p><span id="visible-count">0</span> pets found</p>
+    </div>
+
     <!-- Loading State -->
     <div class="loading" id="pets-loading">
       <div class="spinner"></div>
       <p>Loading available pets...</p>
     </div>
-    
+
     <!-- Error State -->
     <div class="error-message" id="pets-error" style="display: none;">
       <p>Unable to load pets at this time. Please try again later.</p>
-      <a href="https://petstablished.com/organization/colville-valley-animal-sanctuary" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-        View Pets on PetStablished
+      <a href="{{ petsSection.fallbackUrl }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+        View Pets on Shelterluv
       </a>
     </div>
-    
+
     <!-- Pet Cards -->
-    <div class="pets-grid" id="pets-grid">
-      <!-- Pet cards will be dynamically loaded here -->
-    </div>
+    <div class="pets-grid" id="pets-grid"></div>
   </div>
 </section>
+
+<!-- Detail Modal -->
+<div class="pet-modal-overlay" id="pet-modal-overlay" style="display: none;">
+  <div class="pet-modal" id="pet-modal" role="dialog" aria-modal="true" aria-label="Pet Details">
+    <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+    <div class="modal-content" id="modal-content"></div>
+  </div>
+</div>
 
 <!-- Adoption Process Section -->
 <section class="adopt-process">
   <div class="container">
-    <h3>{{ adoptionProcess.title }}</h3>
     <div class="process-content">
       {{ adoptionProcess.content | markdown | safe }}
     </div>
-    
+
     {% if adoptionProcess.links %}
     <div class="process-links">
       {% for link in adoptionProcess.links %}
@@ -149,10 +192,7 @@ layout: layouts/base.njk
 }
 
 .pets-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
 }
 
 .pets-header h3 {
@@ -160,9 +200,12 @@ layout: layouts/base.njk
   font-size: 2rem;
 }
 
+/* Species filter pills */
 .pets-filters {
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
 }
 
 .filter-btn {
@@ -174,6 +217,7 @@ layout: layouts/base.njk
   cursor: pointer;
   transition: all 0.3s ease;
   font-weight: 500;
+  font-size: 0.9rem;
 }
 
 .filter-btn:hover,
@@ -182,6 +226,91 @@ layout: layouts/base.njk
   color: white;
 }
 
+/* Advanced filters */
+.pets-advanced-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  align-items: flex-end;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.filter-group label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.filter-select,
+.filter-input {
+  padding: 8px 12px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: var(--color-text);
+  background: white;
+  min-width: 140px;
+  transition: border-color 0.2s;
+}
+
+.filter-select:focus,
+.filter-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(47, 110, 63, 0.15);
+}
+
+.search-group {
+  flex-grow: 1;
+  min-width: 200px;
+}
+
+.search-group .filter-input {
+  width: 100%;
+}
+
+.filter-clear {
+  background: transparent;
+  border: none;
+  color: var(--color-primary);
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 8px 0;
+  text-decoration: underline;
+}
+
+.filter-clear:hover {
+  opacity: 0.8;
+}
+
+/* Results count */
+.pets-result-count {
+  margin-bottom: 1rem;
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+}
+
+/* Loading */
 .loading {
   text-align: center;
   padding: 4rem 0;
@@ -208,6 +337,7 @@ layout: layouts/base.njk
   color: var(--color-text-secondary);
 }
 
+/* Pet cards grid */
 .pets-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -220,20 +350,49 @@ layout: layouts/base.njk
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  text-decoration: none;
-  color: inherit;
+  cursor: pointer;
 }
 
-.pet-card:hover {
+.pet-card:hover,
+.pet-card:focus-visible {
   transform: translateY(-5px);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
-  text-decoration: none;
 }
 
-.pet-card img {
+.pet-card:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.pet-card-image {
+  position: relative;
+}
+
+.pet-card-image img {
   width: 100%;
   height: 250px;
   object-fit: cover;
+  display: block;
+}
+
+.pet-badge {
+  position: absolute;
+  bottom: 8px;
+  font-size: 0.75rem;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-weight: 500;
+  color: white;
+}
+
+.pet-badge.foster {
+  left: 8px;
+  background: #e67e22;
+}
+
+.pet-badge.altered {
+  right: 8px;
+  background: #27ae60;
 }
 
 .pet-details {
@@ -261,6 +420,22 @@ layout: layouts/base.njk
   color: var(--color-text-secondary);
 }
 
+.pet-attributes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+}
+
+.pet-attr-tag {
+  background: var(--color-bg, #f5f5f5);
+  color: var(--color-text-secondary);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+}
+
+/* Adoption hours */
 .adopt-hours {
   padding: 60px 0;
   background: white;
@@ -274,17 +449,7 @@ layout: layouts/base.njk
   text-align: center;
 }
 
-.hours-content {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.hours-content p {
-  font-size: 1.2rem;
-  color: var(--color-primary);
-  margin-bottom: 1rem;
-}
-
+/* Adoption process */
 .adopt-process {
   padding: 60px 0;
   background: var(--color-bg);
@@ -312,179 +477,972 @@ layout: layouts/base.njk
   flex-wrap: wrap;
 }
 
-/* Responsive Design */
+/* ===== MODAL ===== */
+.pet-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.pet-modal {
+  background: white;
+  border-radius: 12px;
+  max-width: 700px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: background 0.2s;
+}
+
+.modal-close:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+/* Carousel */
+.modal-carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-viewport {
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.3s ease;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  flex-shrink: 0;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
+}
+
+.carousel-prev,
+.carousel-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: background 0.2s;
+  z-index: 5;
+}
+
+.carousel-prev { left: 12px; }
+.carousel-next { right: 12px; }
+
+.carousel-prev:hover,
+.carousel-next:hover {
+  background: white;
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(transparent, rgba(0,0,0,0.3));
+}
+
+.carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid white;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s;
+}
+
+.carousel-dot.active {
+  background: white;
+}
+
+/* Modal info */
+.modal-info {
+  padding: 1.5rem 2rem 2rem;
+}
+
+.modal-info h2 {
+  color: var(--color-primary);
+  margin-bottom: 0.75rem;
+  text-align: left;
+}
+
+.modal-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.modal-badge {
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.modal-badge.species {
+  background: var(--color-primary);
+  color: white;
+}
+
+.modal-badge.age-group {
+  background: var(--color-bg, #f5f5f5);
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+}
+
+.modal-badge.altered {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.modal-badge.foster {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.modal-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+}
+
+.modal-fee {
+  margin-bottom: 1.25rem;
+  font-size: 1.1rem;
+}
+
+.fee-original {
+  text-decoration: line-through;
+  color: var(--color-text-secondary);
+}
+
+.fee-discounted {
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.modal-description {
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+  white-space: pre-line;
+}
+
+.modal-attributes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.attribute-tag {
+  background: var(--color-bg, #f5f5f5);
+  color: var(--color-text);
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+.modal-videos h4 {
+  margin-bottom: 1rem;
+  color: var(--color-primary);
+}
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eee;
+}
+
+.modal-actions .btn {
+  flex: 1;
+  text-align: center;
+  min-width: 150px;
+}
+
+/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-  
   .hero-overlay h1 {
     font-size: 2rem;
   }
-  
+
   .pets-header {
-    flex-direction: column;
-    gap: 2rem;
-    align-items: center;
+    text-align: center;
   }
-  
+
   .pets-filters {
     justify-content: center;
-    flex-wrap: wrap;
   }
-  
+
+  .pets-advanced-filters {
+    flex-direction: column;
+  }
+
+  .filter-group {
+    width: 100%;
+  }
+
+  .filter-select,
+  .filter-input {
+    width: 100%;
+  }
+
   .pets-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .process-links {
     flex-direction: column;
     align-items: center;
+  }
+
+  /* Modal responsive */
+  .pet-modal {
+    max-height: 95vh;
+    border-radius: 8px;
+  }
+
+  .carousel-slide img {
+    height: 280px;
+  }
+
+  .modal-info {
+    padding: 1rem 1.25rem 1.5rem;
+  }
+
+  .modal-details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-actions {
+    flex-direction: column;
   }
 }
 </style>
 
 <script>
-// Pet adoption page functionality
+// Adopt page: Shelterluv integration
 document.addEventListener('DOMContentLoaded', function() {
-  const petsGrid = document.getElementById('pets-grid');
-  const petsLoading = document.getElementById('pets-loading');
-  const petsError = document.getElementById('pets-error');
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const placeholderImageUrl = '{{ "/assets/images/common/cvas-logo.jpg" | url }}';
-  
-  let allPets = [];
-  let currentFilter = 'all';
-  
-  function normalizeBreed(breed) {
-    return (breed || '').toString().trim().toLowerCase();
+  // Config from frontmatter
+  var apiUrl = '{{ petsSection.apiUrl }}';
+  var shelterluvBaseUrl = '{{ petsSection.shelterluvBaseUrl }}';
+  var donateUrl = '{{ petsSection.donateUrl }}';
+  var placeholderImageUrl = '{{ petsSection.placeholderImage | url }}';
+
+  // DOM references
+  var petsGrid = document.getElementById('pets-grid');
+  var petsLoading = document.getElementById('pets-loading');
+  var petsError = document.getElementById('pets-error');
+  var speciesContainer = document.getElementById('species-filters');
+  var advancedFilters = document.getElementById('advanced-filters');
+  var resultCountEl = document.getElementById('pets-result-count');
+  var visibleCountEl = document.getElementById('visible-count');
+  var clearBtn = document.getElementById('clear-filters');
+  var searchInput = document.getElementById('search-name');
+  var sexSelect = document.getElementById('filter-sex');
+  var ageSelect = document.getElementById('filter-age');
+  var breedInput = document.getElementById('filter-breed');
+  var breedDatalist = document.getElementById('breed-list');
+  var sortSelect = document.getElementById('sort-by');
+  var modalOverlay = document.getElementById('pet-modal-overlay');
+  var modalContent = document.getElementById('modal-content');
+  var modalCloseBtn = document.getElementById('modal-close');
+
+  var allPets = [];
+  var currentSpecies = 'all';
+  var previouslyFocusedElement = null;
+  var filterDebounceTimer = null;
+
+  // ===== UTILITY FUNCTIONS =====
+
+  function escapeHtml(text) {
+    if (!text) return '';
+    var div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
   }
 
-  function buildBreedSets(shelterFilters) {
-    const breeds = (shelterFilters && shelterFilters.breeds) ? shelterFilters.breeds : {};
-    const catBreeds = new Set((breeds.cat || []).map(normalizeBreed));
-    const dogBreeds = new Set((breeds.dog || []).map(normalizeBreed));
-    return { catBreeds, dogBreeds };
+  function getAgeGroup(ageMonths, species) {
+    if (species === 'Cat') {
+      if (ageMonths < 6) return 'Baby';
+      if (ageMonths < 24) return 'Young';
+      if (ageMonths < 120) return 'Adult';
+      return 'Senior';
+    }
+    if (ageMonths < 6) return 'Baby';
+    if (ageMonths < 24) return 'Young';
+    if (ageMonths < 96) return 'Adult';
+    return 'Senior';
   }
 
-  function classifySpecies(pet, breedSets) {
-    const normalizedBreed = normalizeBreed(pet.primary_breed);
-    const inCat = normalizedBreed ? breedSets.catBreeds.has(normalizedBreed) : false;
-    const inDog = normalizedBreed ? breedSets.dogBreeds.has(normalizedBreed) : false;
-
-    const speciesTags = [];
-    if (inCat) speciesTags.push('cat');
-    if (inDog) speciesTags.push('dog');
-
-    // If breed is ambiguous (in both sets) or unknown, include in both so it doesn't get filtered out.
-    const finalTags = speciesTags.length > 0 ? speciesTags : ['cat', 'dog'];
-    const speciesLabel = finalTags.length === 2 ? 'Cat/Dog' : (finalTags[0] === 'cat' ? 'Cat' : 'Dog');
-
-    return { ...pet, speciesTags: finalTags, speciesLabel };
+  function formatAge(ageMonths) {
+    if (ageMonths === null || ageMonths === undefined) return 'Unknown';
+    if (ageMonths < 1) return 'Under 1 month';
+    if (ageMonths < 12) return ageMonths + (ageMonths === 1 ? ' month' : ' months');
+    var years = Math.floor(ageMonths / 12);
+    var months = ageMonths % 12;
+    var result = years + (years === 1 ? ' year' : ' years');
+    if (months > 0) result += ', ' + months + (months === 1 ? ' month' : ' months');
+    return result;
   }
 
-  // Load pets from API
+  // ===== DATA NORMALIZATION =====
+
+  function normalizePet(animal) {
+    var ageMonths = animal.Age || 0;
+    if (!animal.Age && animal.DOBUnixTime) {
+      var now = Date.now() / 1000;
+      ageMonths = Math.floor((now - Number(animal.DOBUnixTime)) / (60 * 60 * 24 * 30.44));
+    }
+
+    var coverPhoto = animal.CoverPhoto || '';
+    if (!coverPhoto && animal.Photos && animal.Photos.length > 0) {
+      coverPhoto = animal.Photos[0];
+    }
+
+    var publishedAttributes = (animal.Attributes || [])
+      .filter(function(attr) { return attr.Publish === 'Yes'; })
+      .map(function(attr) { return attr.AttributeName; });
+
+    var fee = animal.AdoptionFeeGroup || null;
+
+    return {
+      id: animal['Internal-ID'] || animal.ID || '',
+      name: animal.Name || 'Unknown',
+      species: animal.Type || 'Unknown',
+      breed: animal.Breed || 'Mixed',
+      sex: animal.Sex || 'Unknown',
+      ageMonths: ageMonths,
+      ageLabel: formatAge(ageMonths),
+      ageGroup: getAgeGroup(ageMonths, animal.Type),
+      size: animal.Size || '',
+      color: animal.Color || '',
+      pattern: animal.Pattern || '',
+      weight: animal.CurrentWeightPounds || '',
+      altered: animal.Altered === 'Yes',
+      inFoster: animal.InFoster || false,
+      description: animal.Description || '',
+      coverPhoto: coverPhoto,
+      photos: animal.Photos || [],
+      videos: animal.Videos || [],
+      attributes: publishedAttributes,
+      adoptionFee: fee ? fee.Price : null,
+      adoptionDiscount: fee ? fee.Discount : null,
+      adoptionFeeName: fee ? fee.Name : '',
+      lastIntakeUnixTime: Number(animal.LastIntakeUnixTime) || 0,
+      adoptUrl: shelterluvBaseUrl + '/matchme/adopt/' + (animal['Internal-ID'] || animal.ID),
+      detailUrl: shelterluvBaseUrl + '/publish_animal/' + (animal['Internal-ID'] || animal.ID)
+    };
+  }
+
+  // ===== FILTERING & SORTING =====
+
+  function filterPets(pets, filters) {
+    return pets.filter(function(pet) {
+      if (filters.species && filters.species !== 'all') {
+        if (pet.species !== filters.species) return false;
+      }
+      if (filters.sex && filters.sex !== 'all') {
+        if (pet.sex !== filters.sex) return false;
+      }
+      if (filters.ageGroup && filters.ageGroup !== 'all') {
+        if (pet.ageGroup !== filters.ageGroup) return false;
+      }
+      if (filters.breed && filters.breed.trim()) {
+        if ((pet.breed || '').toLowerCase().indexOf(filters.breed.trim().toLowerCase()) === -1) return false;
+      }
+      if (filters.name && filters.name.trim()) {
+        if ((pet.name || '').toLowerCase().indexOf(filters.name.trim().toLowerCase()) === -1) return false;
+      }
+      return true;
+    });
+  }
+
+  function sortPets(pets, sortBy) {
+    var sorted = pets.slice();
+    switch (sortBy) {
+      case 'longest-stay':
+        sorted.sort(function(a, b) { return a.lastIntakeUnixTime - b.lastIntakeUnixTime; });
+        break;
+      case 'shortest-stay':
+        sorted.sort(function(a, b) { return b.lastIntakeUnixTime - a.lastIntakeUnixTime; });
+        break;
+      case 'name-az':
+        sorted.sort(function(a, b) { return (a.name || '').localeCompare(b.name || ''); });
+        break;
+      case 'name-za':
+        sorted.sort(function(a, b) { return (b.name || '').localeCompare(a.name || ''); });
+        break;
+      default:
+        sorted.sort(function(a, b) { return a.lastIntakeUnixTime - b.lastIntakeUnixTime; });
+    }
+    return sorted;
+  }
+
+  // ===== DYNAMIC FILTER POPULATION =====
+
+  function buildSpeciesFilters(pets) {
+    var speciesCounts = {};
+    pets.forEach(function(pet) {
+      if (pet.species) speciesCounts[pet.species] = (speciesCounts[pet.species] || 0) + 1;
+    });
+
+    speciesContainer.innerHTML = '';
+
+    // All button
+    var allBtn = document.createElement('button');
+    allBtn.className = 'filter-btn active';
+    allBtn.setAttribute('data-species', 'all');
+    allBtn.textContent = 'All (' + pets.length + ')';
+    allBtn.addEventListener('click', handleSpeciesClick);
+    speciesContainer.appendChild(allBtn);
+
+    // Species buttons - Dog and Cat first, then rest alphabetically
+    var speciesKeys = Object.keys(speciesCounts).sort(function(a, b) {
+      if (a === 'Dog') return -1;
+      if (b === 'Dog') return 1;
+      if (a === 'Cat') return -1;
+      if (b === 'Cat') return 1;
+      return a.localeCompare(b);
+    });
+
+    speciesKeys.forEach(function(species) {
+      var btn = document.createElement('button');
+      btn.className = 'filter-btn';
+      btn.setAttribute('data-species', species);
+      btn.textContent = species + 's (' + speciesCounts[species] + ')';
+      btn.addEventListener('click', handleSpeciesClick);
+      speciesContainer.appendChild(btn);
+    });
+  }
+
+  function populateSelect(selectEl, optionCounts, defaultLabel) {
+    while (selectEl.options.length > 1) selectEl.remove(1);
+    var keys = Object.keys(optionCounts).sort();
+    keys.forEach(function(key) {
+      var opt = document.createElement('option');
+      opt.value = key;
+      opt.textContent = key + ' (' + optionCounts[key] + ')';
+      selectEl.appendChild(opt);
+    });
+  }
+
+  function populateFilters(pets) {
+    var sexes = {};
+    var ageGroups = {};
+    var breeds = {};
+
+    pets.forEach(function(pet) {
+      if (pet.sex && pet.sex !== 'Unknown') sexes[pet.sex] = (sexes[pet.sex] || 0) + 1;
+      if (pet.ageGroup) ageGroups[pet.ageGroup] = (ageGroups[pet.ageGroup] || 0) + 1;
+      if (pet.breed) breeds[pet.breed] = (breeds[pet.breed] || 0) + 1;
+    });
+
+    populateSelect(sexSelect, sexes, 'Any Sex');
+    populateSelect(ageSelect, ageGroups, 'Any Age');
+
+    // Breed datalist
+    breedDatalist.innerHTML = '';
+    Object.keys(breeds).sort().forEach(function(breed) {
+      var opt = document.createElement('option');
+      opt.value = breed;
+      breedDatalist.appendChild(opt);
+    });
+
+    advancedFilters.style.display = 'flex';
+  }
+
+  // ===== APPLY FILTERS =====
+
+  function getActiveFilters() {
+    return {
+      species: currentSpecies,
+      sex: sexSelect.value,
+      ageGroup: ageSelect.value,
+      breed: breedInput.value,
+      name: searchInput.value
+    };
+  }
+
+  function hasActiveFilters(filters) {
+    return (filters.species !== 'all') ||
+           (filters.sex !== 'all') ||
+           (filters.ageGroup !== 'all') ||
+           (filters.breed.trim() !== '') ||
+           (filters.name.trim() !== '');
+  }
+
+  function applyFilters() {
+    clearTimeout(filterDebounceTimer);
+    filterDebounceTimer = setTimeout(function() {
+      var filters = getActiveFilters();
+      var filtered = filterPets(allPets, filters);
+      var sorted = sortPets(filtered, sortSelect.value);
+
+      displayPets(sorted);
+
+      visibleCountEl.textContent = sorted.length;
+      resultCountEl.style.display = 'block';
+      clearBtn.style.display = hasActiveFilters(filters) ? 'inline-block' : 'none';
+    }, 150);
+  }
+
+  function applyFiltersImmediate() {
+    clearTimeout(filterDebounceTimer);
+    var filters = getActiveFilters();
+    var filtered = filterPets(allPets, filters);
+    var sorted = sortPets(filtered, sortSelect.value);
+
+    displayPets(sorted);
+
+    visibleCountEl.textContent = sorted.length;
+    resultCountEl.style.display = 'block';
+    clearBtn.style.display = hasActiveFilters(filters) ? 'inline-block' : 'none';
+  }
+
+  // ===== EVENT HANDLERS =====
+
+  function handleSpeciesClick() {
+    speciesContainer.querySelectorAll('.filter-btn').forEach(function(b) {
+      b.classList.remove('active');
+    });
+    this.classList.add('active');
+    currentSpecies = this.getAttribute('data-species');
+    applyFiltersImmediate();
+  }
+
+  searchInput.addEventListener('input', applyFilters);
+  sexSelect.addEventListener('change', applyFiltersImmediate);
+  ageSelect.addEventListener('change', applyFiltersImmediate);
+  breedInput.addEventListener('input', applyFilters);
+  sortSelect.addEventListener('change', applyFiltersImmediate);
+
+  clearBtn.addEventListener('click', function() {
+    currentSpecies = 'all';
+    searchInput.value = '';
+    sexSelect.value = 'all';
+    ageSelect.value = 'all';
+    breedInput.value = '';
+    sortSelect.value = 'longest-stay';
+    speciesContainer.querySelectorAll('.filter-btn').forEach(function(b) {
+      b.classList.toggle('active', b.getAttribute('data-species') === 'all');
+    });
+    applyFiltersImmediate();
+  });
+
+  // ===== PET CARD RENDERING =====
+
+  function createPetCard(pet) {
+    var imageUrl = pet.coverPhoto || placeholderImageUrl;
+    var plainDesc = pet.description ? pet.description.replace(/\n/g, ' ').substring(0, 150) : '';
+    var truncDesc = plainDesc ? plainDesc + '...' : 'Click to learn more about ' + pet.name + '.';
+
+    var badges = '';
+    if (pet.inFoster) badges += '<span class="pet-badge foster">In Foster</span>';
+    if (pet.altered) badges += '<span class="pet-badge altered">Fixed</span>';
+
+    var attrs = '';
+    if (pet.attributes.length > 0) {
+      attrs = '<div class="pet-attributes">';
+      pet.attributes.forEach(function(attr) {
+        attrs += '<span class="pet-attr-tag">' + escapeHtml(attr) + '</span>';
+      });
+      attrs += '</div>';
+    }
+
+    return '<div class="pet-card" data-pet-id="' + escapeHtml(pet.id) + '" ' +
+           'tabindex="0" role="button" aria-label="View details for ' + escapeHtml(pet.name) + '">' +
+           '<div class="pet-card-image">' +
+           '<img src="' + escapeHtml(imageUrl) + '" alt="' + escapeHtml(pet.name) + '" loading="lazy">' +
+           badges +
+           '</div>' +
+           '<div class="pet-details">' +
+           '<h3>' + escapeHtml(pet.name) + '</h3>' +
+           '<div class="pet-info">' +
+           '<span><strong>Breed:</strong> ' + escapeHtml(pet.breed) + '</span>' +
+           '<span><strong>Age:</strong> ' + escapeHtml(pet.ageLabel) + '</span>' +
+           '<span><strong>Sex:</strong> ' + escapeHtml(pet.sex) + '</span>' +
+           (pet.adoptionFee !== null ? '<span><strong>Fee:</strong> $' + pet.adoptionFee + '</span>' : '') +
+           '</div>' +
+           '<div class="pet-description">' + escapeHtml(truncDesc) + '</div>' +
+           attrs +
+           '</div>' +
+           '</div>';
+  }
+
+  function displayPets(pets) {
+    if (!pets || pets.length === 0) {
+      petsGrid.innerHTML = '<p class="no-pets">No pets match your filters. Try adjusting your search.</p>';
+      return;
+    }
+    petsGrid.innerHTML = pets.map(createPetCard).join('');
+  }
+
+  // ===== PET CARD CLICK -> MODAL =====
+
+  petsGrid.addEventListener('click', function(e) {
+    var card = e.target.closest('.pet-card');
+    if (!card) return;
+    var petId = card.getAttribute('data-pet-id');
+    var pet = allPets.find(function(p) { return p.id === petId; });
+    if (pet) openModal(pet);
+  });
+
+  petsGrid.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      var card = e.target.closest('.pet-card');
+      if (card) {
+        e.preventDefault();
+        card.click();
+      }
+    }
+  });
+
+  // ===== MODAL =====
+
+  function buildModalContent(pet) {
+    var html = '';
+
+    // Photo carousel
+    html += '<div class="modal-carousel" id="modal-carousel">';
+    if (pet.photos.length > 0) {
+      html += '<div class="carousel-viewport">';
+      html += '<div class="carousel-track" id="carousel-track">';
+      pet.photos.forEach(function(photoUrl, index) {
+        html += '<div class="carousel-slide">';
+        html += '<img src="' + escapeHtml(photoUrl) + '" alt="' + escapeHtml(pet.name) + ' photo ' + (index + 1) + '">';
+        html += '</div>';
+      });
+      html += '</div></div>';
+
+      if (pet.photos.length > 1) {
+        html += '<button class="carousel-prev" aria-label="Previous photo">&#8249;</button>';
+        html += '<button class="carousel-next" aria-label="Next photo">&#8250;</button>';
+        html += '<div class="carousel-dots">';
+        pet.photos.forEach(function(_, index) {
+          html += '<button class="carousel-dot' + (index === 0 ? ' active' : '') + '" data-index="' + index + '" aria-label="Photo ' + (index + 1) + '"></button>';
+        });
+        html += '</div>';
+      }
+    } else {
+      html += '<img src="' + placeholderImageUrl + '" alt="' + escapeHtml(pet.name) + '" style="width:100%;height:300px;object-fit:contain;background:#f5f5f5;">';
+    }
+    html += '</div>';
+
+    // Info section
+    html += '<div class="modal-info">';
+    html += '<h2>' + escapeHtml(pet.name) + '</h2>';
+
+    // Badges
+    html += '<div class="modal-badges">';
+    html += '<span class="modal-badge species">' + escapeHtml(pet.species) + '</span>';
+    if (pet.ageGroup) html += '<span class="modal-badge age-group">' + escapeHtml(pet.ageGroup) + '</span>';
+    if (pet.altered) html += '<span class="modal-badge altered">Spayed/Neutered</span>';
+    if (pet.inFoster) html += '<span class="modal-badge foster">In Foster Home</span>';
+    html += '</div>';
+
+    // Details grid
+    html += '<div class="modal-details-grid">';
+    html += '<div><strong>Breed:</strong> ' + escapeHtml(pet.breed) + '</div>';
+    html += '<div><strong>Age:</strong> ' + escapeHtml(pet.ageLabel) + '</div>';
+    html += '<div><strong>Sex:</strong> ' + escapeHtml(pet.sex) + '</div>';
+    if (pet.size) html += '<div><strong>Size:</strong> ' + escapeHtml(pet.size) + '</div>';
+    if (pet.color) html += '<div><strong>Color:</strong> ' + escapeHtml(pet.color) + '</div>';
+    if (pet.pattern) html += '<div><strong>Pattern:</strong> ' + escapeHtml(pet.pattern) + '</div>';
+    if (pet.weight) html += '<div><strong>Weight:</strong> ' + pet.weight + ' lbs</div>';
+    html += '</div>';
+
+    // Adoption fee
+    if (pet.adoptionFee !== null) {
+      html += '<div class="modal-fee">';
+      if (pet.adoptionDiscount && pet.adoptionDiscount > 0) {
+        var discounted = pet.adoptionFee - pet.adoptionDiscount;
+        html += '<span class="fee-original">$' + pet.adoptionFee + '</span> ';
+        html += '<span class="fee-discounted">$' + discounted + '</span>';
+      } else {
+        html += '<strong>Adoption Fee:</strong> $' + pet.adoptionFee;
+      }
+      html += '</div>';
+    }
+
+    // Description
+    if (pet.description) {
+      html += '<div class="modal-description">' + escapeHtml(pet.description) + '</div>';
+    }
+
+    // Attributes
+    if (pet.attributes.length > 0) {
+      html += '<div class="modal-attributes">';
+      pet.attributes.forEach(function(attr) {
+        html += '<span class="attribute-tag">' + escapeHtml(attr) + '</span>';
+      });
+      html += '</div>';
+    }
+
+    // Videos
+    if (pet.videos.length > 0) {
+      html += '<div class="modal-videos">';
+      html += '<h4>Videos</h4>';
+      pet.videos.forEach(function(video) {
+        var embedUrl = video.EmbedUrl || video.YoutubeUrl || '';
+        if (embedUrl) {
+          embedUrl = embedUrl.replace('watch?v=', 'embed/');
+          if (embedUrl.indexOf('youtu.be/') !== -1) {
+            embedUrl = embedUrl.replace('youtu.be/', 'www.youtube.com/embed/');
+          }
+          html += '<div class="video-container">';
+          html += '<iframe src="' + escapeHtml(embedUrl) + '" frameborder="0" allowfullscreen loading="lazy" title="Video of ' + escapeHtml(pet.name) + '"></iframe>';
+          html += '</div>';
+        }
+      });
+      html += '</div>';
+    }
+
+    // Action buttons
+    html += '<div class="modal-actions">';
+    html += '<a href="' + escapeHtml(pet.adoptUrl) + '" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Apply to Adopt ' + escapeHtml(pet.name) + '</a>';
+    if (donateUrl) {
+      html += '<a href="' + escapeHtml(donateUrl) + '" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Donate</a>';
+    }
+    html += '</div>';
+
+    html += '</div>';
+    return html;
+  }
+
+  function openModal(pet) {
+    previouslyFocusedElement = document.activeElement;
+    modalContent.innerHTML = buildModalContent(pet);
+    modalOverlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+
+    document.getElementById('pet-modal').setAttribute('aria-label', 'Details for ' + pet.name);
+    modalCloseBtn.focus();
+
+    if (pet.photos.length > 1) {
+      initCarousel(pet.photos.length);
+    }
+
+    history.pushState({ modal: true, petId: pet.id }, '');
+  }
+
+  function closeModal() {
+    if (modalOverlay.style.display === 'none') return;
+    modalOverlay.style.display = 'none';
+    document.body.style.overflow = '';
+    if (previouslyFocusedElement) {
+      previouslyFocusedElement.focus();
+      previouslyFocusedElement = null;
+    }
+  }
+
+  modalCloseBtn.addEventListener('click', closeModal);
+
+  modalOverlay.addEventListener('click', function(e) {
+    if (e.target === modalOverlay) closeModal();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modalOverlay.style.display !== 'none') {
+      closeModal();
+    }
+  });
+
+  window.addEventListener('popstate', function() {
+    if (modalOverlay.style.display !== 'none') {
+      closeModal();
+    }
+  });
+
+  // Focus trap inside modal
+  document.getElementById('pet-modal').addEventListener('keydown', function(e) {
+    if (e.key !== 'Tab') return;
+    var focusable = this.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    if (focusable.length === 0) return;
+    var first = focusable[0];
+    var last = focusable[focusable.length - 1];
+    if (e.shiftKey) {
+      if (document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      }
+    } else {
+      if (document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
+  // ===== PHOTO CAROUSEL =====
+
+  function initCarousel(totalSlides) {
+    var currentSlide = 0;
+    var track = document.getElementById('carousel-track');
+    if (!track) return;
+
+    var dots = document.querySelectorAll('.carousel-dot');
+    var prevBtn = document.querySelector('.carousel-prev');
+    var nextBtn = document.querySelector('.carousel-next');
+
+    function goToSlide(index) {
+      if (index < 0) index = totalSlides - 1;
+      if (index >= totalSlides) index = 0;
+      currentSlide = index;
+      track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+      dots.forEach(function(dot, i) {
+        dot.classList.toggle('active', i === currentSlide);
+      });
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', function(e) { e.stopPropagation(); goToSlide(currentSlide - 1); });
+    if (nextBtn) nextBtn.addEventListener('click', function(e) { e.stopPropagation(); goToSlide(currentSlide + 1); });
+    dots.forEach(function(dot) {
+      dot.addEventListener('click', function(e) {
+        e.stopPropagation();
+        goToSlide(parseInt(this.getAttribute('data-index')));
+      });
+    });
+
+    // Touch swipe
+    var viewport = document.querySelector('.carousel-viewport');
+    if (!viewport) return;
+    var startX = 0;
+    var startY = 0;
+
+    viewport.addEventListener('touchstart', function(e) {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    }, { passive: true });
+
+    viewport.addEventListener('touchend', function(e) {
+      var endX = e.changedTouches[0].clientX;
+      var endY = e.changedTouches[0].clientY;
+      var diffX = startX - endX;
+      var diffY = startY - endY;
+      if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+        if (diffX > 0) goToSlide(currentSlide + 1);
+        else goToSlide(currentSlide - 1);
+      }
+    }, { passive: true });
+
+    // Keyboard arrows
+    track.parentElement.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowLeft') goToSlide(currentSlide - 1);
+      if (e.key === 'ArrowRight') goToSlide(currentSlide + 1);
+    });
+  }
+
+  // ===== LOAD PETS =====
+
   async function loadPets() {
     try {
       petsLoading.style.display = 'block';
       petsError.style.display = 'none';
-      
-      const response = await fetch('https://cvas-api.vercel.app/api/petstablished');
-      if (!response.ok) throw new Error('API request failed');
-      
-      const data = await response.json();
-      const shelterPets = data.shelter_pets || [];
-      
-      const breedSets = buildBreedSets(data.shelter_filters);
-      allPets = shelterPets.map(pet => classifySpecies(pet, breedSets));
+
+      var response = await fetch(apiUrl);
+      if (!response.ok) throw new Error('API request failed with status ' + response.status);
+
+      var data = await response.json();
+      var rawAnimals = data.animals || [];
+      allPets = rawAnimals.map(normalizePet);
+
+      // Default sort: longest stay first
+      allPets = sortPets(allPets, 'longest-stay');
+
       petsLoading.style.display = 'none';
+
+      buildSpeciesFilters(allPets);
+      populateFilters(allPets);
       displayPets(allPets);
-      
+
+      visibleCountEl.textContent = allPets.length;
+      resultCountEl.style.display = 'block';
+
     } catch (error) {
       console.error('Error loading pets:', error);
       petsLoading.style.display = 'none';
       petsError.style.display = 'block';
     }
   }
-  
-  // Display pets in grid
-  function displayPets(pets) {
-    if (!pets || pets.length === 0) {
-      petsGrid.innerHTML = '<p class="no-pets">No pets available for adoption at this time.</p>';
-      return;
-    }
-    
-    petsGrid.innerHTML = pets.map(pet => createPetCard(pet)).join('');
-  }
-  
-  // Helper function to escape HTML special characters
-  function escapeHtml(text) {
-    if (!text) return '';
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-  }
-  
-  // Helper function to strip HTML tags and get plain text
-  function stripHtml(html) {
-    if (!html) return '';
-    const div = document.createElement('div');
-    div.innerHTML = html;
-    return div.textContent || div.innerText || '';
-  }
-  
-  // Create individual pet card HTML
-  function createPetCard(pet) {
-    const images = pet.images || [];
-    const primaryImage = images[0];
-    const imageUrl = primaryImage ? primaryImage.thumb_url : placeholderImageUrl;
 
-    const species = pet.speciesLabel || 'Unknown';
-    const speciesClass = (pet.speciesTags || []).join(' ');
-
-    // Strip HTML from description and truncate
-    const plainDescription = stripHtml(pet.description);
-    const truncatedDescription = plainDescription ? plainDescription.substring(0, 150) + '...' : 'Click to learn more about this pet.';
-
-    // Use public_url from API for pet detail page (redirects to wagtopia.com)
-    const detailUrl = pet.public_url ? 'https://petstablished.com' + pet.public_url : pet.adopt_url;
-
-    return '<a href="' + escapeHtml(detailUrl) + '" target="_blank" rel="noopener noreferrer" ' +
-           'class="pet-card" data-species="' + escapeHtml(speciesClass) + '">' +
-           '<img src="' + escapeHtml(imageUrl) + '" alt="' + escapeHtml(pet.name) + '" loading="lazy">' +
-           '<div class="pet-details">' +
-           '<h3>' + escapeHtml(pet.name) + '</h3>' +
-           '<div class="pet-info">' +
-           '<span><strong>Species:</strong> ' + escapeHtml(species) + '</span>' +
-           '<span><strong>Breed:</strong> ' + escapeHtml(pet.primary_breed || 'Mixed') + '</span>' +
-           '<span><strong>Age:</strong> ' + escapeHtml(pet.age || 'Unknown') + '</span>' +
-           '<span><strong>Sex:</strong> ' + escapeHtml(pet.sex || 'Unknown') + '</span>' +
-           '</div>' +
-           '<div class="pet-description">' +
-           escapeHtml(truncatedDescription) +
-           '</div>' +
-           '</div>' +
-           '</a>';
-  }
-  
-  // Filter functionality
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', function() {
-      // Update active button
-      filterBtns.forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
-      
-      currentFilter = this.dataset.filter;
-      
-      // Filter pets  
-      let filteredPets = allPets;
-      if (currentFilter !== 'all') {
-        filteredPets = allPets.filter(pet => {
-          return pet.speciesTags && pet.speciesTags.includes(currentFilter);
-        });
-      }
-      
-      displayPets(filteredPets);
-    });
-  });
-  
   // Initialize
   loadPets();
 });

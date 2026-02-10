@@ -296,6 +296,23 @@ content:
           - name: title
             label: Title
             type: string
+          - name: apiUrl
+            label: API URL
+            type: string
+            hidden: true
+          - name: shelterluvBaseUrl
+            label: Shelterluv Base URL
+            type: string
+            hidden: true
+          - name: donateUrl
+            label: Donate URL
+            type: string
+          - name: fallbackUrl
+            label: Fallback URL (shown when API is down)
+            type: string
+          - name: placeholderImage
+            label: Placeholder Image
+            type: image
       - name: adoptionHours
         label: Adoption Hours
         type: object
